@@ -1,0 +1,1757 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Complete HTML + CSS notes in one file with detailed definitions, examples, and visual demos." />
+  <meta name="keywords" content="HTML notes, CSS notes, web development, beginner handbook" />
+  <meta name="author" content="Learning Notes" />
+  <meta name="theme-color" content="#0d9488" />
+  <title>HTML + CSS Master Notes | Single File</title>
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d9488'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='30' fill='white'%3EH%3C/text%3E%3C/svg%3E"
+  />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --text: #142033;
+      --muted: #5f6b7d;
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --accent: #2563eb;
+      --line: #d7e0ed;
+      --radius: 14px;
+      --shadow-sm: 0 3px 10px rgba(15, 23, 42, 0.07);
+      --shadow-lg: 0 14px 32px rgba(15, 23, 42, 0.12);
+      --code-bg: #0f172a;
+      --code-fg: #dbe7ff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        radial-gradient(1200px 500px at -10% -20%, #dff5ff 0%, transparent 50%),
+        radial-gradient(900px 400px at 120% -20%, #dbf7f0 0%, transparent 45%),
+        var(--bg);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      background: #111827;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+    }
+
+    .container {
+      width: min(1200px, 94%);
+      margin: 0 auto;
+      padding: 18px 0 40px;
+    }
+
+    .hero {
+      border-radius: 18px;
+      padding: 22px;
+      color: #fff;
+      background: linear-gradient(135deg, #0d9488, #0891b2 45%, #2563eb);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -20%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      filter: blur(10px);
+      animation: floatGlow 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(180px, 55px) scale(1.2); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      letter-spacing: 0.3px;
+    }
+    .hero p {
+      margin: 8px 0 0;
+      opacity: 0.94;
+    }
+
+    .toolbar {
+      margin: 14px 0 18px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+    }
+    .toolbar input,
+    .toolbar button {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    .toolbar button {
+      cursor: pointer;
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+    .toolbar button.secondary {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    nav.topic-nav {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    nav.topic-nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+    }
+    nav.topic-nav a:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .grid { display: grid; gap: 14px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      animation: fadeUp 0.45s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card h2 { margin: 0 0 8px; font-size: 1.22rem; }
+    .sub { color: var(--muted); font-size: 0.95rem; }
+
+    .tip {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #effcf9;
+      border: 1px solid #b4efe2;
+      color: #115e59;
+      margin: 8px 0;
+      font-size: 0.93rem;
+    }
+
+    .warn {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      margin: 8px 0;
+      font-size: 0.93rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 8px 0;
+    }
+    .chip {
+      border: 1px solid #dbeafe;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 0.93rem;
+    }
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f8fafc; }
+
+    pre {
+      margin: 8px 0;
+      border-radius: 10px;
+      overflow: auto;
+      border: 1px solid #111827;
+      background: var(--code-bg);
+      color: var(--code-fg);
+      padding: 12px;
+      font-size: 0.85rem;
+    }
+    code { font-family: Consolas, "Courier New", monospace; }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+    }
+    details + details { margin-top: 8px; }
+    summary { cursor: pointer; font-weight: 700; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .block-demo {
+      display: block;
+      background: #dbeafe;
+      border: 1px solid #bfdbfe;
+      padding: 6px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+    }
+    .inline-demo {
+      display: inline;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 4px;
+      border-radius: 6px;
+    }
+    .inline-block-demo {
+      display: inline-block;
+      width: 130px;
+      text-align: center;
+      padding: 5px;
+      margin-left: 6px;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      white-space: nowrap;
+    }
+    .marquee-text {
+      display: inline-block;
+      padding: 9px 0;
+      animation: moveText 12s linear infinite;
+      font-weight: 700;
+      color: #0f766e;
+    }
+    @keyframes moveText {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    .semantic-map {
+      display: grid;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fcfdff;
+    }
+    .semantic-box {
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #0b3b2e;
+      border: 1px solid #bbf7d0;
+      background: #dcfce7;
+    }
+    .semantic-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 8px;
+    }
+    .semantic-section {
+      background: #dbeafe;
+      border-color: #bfdbfe;
+      color: #1e3a8a;
+    }
+    .semantic-aside {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #78350f;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .color-box {
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+      padding: 16px 8px;
+      font-weight: 700;
+    }
+    .hex { background: #0ea5e9; }
+    .rgb { background: rgb(34, 197, 94); }
+    .rgba { background: rgba(17, 24, 39, 0.72); }
+    .hsl { background: hsl(280, 80%, 55%); }
+
+    .bg-demo {
+      border-radius: 12px;
+      min-height: 140px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)),
+        linear-gradient(120deg, #0891b2, #2563eb, #7c3aed);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      animation: hueRun 8s linear infinite;
+    }
+    @keyframes hueRun {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .text-demo {
+      text-align: justify;
+      text-transform: capitalize;
+      text-indent: 32px;
+      letter-spacing: 0.5px;
+      word-spacing: 4px;
+      line-height: 1.8;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fcfdff;
+    }
+
+    .box-wrap {
+      background: #fee2e2;
+      padding: 22px;
+      border-radius: 14px;
+      display: inline-block;
+      animation: pulseScale 2s ease-in-out infinite;
+    }
+    .box-border {
+      background: #fde68a;
+      padding: 18px;
+      border: 6px solid #f59e0b;
+      border-radius: 10px;
+    }
+    .box-padding {
+      background: #bfdbfe;
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .box-content {
+      background: #86efac;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    @keyframes pulseScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .float-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .float-box {
+      float: left;
+      width: 90px;
+      height: 90px;
+      margin-right: 10px;
+      margin-bottom: 6px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #c7d2fe;
+      font-weight: 700;
+    }
+    .clear-both {
+      clear: both;
+      margin-top: 6px;
+      padding: 6px;
+      border-radius: 6px;
+      background: #dcfce7;
+    }
+
+    .overflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .overflow-box {
+      height: 90px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .ov-visible { overflow: visible; }
+    .ov-hidden { overflow: hidden; }
+    .ov-auto { overflow: auto; }
+
+    .pos-space {
+      position: relative;
+      height: 130px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+    .layer {
+      position: absolute;
+      width: 95px;
+      height: 60px;
+      border-radius: 8px;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .l1 { left: 14px; top: 50px; background: #ef4444; z-index: 1; }
+    .l2 { left: 52px; top: 34px; background: #3b82f6; z-index: 2; }
+    .l3 { left: 88px; top: 16px; background: #10b981; z-index: 3; }
+
+    .sticky-note {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: #111827;
+      color: #fff;
+      padding: 7px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+
+    .flex-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fcfdff;
+      min-height: 120px;
+    }
+    .f-item {
+      background: #dbeafe;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      flex: 1 1 120px;
+    }
+    .f-order { order: 9; background: #fee2e2; }
+    .f-self { align-self: flex-end; background: #dcfce7; }
+
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 70px;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fcfdff;
+    }
+    .g {
+      background: #ede9fe;
+      border: 1px solid #ddd6fe;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .g-wide { grid-column: span 2; }
+    .g-tall { grid-row: span 2; }
+
+    .motion {
+      width: 180px;
+      height: 100px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f97316, #fb7185);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+    .motion:hover {
+      transform: translateY(-6px) rotate(-2deg) scale(1.04);
+      box-shadow: 0 14px 25px rgba(244, 114, 182, 0.35);
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #2563eb;
+      animation: bounceDot 1.1s ease-in-out infinite;
+    }
+    @keyframes bounceDot {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(-12px); opacity: 1; }
+    }
+
+    .checklist label {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin: 4px 0;
+    }
+
+    .quiz .q {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 8px 0;
+      background: #fcfdff;
+    }
+    .score { color: #0f766e; font-weight: 700; }
+
+    .foot {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+      .color-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overflow-grid { grid-template-columns: 1fr; }
+      .grid-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .semantic-main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-notes">Skip to Main Notes</a>
+
+  <div class="container">
+    <header class="hero">
+      <h1>HTML + CSS Master Notes (Your Learning Flow)</h1>
+      <p>Built from your notebook style: easy definitions, memory tricks, interview points, and visual animated demos.</p>
+      <nav class="topic-nav" aria-label="Quick topic navigation">
+        <a href="#html-start">HTML Start</a>
+        <a href="#attributes">Attributes</a>
+        <a href="#semantic">Semantic</a>
+        <a href="#anchor-media">Anchor/Media</a>
+        <a href="#head-tag">Head Tag</a>
+        <a href="#tables">Tables</a>
+        <a href="#forms">Forms</a>
+        <a href="#selectors">Selectors</a>
+        <a href="#background-color">Colors/Background</a>
+        <a href="#text-font">Text/Font</a>
+        <a href="#box-model">Box Model</a>
+        <a href="#layout">Layout Core</a>
+        <a href="#flex-grid">Flex/Grid Deep</a>
+        <a href="#responsive-media">Responsive</a>
+        <a href="#effects-motion">Animation</a>
+        <a href="#property-atlas">Property Atlas</a>
+        <a href="#revision">Revision Quiz</a>
+      </nav>
+    </header>
+
+    <section class="toolbar">
+      <input id="searchInput" type="text" placeholder="Filter topic: form, table, selector, flex, grid..." />
+      <button id="expandBtn" type="button">Expand All</button>
+      <button id="collapseBtn" type="button" class="secondary">Collapse All</button>
+    </section>
+
+    <main class="grid" id="main-notes">
+      <article class="card" data-keywords="html tags basics block inline formatting">
+        <h2 id="html-start">1) HTML Start: Tags, Elements, Block vs Inline</h2>
+        <p class="sub"><strong>Definition:</strong> HTML (HyperText Markup Language) is used to create the structure of web pages.</p>
+        <div class="chips">
+          <span class="chip">HTML = Structure</span>
+          <span class="chip">CSS = Design</span>
+          <span class="chip">JavaScript = Behavior</span>
+        </div>
+
+        <details open>
+          <summary>Tag Structure and Types</summary>
+          <p><code>&lt;tag&gt;content&lt;/tag&gt;</code> is a normal paired tag. Example: <code>&lt;p&gt;Hello&lt;/p&gt;</code>.</p>
+          <p>Void/self-closing tags do not have closing tags: <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>.</p>
+          <div class="tip">Memory Trick: <strong>Block = Big Box</strong>, <strong>Inline = In the Line</strong>.</div>
+        </details>
+
+        <details>
+          <summary>Block vs Inline Visual Demo</summary>
+          <div class="block-demo">I am display:block (new line, full width behavior).</div>
+          <span class="inline-demo">I am inline</span>
+          <span class="inline-demo">I stay in same line</span>
+          <span class="inline-block-demo">inline-block</span>
+          <table>
+            <tr><th>Type</th><th>Main Behavior</th><th>Common Tags</th></tr>
+            <tr><td>Block</td><td>Starts new line, takes full width</td><td><code>div p h1-h6 section article ul ol li</code></td></tr>
+            <tr><td>Inline</td><td>Stays in same line, content width only</td><td><code>span a b i em strong sub sup</code></td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Formatting Tags (Text Decoration Tags)</summary>
+          <p>
+            <b>b</b> (visual bold),
+            <strong>strong</strong> (important meaning),
+            <i>i</i> (visual italic),
+            <em>em</em> (emphasis),
+            <u>u</u>,
+            <ins>ins</ins>,
+            <del>del</del>,
+            <mark>mark</mark>,
+            H<sub>2</sub>O (subscript),
+            10<sup>2</sup> (superscript).
+          </p>
+          <div class="tip">Best practice: Use <code>strong</code>/<code>em</code> for meaning, not only for style.</div>
+        </details>
+      </article>
+
+      <article class="card" id="attributes" data-keywords="attributes global specific boolean custom data attributes">
+        <h2>2) HTML Attributes (Complete)</h2>
+        <p class="sub"><strong>Definition:</strong> Attributes give extra information to HTML elements and are written in the opening tag.</p>
+        <pre><code>&lt;a href="https://example.com" target="_blank"&gt;Visit&lt;/a&gt;</code></pre>
+        <table>
+          <tr><th>Attribute Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td>Global</td><td>Works on most elements</td><td><code>id class style title lang dir hidden tabindex</code></td></tr>
+          <tr><td>Element-specific</td><td>Works only on certain tags</td><td><code>href (a), src/alt (img), type (input)</code></td></tr>
+          <tr><td>Boolean</td><td>Presence means true</td><td><code>required disabled checked controls autoplay</code></td></tr>
+          <tr><td>Custom</td><td>Developer-defined data</td><td><code>data-user-id="101"</code></td></tr>
+        </table>
+        <div class="tip">Memory Trick: <strong>Global = Everywhere</strong>, <strong>Specific = Special Tag</strong>, <strong>Boolean = Yes/No</strong>, <strong>Custom = data-*</strong>.</div>
+      </article>
+
+      <article class="card" id="semantic" data-keywords="semantic header nav main section article aside footer figure figcaption details summary">
+        <h2>3) Semantic HTML Tags (Meaningful Structure)</h2>
+        <p class="sub"><strong>Definition:</strong> Semantic tags describe the meaning of content, improving SEO, readability, and accessibility.</p>
+        <div class="semantic-map">
+          <div class="semantic-box">header</div>
+          <div class="semantic-box">nav</div>
+          <div class="semantic-main">
+            <div class="semantic-box semantic-section">main > section > article</div>
+            <div class="semantic-box semantic-aside">aside</div>
+          </div>
+          <div class="semantic-box">footer</div>
+        </div>
+        <details>
+          <summary>Semantic Tag Definitions</summary>
+          <table>
+            <tr><th>Tag</th><th>Definition</th></tr>
+            <tr><td><code>header</code></td><td>Top area of page/section (logo, title, nav).</td></tr>
+            <tr><td><code>nav</code></td><td>Navigation links/menu section.</td></tr>
+            <tr><td><code>main</code></td><td>Main unique content of page (usually one).</td></tr>
+            <tr><td><code>section</code></td><td>Group of related content (like a chapter).</td></tr>
+            <tr><td><code>article</code></td><td>Standalone reusable content (blog/news post).</td></tr>
+            <tr><td><code>aside</code></td><td>Related side content (sidebar, ads, tips).</td></tr>
+            <tr><td><code>footer</code></td><td>Bottom content (copyright, links, contact).</td></tr>
+            <tr><td><code>figure</code> + <code>figcaption</code></td><td>Media container with caption.</td></tr>
+            <tr><td><code>details</code> + <code>summary</code></td><td>Native expandable/collapsible section.</td></tr>
+          </table>
+        </details>
+      </article>
+
+      <article class="card" id="anchor-media" data-keywords="anchor link media audio video iframe lists marquee">
+        <h2>4) Anchor, Media, iframe, Lists</h2>
+        <details open>
+          <summary>Anchor (&lt;a&gt;) Tag</summary>
+          <p><strong>Definition:</strong> Creates hyperlinks to pages, sections, mail, and phone.</p>
+          <pre><code>&lt;a href="https://google.com" target="_blank" rel="noopener"&gt;Google&lt;/a&gt;
+&lt;a href="mailto:test@mail.com"&gt;Email&lt;/a&gt;
+&lt;a href="tel:+123456789"&gt;Call&lt;/a&gt;</code></pre>
+          <table>
+            <tr><th>Attribute</th><th>Meaning</th></tr>
+            <tr><td><code>href</code></td><td>Destination URL</td></tr>
+            <tr><td><code>target</code></td><td>Where to open link (<code>_self</code>, <code>_blank</code>)</td></tr>
+            <tr><td><code>rel</code></td><td>Relationship/security for external links</td></tr>
+            <tr><td><code>download</code></td><td>Download linked file</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Audio and Video</summary>
+          <p><strong>Definition:</strong> HTML5 media tags to embed sound and video with built-in controls.</p>
+          <pre><code>&lt;audio controls&gt;
+  &lt;source src="song.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+
+&lt;video controls width="360" poster="thumb.jpg"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+          <div class="warn">Autoplay often needs <code>muted</code> due to browser policy.</div>
+        </details>
+
+        <details>
+          <summary>iframe Tag</summary>
+          <p><strong>Definition:</strong> Embeds another HTML page inside current page.</p>
+          <pre><code>&lt;iframe src="page.html" title="Embedded content" width="400" height="220" sandbox&gt;&lt;/iframe&gt;</code></pre>
+          <table>
+            <tr><th>Attribute</th><th>Meaning</th></tr>
+            <tr><td><code>src</code></td><td>Page URL to embed</td></tr>
+            <tr><td><code>title</code></td><td>Accessibility description</td></tr>
+            <tr><td><code>width/height</code></td><td>Frame size</td></tr>
+            <tr><td><code>sandbox</code></td><td>Security restrictions</td></tr>
+            <tr><td><code>allowfullscreen</code></td><td>Allow full screen for video</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Lists + Marquee Note</summary>
+          <div class="two-col">
+            <div>
+              <h3>Ordered / Unordered / Definition</h3>
+              <ul>
+                <li><code>ol</code> + <code>li</code>: ordered list (steps)</li>
+                <li><code>ul</code> + <code>li</code>: unordered list (bullets)</li>
+                <li><code>dl</code> + <code>dt</code> + <code>dd</code>: term/definition list</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Marquee (obsolete)</h3>
+              <div class="warn"><code>&lt;marquee&gt;</code> is obsolete. Use CSS animation instead.</div>
+              <div class="marquee-wrap"><span class="marquee-text">Learning HTML + CSS daily makes concepts strong and interview-ready.</span></div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="card" id="head-tag" data-keywords="head tag title meta link style script base noscript favicon">
+        <h2>5) Everything in &lt;head&gt; Tag</h2>
+        <p class="sub"><strong>Definition:</strong> <code>head</code> stores metadata and resource links (not visible page content).</p>
+        <table>
+          <tr><th>Tag</th><th>Definition and Use</th></tr>
+          <tr><td><code>title</code></td><td>Browser tab title and search title.</td></tr>
+          <tr><td><code>meta charset</code></td><td>Character encoding (UTF-8 recommended).</td></tr>
+          <tr><td><code>meta viewport</code></td><td>Responsive layout on mobile screens.</td></tr>
+          <tr><td><code>meta description</code></td><td>SEO summary text.</td></tr>
+          <tr><td><code>link rel="stylesheet"</code></td><td>Attach external CSS file.</td></tr>
+          <tr><td><code>link rel="icon"</code></td><td>Favicon icon in tab.</td></tr>
+          <tr><td><code>style</code></td><td>Internal CSS rules.</td></tr>
+          <tr><td><code>script</code></td><td>JavaScript code or external JS file.</td></tr>
+          <tr><td><code>base</code></td><td>Base URL for relative links.</td></tr>
+          <tr><td><code>noscript</code></td><td>Fallback content if JS is disabled.</td></tr>
+        </table>
+      </article>
+
+      <article class="card" id="tables" data-keywords="tables tr th td thead tbody tfoot caption rowspan colspan border-collapse">
+        <h2>6) HTML Tables (Basic to Advanced)</h2>
+        <p class="sub"><strong>Definition:</strong> Tables represent tabular data in rows and columns.</p>
+        <details open>
+          <summary>Core Table Tags and Definitions</summary>
+          <table>
+            <tr><th>Tag</th><th>Definition</th></tr>
+            <tr><td><code>table</code></td><td>Main table container.</td></tr>
+            <tr><td><code>tr</code></td><td>Table row.</td></tr>
+            <tr><td><code>th</code></td><td>Header cell (heading).</td></tr>
+            <tr><td><code>td</code></td><td>Data cell.</td></tr>
+            <tr><td><code>thead</code>, <code>tbody</code>, <code>tfoot</code></td><td>Header/body/footer groups.</td></tr>
+            <tr><td><code>caption</code></td><td>Table title text.</td></tr>
+            <tr><td><code>rowspan</code></td><td>Merge cells vertically.</td></tr>
+            <tr><td><code>colspan</code></td><td>Merge cells horizontally.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Merged Header Table Example (with counting rule)</summary>
+          <table aria-label="Advanced merged table">
+            <caption><em>Employee Skills Matrix</em></caption>
+            <thead>
+              <tr>
+                <th rowspan="2">Name</th>
+                <th colspan="2">Job Group</th>
+                <th rowspan="2">Experience</th>
+              </tr>
+              <tr>
+                <th>Primary</th>
+                <th>Secondary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Software</td>
+                <td>Data Analyst</td>
+                <td rowspan="2">5 years</td>
+              </tr>
+              <tr>
+                <td>David</td>
+                <td>Software</td>
+                <td>QA Analyst</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tip">Counting Rule: Total column count should stay consistent in each row after applying <code>colspan</code>/<code>rowspan</code>.</div>
+        </details>
+
+        <pre><code>/* Modern table styling */
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre>
+      </article>
+
+      <article class="card" id="forms" data-keywords="forms input types validation name required pattern get post enctype">
+        <h2>7) Forms Complete (Every Important Input + Rules)</h2>
+        <p class="sub"><strong>Definition:</strong> Forms collect user data and submit it to a server.</p>
+        <details open>
+          <summary>Form Attributes (Definition)</summary>
+          <table>
+            <tr><th>Attribute</th><th>Definition</th></tr>
+            <tr><td><code>action</code></td><td>Server endpoint where data is sent.</td></tr>
+            <tr><td><code>method</code></td><td>How data is sent (<code>GET</code> or <code>POST</code>).</td></tr>
+            <tr><td><code>enctype</code></td><td>Encoding type; use <code>multipart/form-data</code> for file upload.</td></tr>
+            <tr><td><code>autocomplete</code></td><td>Browser auto-fill behavior.</td></tr>
+            <tr><td><code>target</code></td><td>Where response opens (<code>_self</code>, <code>_blank</code>).</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Input Types and Definitions</summary>
+          <table>
+            <tr><th>Type</th><th>Definition</th><th>Common attributes</th></tr>
+            <tr><td><code>text</code></td><td>Single-line text input.</td><td><code>name required minlength maxlength placeholder</code></td></tr>
+            <tr><td><code>email</code></td><td>Email format validation input.</td><td><code>required</code></td></tr>
+            <tr><td><code>password</code></td><td>Hidden character input.</td><td><code>minlength required</code></td></tr>
+            <tr><td><code>tel</code></td><td>Phone input.</td><td><code>pattern</code></td></tr>
+            <tr><td><code>url</code></td><td>URL input format.</td><td><code>placeholder</code></td></tr>
+            <tr><td><code>search</code></td><td>Search field input.</td><td><code>name</code></td></tr>
+            <tr><td><code>number</code></td><td>Numeric input with spinner.</td><td><code>min max step</code></td></tr>
+            <tr><td><code>range</code></td><td>Slider input.</td><td><code>min max step value</code></td></tr>
+            <tr><td><code>date/time/month/week/datetime-local</code></td><td>Date and time pickers.</td><td><code>min max</code></td></tr>
+            <tr><td><code>color</code></td><td>Color picker input.</td><td><code>value</code></td></tr>
+            <tr><td><code>file</code></td><td>File upload control.</td><td><code>accept multiple</code></td></tr>
+            <tr><td><code>radio</code></td><td>Single choice in a group (same <code>name</code>).</td><td><code>name value checked</code></td></tr>
+            <tr><td><code>checkbox</code></td><td>Multiple selections.</td><td><code>name value checked</code></td></tr>
+            <tr><td><code>hidden</code></td><td>Invisible value sent with form.</td><td><code>name value</code></td></tr>
+            <tr><td><code>submit/reset/button</code></td><td>Form action controls.</td><td><code>value</code></td></tr>
+          </table>
+          <div class="tip">Most important rule: Without <code>name</code>, input value is not submitted to server.</div>
+        </details>
+
+        <details>
+          <summary>Live Form Practice Block</summary>
+          <form action="#" method="post" enctype="multipart/form-data" autocomplete="on">
+            <fieldset>
+              <legend>Registration Form Demo</legend>
+              <div class="two-col">
+                <div>
+                  <label for="nm">Name *</label>
+                  <input id="nm" name="name" type="text" required placeholder="Enter full name" />
+                </div>
+                <div>
+                  <label for="em">Email *</label>
+                  <input id="em" name="email" type="email" required placeholder="name@mail.com" />
+                </div>
+                <div>
+                  <label for="pw">Password *</label>
+                  <input id="pw" name="password" type="password" minlength="6" required />
+                </div>
+                <div>
+                  <label for="ph">Phone</label>
+                  <input id="ph" name="phone" type="tel" pattern="[0-9]{10}" placeholder="10 digits" />
+                </div>
+                <div>
+                  <label for="ag">Age</label>
+                  <input id="ag" name="age" type="number" min="1" max="100" />
+                </div>
+                <div>
+                  <label for="sk">Skill Level</label>
+                  <input id="sk" name="skill" type="range" min="0" max="100" value="60" />
+                </div>
+              </div>
+              <p>
+                <strong>Gender:</strong>
+                <label><input type="radio" name="gender" value="male" checked /> Male</label>
+                <label><input type="radio" name="gender" value="female" /> Female</label>
+              </p>
+              <p>
+                <strong>Languages:</strong>
+                <label><input type="checkbox" name="lang" value="html" /> HTML</label>
+                <label><input type="checkbox" name="lang" value="css" /> CSS</label>
+                <label><input type="checkbox" name="lang" value="js" /> JavaScript</label>
+              </p>
+              <p>
+                <label for="ct"><strong>City:</strong></label>
+                <select id="ct" name="city">
+                  <option value="">Select</option>
+                  <option>Bengaluru</option>
+                  <option>Hyderabad</option>
+                  <option>Pune</option>
+                </select>
+              </p>
+              <p>
+                <label for="ab"><strong>About:</strong></label>
+                <textarea id="ab" name="about" rows="3" placeholder="Write about yourself"></textarea>
+              </p>
+              <p>
+                <label for="rv"><strong>Upload Resume:</strong></label>
+                <input id="rv" name="resume" type="file" />
+              </p>
+              <p>
+                <input type="submit" value="Submit" />
+                <input type="reset" value="Reset" />
+              </p>
+            </fieldset>
+          </form>
+        </details>
+
+        <details>
+          <summary>Interview Answers (Quick)</summary>
+          <table>
+            <tr><th>Question</th><th>Answer</th></tr>
+            <tr><td>GET vs POST?</td><td>GET sends data in URL (less secure); POST sends in request body (better for sensitive data).</td></tr>
+            <tr><td>Why name attribute important?</td><td>Without name, the input value is not included in submitted data.</td></tr>
+            <tr><td>Why same name for radio?</td><td>Same name creates one selection group (single choice).</td></tr>
+            <tr><td>What is enctype?</td><td>Form encoding method; file uploads require <code>multipart/form-data</code>.</td></tr>
+            <tr><td>disabled vs readonly?</td><td>disabled not editable and not submitted; readonly not editable but submitted.</td></tr>
+            <tr><td>What is pattern?</td><td>Regex validation rule for matching input format.</td></tr>
+            <tr><td>What is required?</td><td>Makes field mandatory before form submission.</td></tr>
+          </table>
+        </details>
+      </article>
+
+      <article class="card" id="html-extra" data-keywords="headings paragraphs entities comments global attributes data accessibility">
+        <h2>8) Remaining HTML Topics (Definitions)</h2>
+        <div class="two-col">
+          <div>
+            <h3>Global Attributes</h3>
+            <ul>
+              <li><code>id</code>: unique element identifier.</li>
+              <li><code>class</code>: reusable style/script selector.</li>
+              <li><code>style</code>: inline CSS style.</li>
+              <li><code>title</code>: tooltip text on hover.</li>
+              <li><code>lang</code>: language metadata.</li>
+              <li><code>dir</code>: text direction (ltr/rtl).</li>
+              <li><code>hidden</code>: hide element.</li>
+              <li><code>tabindex</code>: keyboard tab order.</li>
+              <li><code>contenteditable</code>: editable content region.</li>
+              <li><code>draggable</code>: drag capability.</li>
+              <li><code>data-*</code>: custom data attributes for JS/CSS.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Accessibility Basics</h3>
+            <ul>
+              <li><code>alt</code> on images for screen readers.</li>
+              <li><code>label for</code> linked with input <code>id</code>.</li>
+              <li><code>aria-label</code>: adds accessible name.</li>
+              <li><code>aria-describedby</code>: adds help/error description link.</li>
+              <li><code>role</code>: semantic role hint when needed.</li>
+            </ul>
+            <div class="tip">Use semantic HTML first, then ARIA only where necessary.</div>
+          </div>
+        </div>
+        <h3>Entities and Comments</h3>
+        <p><code>&amp;lt;</code> &lt; , <code>&amp;gt;</code> &gt; , <code>&amp;amp;</code> &amp; , <code>&amp;copy;</code> &copy; , <code>&amp;nbsp;</code> (non-breaking space).</p>
+        <pre><code>&lt;!-- This is an HTML comment --&gt;</code></pre>
+      </article>
+
+      <article class="card" id="selectors" data-keywords="css selectors simple combinator pseudo class pseudo element specificity">
+        <h2>9) CSS Selectors (Complete)</h2>
+        <p class="sub"><strong>Definition:</strong> Selectors are used to select HTML elements for styling and designing.</p>
+        <details open>
+          <summary>Selectors Division (Your Format)</summary>
+          <pre><code>Selectors:-
+**********
+- selectors are used to select the html elements for styling &amp; designing purpose.
+
+- selectors are,
+  1. simple selectors
+  2. combinator selectors
+  3. pseudo-class selectors
+  4. pseudo-element selectors</code></pre>
+        </details>
+
+        <details>
+          <summary>1) Simple Selectors (Basic Direct Selection)</summary>
+          <table>
+            <tr><th>Selector</th><th>Syntax</th><th>Meaning</th></tr>
+            <tr><td>Element</td><td><code>p {}</code></td><td>Selects all matching tags.</td></tr>
+            <tr><td>ID</td><td><code>#main {}</code></td><td>Selects one element with matching id.</td></tr>
+            <tr><td>Class</td><td><code>.box {}</code></td><td>Selects all elements having class.</td></tr>
+            <tr><td>Universal</td><td><code>* {}</code></td><td>Selects all elements.</td></tr>
+            <tr><td>Group</td><td><code>h1, p, a {}</code></td><td>Applies same style to multiple selectors.</td></tr>
+            <tr><td>Attribute</td><td><code>input[type="text"] {}</code></td><td>Selects by attribute and value.</td></tr>
+          </table>
+          <div class="tip">Memory: tag, #id, .class, *, and [attr].</div>
+        </details>
+
+        <details>
+          <summary>2) Combinator Selectors (Relationship Based)</summary>
+          <table>
+            <tr><th>Combinator</th><th>Syntax</th><th>Meaning</th></tr>
+            <tr><td>Descendant (space)</td><td><code>div p {}</code></td><td>Any <code>p</code> inside <code>div</code>.</td></tr>
+            <tr><td>Child (&gt;)</td><td><code>div &gt; p {}</code></td><td>Only direct child <code>p</code>.</td></tr>
+            <tr><td>Adjacent sibling (+)</td><td><code>h1 + p {}</code></td><td>First <code>p</code> immediately after <code>h1</code>.</td></tr>
+            <tr><td>General sibling (~)</td><td><code>h1 ~ p {}</code></td><td>All <code>p</code> siblings after <code>h1</code>.</td></tr>
+          </table>
+          <div class="tip">Memory: space = inside, &gt; = direct child, + = next one, ~ = all next siblings.</div>
+        </details>
+
+        <details>
+          <summary>3) Pseudo-class Selectors (State/Position Based)</summary>
+          <table>
+            <tr><th>Pseudo-class</th><th>Example</th><th>Meaning</th></tr>
+            <tr><td><code>:hover</code></td><td><code>button:hover {}</code></td><td>Applies style when mouse is over element.</td></tr>
+            <tr><td><code>:focus</code></td><td><code>input:focus {}</code></td><td>Applies style when input is focused.</td></tr>
+            <tr><td><code>:active</code></td><td><code>a:active {}</code></td><td>Applies style during active click.</td></tr>
+            <tr><td><code>:first-child</code></td><td><code>li:first-child {}</code></td><td>Selects first child element.</td></tr>
+            <tr><td><code>:last-child</code></td><td><code>li:last-child {}</code></td><td>Selects last child element.</td></tr>
+            <tr><td><code>:nth-child()</code></td><td><code>li:nth-child(even) {}</code></td><td>Selects based on position formula/index.</td></tr>
+            <tr><td><code>:only-child</code></td><td><code>p:only-child {}</code></td><td>Selects element if it is the only child.</td></tr>
+          </table>
+          <pre><code>li:nth-child(even) { background: #eee; }
+p:only-child { color: red; }
+p:hover { color: #2563eb; }</code></pre>
+        </details>
+
+        <details>
+          <summary>4) Pseudo-element Selectors (Part of Element)</summary>
+          <table>
+            <tr><th>Pseudo-element</th><th>Example</th><th>Meaning</th></tr>
+            <tr><td><code>::before</code></td><td><code>p::before { content: "★ "; }</code></td><td>Inserts generated content before element content.</td></tr>
+            <tr><td><code>::after</code></td><td><code>p::after { content: " ✔"; }</code></td><td>Inserts generated content after element content.</td></tr>
+            <tr><td><code>::first-letter</code></td><td><code>p::first-letter {}</code></td><td>Styles first letter.</td></tr>
+            <tr><td><code>::first-line</code></td><td><code>p::first-line {}</code></td><td>Styles first rendered line.</td></tr>
+            <tr><td><code>::marker</code></td><td><code>li::marker {}</code></td><td>Styles list bullet/number marker.</td></tr>
+            <tr><td><code>::selection</code></td><td><code>::selection {}</code></td><td>Styles selected text highlight.</td></tr>
+          </table>
+          <pre><code>p::first-letter { font-size: 30px; }
+p::first-line { color: #2563eb; }
+p::before { content: "★ "; }
+li::marker { color: tomato; }
+::selection { background: black; color: white; }</code></pre>
+          <div class="tip">Memory Trick: <strong>:</strong> state/position, <strong>::</strong> part of element.</div>
+        </details>
+
+        <details>
+          <summary>Specificity Rule (Interview Critical)</summary>
+          <p><strong>Order:</strong> Inline style &gt; ID &gt; Class/attribute/pseudo-class &gt; Element/pseudo-element.</p>
+          <pre><code>#id { color: red; }      /* higher */
+.class { color: blue; }  /* lower than id */
+p { color: green; }       /* lower than class */</code></pre>
+        </details>
+      </article>
+
+      <article class="card" id="background-color" data-keywords="background color rgb rgba hsl hsla hex gradient cover contain">
+        <h2>10) Background + Color System</h2>
+        <details open>
+          <summary>Color Formats Definitions</summary>
+          <table>
+            <tr><th>Format</th><th>Definition</th><th>Example</th></tr>
+            <tr><td>HEX</td><td>Hexadecimal color value</td><td><code>#ff0000</code></td></tr>
+            <tr><td>RGB</td><td>Red/Green/Blue (0-255 each)</td><td><code>rgb(255,0,0)</code></td></tr>
+            <tr><td>RGBA</td><td>RGB + alpha transparency (0-1)</td><td><code>rgba(0,0,0,0.7)</code></td></tr>
+            <tr><td>HSL</td><td>Hue/Saturation/Lightness model</td><td><code>hsl(120,100%,50%)</code></td></tr>
+            <tr><td>HSLA</td><td>HSL + alpha</td><td><code>hsla(120,100%,50%,0.5)</code></td></tr>
+          </table>
+          <div class="color-grid">
+            <div class="color-box hex">HEX</div>
+            <div class="color-box rgb">RGB</div>
+            <div class="color-box rgba">RGBA</div>
+            <div class="color-box hsl">HSL</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Background Properties Definitions</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th></tr>
+            <tr><td><code>background-color</code></td><td>Sets solid background color.</td></tr>
+            <tr><td><code>background-image</code></td><td>Sets image/gradient backgrounds.</td></tr>
+            <tr><td><code>background-repeat</code></td><td>Controls repeating behavior.</td></tr>
+            <tr><td><code>background-size</code></td><td>Controls size (cover/contain/custom).</td></tr>
+            <tr><td><code>background-position</code></td><td>Controls placement of background image.</td></tr>
+            <tr><td><code>background-attachment</code></td><td>Controls scroll behavior (scroll/fixed/local).</td></tr>
+            <tr><td><code>background</code></td><td>Shorthand for all background settings.</td></tr>
+          </table>
+          <div class="bg-demo">Overlay Gradient + Background Demo</div>
+        </details>
+      </article>
+
+      <article class="card" id="text-font" data-keywords="text properties font properties border outline typography line-height text-align">
+        <h2>11) Font, Text, Border, Outline (Full Detail)</h2>
+        <p class="sub"><strong>Definition:</strong> Typography properties control how text looks and reads; border/outline define visual boundaries and focus behavior.</p>
+
+        <details open>
+          <summary>Font Properties (Definition + Usage)</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th><th>Example</th></tr>
+            <tr><td><code>font-family</code></td><td>Sets typeface stack with fallbacks.</td><td><code>font-family: "Segoe UI", Arial, sans-serif;</code></td></tr>
+            <tr><td><code>font-size</code></td><td>Controls text size.</td><td><code>font-size: 1rem;</code></td></tr>
+            <tr><td><code>font-weight</code></td><td>Text thickness (100-900, normal, bold).</td><td><code>font-weight: 700;</code></td></tr>
+            <tr><td><code>font-style</code></td><td>Italic/normal styling.</td><td><code>font-style: italic;</code></td></tr>
+            <tr><td><code>font-variant</code></td><td>Variant forms like small caps.</td><td><code>font-variant: small-caps;</code></td></tr>
+            <tr><td><code>font-stretch</code></td><td>Width variant of font when available.</td><td><code>font-stretch: condensed;</code></td></tr>
+            <tr><td><code>font-kerning</code></td><td>Controls kerning pairs.</td><td><code>font-kerning: normal;</code></td></tr>
+            <tr><td><code>font</code></td><td>Shorthand for style/variant/weight/size/line-height/family.</td><td><code>font: italic 700 1rem/1.5 Arial, sans-serif;</code></td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Text Properties (Definition + Memory)</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th></tr>
+            <tr><td><code>text-align</code></td><td>Horizontal alignment of inline text content (left/right/center/justify/start/end).</td></tr>
+            <tr><td><code>text-align-last</code></td><td>Alignment of final line in justified blocks.</td></tr>
+            <tr><td><code>text-indent</code></td><td>Indentation of first line.</td></tr>
+            <tr><td><code>text-transform</code></td><td>Case conversion (uppercase/lowercase/capitalize).</td></tr>
+            <tr><td><code>text-decoration</code></td><td>Shorthand for text lines (underline, overline, line-through) with style/color/thickness.</td></tr>
+            <tr><td><code>text-shadow</code></td><td>Shadow on text (x y blur color).</td></tr>
+            <tr><td><code>letter-spacing</code></td><td>Space between letters.</td></tr>
+            <tr><td><code>word-spacing</code></td><td>Space between words.</td></tr>
+            <tr><td><code>line-height</code></td><td>Vertical line spacing for readability.</td></tr>
+            <tr><td><code>white-space</code></td><td>Controls line wrapping and whitespace preservation.</td></tr>
+            <tr><td><code>text-overflow</code></td><td>How clipped text is shown (clip/ellipsis).</td></tr>
+            <tr><td><code>overflow-wrap</code></td><td>Break long words to avoid overflow.</td></tr>
+            <tr><td><code>word-break</code></td><td>Word breaking behavior for long strings.</td></tr>
+            <tr><td><code>hyphens</code></td><td>Automatic hyphenation control.</td></tr>
+            <tr><td><code>direction</code></td><td>Text direction (ltr/rtl).</td></tr>
+            <tr><td><code>writing-mode</code></td><td>Horizontal/vertical text flow.</td></tr>
+          </table>
+          <div class="tip">Memory Trick: Align -> Decorate -> Transform -> Space -> Overflow -> Direction.</div>
+          <p class="text-demo">this paragraph demonstrates text properties: justified alignment, capitalization, first line indent, letter spacing, word spacing, and increased line-height for readability and clean article-style rendering.</p>
+        </details>
+
+        <details>
+          <summary>Border and Outline Properties</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th><th>Example</th></tr>
+            <tr><td><code>border</code></td><td>Shorthand: width style color.</td><td><code>border: 2px solid #333;</code></td></tr>
+            <tr><td><code>border-width</code></td><td>Thickness of border.</td><td><code>border-width: 1px 2px;</code></td></tr>
+            <tr><td><code>border-style</code></td><td>solid, dashed, dotted, double, groove, ridge, inset, outset.</td><td><code>border-style: dashed;</code></td></tr>
+            <tr><td><code>border-color</code></td><td>Border color.</td><td><code>border-color: tomato;</code></td></tr>
+            <tr><td><code>border-top/right/bottom/left</code></td><td>Per-side border control.</td><td><code>border-top: 3px solid #0ea5e9;</code></td></tr>
+            <tr><td><code>border-radius</code></td><td>Rounded corners.</td><td><code>border-radius: 12px;</code></td></tr>
+            <tr><td><code>outline</code></td><td>Outer focus ring that does not affect layout size.</td><td><code>outline: 2px solid #2563eb;</code></td></tr>
+            <tr><td><code>outline-offset</code></td><td>Gap between border and outline.</td><td><code>outline-offset: 2px;</code></td></tr>
+          </table>
+          <div class="warn">Difference: Border takes space in box model. Outline does not take space and is useful for focus accessibility.</div>
+        </details>
+      </article>
+
+      <article class="card" id="box-model" data-keywords="box model content padding border margin box-sizing margin collapse">
+        <h2>12) CSS Box Model (Everything Related)</h2>
+        <p class="sub"><strong>Definition:</strong> Every element is a rectangular box: <strong>content -> padding -> border -> margin</strong>.</p>
+
+        <div class="box-wrap" aria-label="Box model visual">
+          <div class="box-border">
+            <div class="box-padding">
+              <div class="box-content">Content</div>
+            </div>
+          </div>
+        </div>
+
+        <details open>
+          <summary>Core Box Model Properties</summary>
+          <table>
+            <tr><th>Part</th><th>Property Group</th><th>Definition</th></tr>
+            <tr><td>Content</td><td><code>width</code>, <code>height</code>, <code>min/max-width</code>, <code>min/max-height</code></td><td>Actual content area dimensions.</td></tr>
+            <tr><td>Padding</td><td><code>padding</code>, <code>padding-top/right/bottom/left</code></td><td>Inner space between content and border.</td></tr>
+            <tr><td>Border</td><td><code>border</code> family</td><td>Edge line around padding/content.</td></tr>
+            <tr><td>Margin</td><td><code>margin</code>, <code>margin-top/right/bottom/left</code></td><td>Outer space around the element.</td></tr>
+            <tr><td>Sizing mode</td><td><code>box-sizing</code></td><td>Defines how width/height are calculated.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Shorthand Rules + TRBL Memory</summary>
+          <pre><code>/* One value -> all sides */
+margin: 10px;
+
+/* Two values -> vertical | horizontal */
+padding: 12px 20px;
+
+/* Three values -> top | horizontal | bottom */
+margin: 10px 18px 22px;
+
+/* Four values -> top right bottom left (TRBL) */
+padding: 10px 20px 30px 40px;</code></pre>
+          <div class="tip">Memory Trick: TRBL = Top Right Bottom Left.</div>
+        </details>
+
+        <details>
+          <summary>Box Sizing and Width Calculation</summary>
+          <pre><code>/* Default */
+box-sizing: content-box;
+/* width applies to content only */
+
+/* Recommended */
+* { box-sizing: border-box; }
+/* width includes padding + border */</code></pre>
+          <p><strong>Example calculation:</strong> If width = 200px, padding left+right = 40px, border left+right = 10px</p>
+          <ul>
+            <li><code>content-box</code> total = 250px</li>
+            <li><code>border-box</code> total = 200px</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Margin Collapsing + Centering</summary>
+          <ul>
+            <li>Vertical margins of adjacent block elements can collapse into one margin (largest value wins).</li>
+            <li>Horizontal margins do not collapse.</li>
+            <li>Center a fixed-width block with <code>margin: 0 auto;</code>.</li>
+            <li>Negative margins are allowed and shift elements.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article class="card" id="layout" data-keywords="float clear overflow display position z-index layout">
+        <h2>13) Layout Core: Float, Overflow, Display, Position, Z-Index</h2>
+
+        <details open>
+          <summary>Float + Clear (Legacy but Important)</summary>
+          <p><strong>Definition:</strong> <code>float</code> moves an element left/right; surrounding content wraps around it. <code>clear</code> stops wrapping from floated elements.</p>
+          <div class="float-card">
+            <div class="float-box">float</div>
+            <p>Float was originally made for text wrapping around images. The floated box is removed from normal flow, so parent height can collapse if not cleared.</p>
+            <div class="clear-both"><code>clear: both;</code> clears left and right floats.</div>
+          </div>
+          <pre><code>.image { float: left; margin-right: 12px; }
+.clearfix::after { content: ""; display: block; clear: both; }</code></pre>
+        </details>
+
+        <details>
+          <summary>Overflow Property (Content Exceeding Box)</summary>
+          <p><strong>Definition:</strong> Controls what happens when content is bigger than its container.</p>
+          <div class="overflow-grid">
+            <div class="overflow-box ov-visible">
+              <strong>visible</strong><br />
+              This is long long long long content that can spill outside container.
+            </div>
+            <div class="overflow-box ov-hidden">
+              <strong>hidden</strong><br />
+              This is long long long long content that gets clipped and hidden.
+            </div>
+            <div class="overflow-box ov-auto">
+              <strong>auto</strong><br />
+              This is long long long long content that shows scrollbars only when needed.
+            </div>
+          </div>
+          <pre><code>overflow: visible | hidden | scroll | auto;
+overflow-x: hidden;
+overflow-y: auto;</code></pre>
+        </details>
+
+        <details>
+          <summary>Display Property (Main Values and Definitions)</summary>
+          <table>
+            <tr><th>Value</th><th>Definition</th></tr>
+            <tr><td><code>block</code></td><td>Starts new line and expands full width by default.</td></tr>
+            <tr><td><code>inline</code></td><td>Stays in text flow; width/height not applied normally.</td></tr>
+            <tr><td><code>inline-block</code></td><td>Inline flow + supports width/height.</td></tr>
+            <tr><td><code>none</code></td><td>Element removed from layout flow and not displayed.</td></tr>
+            <tr><td><code>flex / inline-flex</code></td><td>Creates flex formatting context.</td></tr>
+            <tr><td><code>grid / inline-grid</code></td><td>Creates grid formatting context.</td></tr>
+            <tr><td><code>contents</code></td><td>Element box removed; children remain.</td></tr>
+            <tr><td><code>list-item</code></td><td>Behaves like list item with marker.</td></tr>
+            <tr><td><code>table / table-row / table-cell</code></td><td>Mimics table layout behavior.</td></tr>
+          </table>
+          <div class="tip">Interview One-liner: Block takes full width/new line; inline stays in line/content width.</div>
+        </details>
+
+        <details>
+          <summary>Position Property + Z-Index</summary>
+          <p><strong>Definition:</strong> Position controls how an element is placed relative to normal flow or another ancestor.</p>
+          <table>
+            <tr><th>Value</th><th>Definition</th></tr>
+            <tr><td><code>static</code></td><td>Default normal flow (top/right/bottom/left ignored).</td></tr>
+            <tr><td><code>relative</code></td><td>Moves element relative to original position; keeps layout space.</td></tr>
+            <tr><td><code>absolute</code></td><td>Removed from flow; positioned against nearest positioned ancestor.</td></tr>
+            <tr><td><code>fixed</code></td><td>Fixed to viewport while scrolling.</td></tr>
+            <tr><td><code>sticky</code></td><td>Acts relative until threshold, then fixed-like.</td></tr>
+            <tr><td><code>z-index</code></td><td>Stacking order on z-axis (works on positioned elements).</td></tr>
+          </table>
+
+          <span class="sticky-note">Sticky Note Demo (scroll page)</span>
+          <div class="pos-space" aria-label="z-index stacking demo">
+            <div class="layer l1">z1</div>
+            <div class="layer l2">z2</div>
+            <div class="layer l3">z3</div>
+          </div>
+        </details>
+      </article>
+
+      <article class="card" id="flex-grid" data-keywords="flexbox grid container item justify align gap template areas responsive layout">
+        <h2>14) Flexbox and Grid (Deep, Easy to Remember)</h2>
+
+        <details open>
+          <summary>Flexbox Definition + Properties</summary>
+          <p><strong>Definition:</strong> Flexbox is a one-dimensional layout system (row or column) for aligning and distributing items.</p>
+          <table>
+            <tr><th>Flex Container Property</th><th>Definition</th></tr>
+            <tr><td><code>display: flex</code></td><td>Creates flex formatting context.</td></tr>
+            <tr><td><code>flex-direction</code></td><td>Main axis direction (<code>row</code>, <code>column</code>, reverse variants).</td></tr>
+            <tr><td><code>flex-wrap</code></td><td>Wrap items to new line when needed.</td></tr>
+            <tr><td><code>flex-flow</code></td><td>Shorthand for direction + wrap.</td></tr>
+            <tr><td><code>justify-content</code></td><td>Alignment on main axis.</td></tr>
+            <tr><td><code>align-items</code></td><td>Alignment on cross axis for all items.</td></tr>
+            <tr><td><code>align-content</code></td><td>Cross-axis spacing between wrapped rows/columns.</td></tr>
+            <tr><td><code>gap</code></td><td>Space between items.</td></tr>
+          </table>
+
+          <table>
+            <tr><th>Flex Item Property</th><th>Definition</th></tr>
+            <tr><td><code>flex-grow</code></td><td>How much item grows relative to others.</td></tr>
+            <tr><td><code>flex-shrink</code></td><td>How much item shrinks when space is tight.</td></tr>
+            <tr><td><code>flex-basis</code></td><td>Initial item size before grow/shrink.</td></tr>
+            <tr><td><code>flex</code></td><td>Shorthand for grow shrink basis.</td></tr>
+            <tr><td><code>order</code></td><td>Visual order of items.</td></tr>
+            <tr><td><code>align-self</code></td><td>Per-item cross-axis alignment override.</td></tr>
+          </table>
+
+          <div class="flex-demo" aria-label="Flex demo container">
+            <div class="f-item">1</div>
+            <div class="f-item">2</div>
+            <div class="f-item f-order">order:9</div>
+            <div class="f-item f-self">align-self</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Grid Definition + Properties</summary>
+          <p><strong>Definition:</strong> Grid is a two-dimensional layout system controlling rows and columns together.</p>
+          <table>
+            <tr><th>Grid Container Property</th><th>Definition</th></tr>
+            <tr><td><code>display: grid</code></td><td>Creates grid formatting context.</td></tr>
+            <tr><td><code>grid-template-columns</code></td><td>Defines column tracks.</td></tr>
+            <tr><td><code>grid-template-rows</code></td><td>Defines row tracks.</td></tr>
+            <tr><td><code>grid-template-areas</code></td><td>Named grid layout map.</td></tr>
+            <tr><td><code>grid-auto-rows/columns</code></td><td>Size of implicit tracks.</td></tr>
+            <tr><td><code>grid-auto-flow</code></td><td>Placement algorithm direction.</td></tr>
+            <tr><td><code>gap</code></td><td>Space between rows and columns.</td></tr>
+            <tr><td><code>justify-items / align-items</code></td><td>Default alignment for items inside cells.</td></tr>
+            <tr><td><code>justify-content / align-content</code></td><td>Alignment of whole grid inside container.</td></tr>
+          </table>
+
+          <table>
+            <tr><th>Grid Item Property</th><th>Definition</th></tr>
+            <tr><td><code>grid-column</code></td><td>Start/end or span for columns.</td></tr>
+            <tr><td><code>grid-row</code></td><td>Start/end or span for rows.</td></tr>
+            <tr><td><code>grid-area</code></td><td>Named area or shorthand row/column placement.</td></tr>
+            <tr><td><code>justify-self / align-self</code></td><td>Self alignment inside own grid cell.</td></tr>
+          </table>
+
+          <div class="grid-demo" aria-label="Grid demo container">
+            <div class="g">1</div>
+            <div class="g g-wide">2 span 2 cols</div>
+            <div class="g">3</div>
+            <div class="g g-tall">4 span 2 rows</div>
+            <div class="g">5</div>
+            <div class="g">6</div>
+            <div class="g">7</div>
+          </div>
+
+          <div class="tip">Memory Trick: Flex = 1D (one axis). Grid = 2D (rows + columns).</div>
+        </details>
+      </article>
+
+      <article class="card" id="responsive-media" data-keywords="responsive media query units rem em vw vh clamp container mobile first">
+        <h2>15) Responsive Design, Units, Media Queries</h2>
+        <p class="sub"><strong>Definition:</strong> Responsive design adapts layout and typography to different screens.</p>
+
+        <details open>
+          <summary>Units and Definitions</summary>
+          <table>
+            <tr><th>Unit</th><th>Definition</th><th>Best Use</th></tr>
+            <tr><td><code>px</code></td><td>Absolute pixel unit.</td><td>Precise borders, icons.</td></tr>
+            <tr><td><code>%</code></td><td>Relative to parent dimension.</td><td>Fluid widths.</td></tr>
+            <tr><td><code>em</code></td><td>Relative to element font-size.</td><td>Component-relative spacing.</td></tr>
+            <tr><td><code>rem</code></td><td>Relative to root font-size.</td><td>Consistent scalable typography.</td></tr>
+            <tr><td><code>vw</code>/<code>vh</code></td><td>Viewport width/height units.</td><td>Hero sections, viewport-based sizing.</td></tr>
+            <tr><td><code>vmin</code>/<code>vmax</code></td><td>Relative to smaller/larger viewport side.</td><td>Adaptive shapes.</td></tr>
+            <tr><td><code>ch</code></td><td>Width of "0" character in current font.</td><td>Readable line lengths.</td></tr>
+            <tr><td><code>fr</code></td><td>Fractional unit in CSS Grid.</td><td>Grid track allocation.</td></tr>
+            <tr><td><code>clamp()</code></td><td>Min-preferred-max fluid value function.</td><td>Fluid type/space without many breakpoints.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Media Query Definitions</summary>
+          <table>
+            <tr><th>Query</th><th>Definition</th></tr>
+            <tr><td><code>@media (max-width: 768px)</code></td><td>Applies up to 768px width (mobile/tablet targeting).</td></tr>
+            <tr><td><code>@media (min-width: 1024px)</code></td><td>Applies from 1024px and above.</td></tr>
+            <tr><td><code>@media (orientation: landscape)</code></td><td>Applies in landscape mode.</td></tr>
+            <tr><td><code>@media (prefers-reduced-motion: reduce)</code></td><td>Respects user reduced-motion accessibility preference.</td></tr>
+            <tr><td><code>@media (prefers-color-scheme: dark)</code></td><td>Dark mode preference query.</td></tr>
+          </table>
+          <pre><code>/* Mobile-first example */
+.card-grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 700px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}</code></pre>
+        </details>
+
+        <details>
+          <summary>Responsive Rules Checklist</summary>
+          <ul>
+            <li>Always include <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code>.</li>
+            <li>Use fluid widths and avoid fixed large pixel widths for layout containers.</li>
+            <li>Use <code>max-width: 100%;</code> for images/video to prevent overflow.</li>
+            <li>Prefer mobile-first breakpoints.</li>
+            <li>Use spacing and font scales that adapt using <code>rem</code> and <code>clamp()</code>.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article class="card" id="effects-motion" data-keywords="transform transition animation keyframes filter opacity shadow">
+        <h2>16) Transform, Transition, Animation, Effects</h2>
+
+        <details open>
+          <summary>Definition + Core Properties</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th></tr>
+            <tr><td><code>transform</code></td><td>2D/3D geometric changes (translate, rotate, scale, skew).</td></tr>
+            <tr><td><code>transform-origin</code></td><td>Pivot point of transform.</td></tr>
+            <tr><td><code>transition</code></td><td>Smooth interpolation between property values.</td></tr>
+            <tr><td><code>transition-property</code></td><td>Which property animates.</td></tr>
+            <tr><td><code>transition-duration</code></td><td>How long transition runs.</td></tr>
+            <tr><td><code>transition-timing-function</code></td><td>Speed curve (ease, linear, cubic-bezier).</td></tr>
+            <tr><td><code>transition-delay</code></td><td>Delay before transition starts.</td></tr>
+            <tr><td><code>animation</code></td><td>Shorthand for keyframe animation.</td></tr>
+            <tr><td><code>@keyframes</code></td><td>Defines animation stages.</td></tr>
+            <tr><td><code>animation-duration</code></td><td>Animation length.</td></tr>
+            <tr><td><code>animation-iteration-count</code></td><td>Number of repeats (or infinite).</td></tr>
+            <tr><td><code>animation-direction</code></td><td>Direction mode (normal, reverse, alternate).</td></tr>
+            <tr><td><code>animation-fill-mode</code></td><td>Styles before/after animation period.</td></tr>
+            <tr><td><code>animation-play-state</code></td><td>running/paused control.</td></tr>
+            <tr><td><code>opacity</code></td><td>Element transparency from 0 to 1.</td></tr>
+            <tr><td><code>filter</code></td><td>Visual effects (blur, brightness, contrast, hue-rotate).</td></tr>
+            <tr><td><code>box-shadow</code></td><td>Shadow around element box.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Interactive Demos</summary>
+          <p>Hover card for transition + transform effect:</p>
+          <div class="motion" title="Hover me">Hover Me</div>
+          <p>Simple keyframe loading dots:</p>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <span class="dot" style="animation-delay:0s"></span>
+            <span class="dot" style="animation-delay:0.12s"></span>
+            <span class="dot" style="animation-delay:0.24s"></span>
+          </div>
+          <pre><code>.card {
+  transition: transform .3s ease;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+@keyframes pulse {
+  0% { opacity: .5; }
+  50% { opacity: 1; }
+  100% { opacity: .5; }
+}</code></pre>
+        </details>
+      </article>
+
+      <article class="card" id="property-atlas" data-keywords="all css properties definitions cheat sheet atlas reference">
+        <h2>17) CSS Property Atlas (Topic-wise Complete Reference)</h2>
+        <p class="sub"><strong>Goal:</strong> One-place revision map of the most used and interview-relevant CSS properties with definitions.</p>
+
+        <details open>
+          <summary>Color + Background</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>color</code></td><td>Text color.</td></tr>
+            <tr><td><code>background-color</code></td><td>Background fill color.</td></tr>
+            <tr><td><code>background-image</code></td><td>Image or gradient background layer.</td></tr>
+            <tr><td><code>background-repeat</code></td><td>Repeat behavior for image backgrounds.</td></tr>
+            <tr><td><code>background-size</code></td><td>Size of background image.</td></tr>
+            <tr><td><code>background-position</code></td><td>Position of background image.</td></tr>
+            <tr><td><code>background-attachment</code></td><td>Scroll behavior of background.</td></tr>
+            <tr><td><code>background-origin</code></td><td>Positioning area for background.</td></tr>
+            <tr><td><code>background-clip</code></td><td>Painting area for background.</td></tr>
+            <tr><td><code>background-blend-mode</code></td><td>Blend mode between background layers.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Typography + Text</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>font-style</code>, <code>font-variant</code>, <code>font</code></td><td>Font selection and rendering controls.</td></tr>
+            <tr><td><code>line-height</code>, <code>letter-spacing</code>, <code>word-spacing</code></td><td>Text spacing controls.</td></tr>
+            <tr><td><code>text-align</code>, <code>text-align-last</code>, <code>text-indent</code></td><td>Paragraph alignment and indentation.</td></tr>
+            <tr><td><code>text-transform</code></td><td>Case conversion behavior.</td></tr>
+            <tr><td><code>text-decoration</code> family</td><td>Text line decoration and style.</td></tr>
+            <tr><td><code>text-shadow</code></td><td>Shadow on text.</td></tr>
+            <tr><td><code>white-space</code>, <code>text-overflow</code>, <code>word-break</code>, <code>overflow-wrap</code>, <code>hyphens</code></td><td>Wrapping, clipping, and overflow of text.</td></tr>
+            <tr><td><code>direction</code>, <code>unicode-bidi</code>, <code>writing-mode</code></td><td>Bi-directional and writing flow control.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Box Model + Sizing + Spacing</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>width</code>, <code>height</code>, <code>min/max-width</code>, <code>min/max-height</code></td><td>Box dimensions and limits.</td></tr>
+            <tr><td><code>margin</code> family</td><td>Outer spacing around element.</td></tr>
+            <tr><td><code>padding</code> family</td><td>Inner spacing inside border.</td></tr>
+            <tr><td><code>box-sizing</code></td><td>Dimension calculation model.</td></tr>
+            <tr><td><code>border</code> family</td><td>Box boundary style, size, color.</td></tr>
+            <tr><td><code>border-radius</code></td><td>Corner roundness.</td></tr>
+            <tr><td><code>outline</code> family</td><td>Outer focus ring not affecting layout.</td></tr>
+            <tr><td><code>box-shadow</code></td><td>Outer/inner shadow effects.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Layout and Positioning</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>display</code></td><td>Formatting type (block, inline, flex, grid, etc.).</td></tr>
+            <tr><td><code>position</code>, <code>top/right/bottom/left</code>, <code>inset</code></td><td>Offset positioning strategy.</td></tr>
+            <tr><td><code>z-index</code></td><td>Stacking order on z-axis.</td></tr>
+            <tr><td><code>float</code>, <code>clear</code></td><td>Legacy floating and clearing behavior.</td></tr>
+            <tr><td><code>overflow</code>, <code>overflow-x/y</code></td><td>Overflow clipping/scrolling control.</td></tr>
+            <tr><td><code>visibility</code></td><td>Visibility without removing layout space.</td></tr>
+            <tr><td><code>opacity</code></td><td>Transparency level.</td></tr>
+            <tr><td><code>isolation</code></td><td>Creates new stacking context.</td></tr>
+            <tr><td><code>contain</code></td><td>Contain layout/paint/size effects.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Flex and Grid</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>flex-direction</code>, <code>flex-wrap</code>, <code>flex-flow</code></td><td>Flex container axis and wrapping.</td></tr>
+            <tr><td><code>justify-content</code>, <code>align-items</code>, <code>align-content</code>, <code>gap</code></td><td>Flex alignment and spacing.</td></tr>
+            <tr><td><code>flex</code>, <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>, <code>order</code>, <code>align-self</code></td><td>Flex item sizing and order.</td></tr>
+            <tr><td><code>grid-template-columns/rows/areas</code></td><td>Grid track and area definition.</td></tr>
+            <tr><td><code>grid-auto-flow</code>, <code>grid-auto-rows/columns</code></td><td>Implicit grid behavior.</td></tr>
+            <tr><td><code>grid-column</code>, <code>grid-row</code>, <code>grid-area</code></td><td>Grid item placement.</td></tr>
+            <tr><td><code>justify-items</code>, <code>align-items</code>, <code>place-items</code></td><td>Cell-level default alignment.</td></tr>
+            <tr><td><code>justify-self</code>, <code>align-self</code>, <code>place-self</code></td><td>Individual item alignment inside cell.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Visual Effects, Motion, and Interaction</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>transform</code>, <code>transform-origin</code>, <code>perspective</code></td><td>Geometric transforms and 3D depth control.</td></tr>
+            <tr><td><code>transition</code> family</td><td>Smooth state-to-state animation.</td></tr>
+            <tr><td><code>animation</code> family + <code>@keyframes</code></td><td>Timeline-based repeated animation.</td></tr>
+            <tr><td><code>filter</code>, <code>backdrop-filter</code></td><td>Visual effects on element/backdrop.</td></tr>
+            <tr><td><code>mix-blend-mode</code></td><td>Blending mode with underlying layers.</td></tr>
+            <tr><td><code>cursor</code></td><td>Pointer type on hover.</td></tr>
+            <tr><td><code>pointer-events</code></td><td>Mouse event participation control.</td></tr>
+            <tr><td><code>user-select</code></td><td>Text selection allowance.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Lists, Tables, Media, and Form Controls</summary>
+          <table>
+            <tr><th>Properties</th><th>Definition</th></tr>
+            <tr><td><code>list-style</code>, <code>list-style-type</code>, <code>list-style-position</code>, <code>list-style-image</code></td><td>Bullet/number style control.</td></tr>
+            <tr><td><code>border-collapse</code>, <code>border-spacing</code>, <code>caption-side</code>, <code>empty-cells</code>, <code>table-layout</code></td><td>Table rendering behavior.</td></tr>
+            <tr><td><code>object-fit</code>, <code>object-position</code></td><td>How replaced media (img/video) fits box.</td></tr>
+            <tr><td><code>aspect-ratio</code></td><td>Preferred width-height ratio.</td></tr>
+            <tr><td><code>accent-color</code></td><td>Theme color for native checkboxes/radio/range/progress.</td></tr>
+            <tr><td><code>appearance</code></td><td>Controls native UI styling behavior.</td></tr>
+            <tr><td><code>resize</code></td><td>Whether user can resize elements like textarea.</td></tr>
+          </table>
+        </details>
+      </article>
+
+      <article class="card" id="revision" data-keywords="revision checklist quiz interview">
+        <h2>18) Revision Checklist + Mini Interview Quiz</h2>
+
+        <details open>
+          <summary>Final Revision Checklist</summary>
+          <div class="checklist">
+            <label><input type="checkbox" /> I can explain block vs inline vs inline-block.</label>
+            <label><input type="checkbox" /> I know global/specific/boolean/custom attributes with examples.</label>
+            <label><input type="checkbox" /> I can write semantic structure: header nav main section article aside footer.</label>
+            <label><input type="checkbox" /> I understand table merging rules: rowspan and colspan counting.</label>
+            <label><input type="checkbox" /> I can build accessible forms with label, name, required, pattern, enctype.</label>
+            <label><input type="checkbox" /> I know selectors, pseudo-classes, pseudo-elements, and specificity order.</label>
+            <label><input type="checkbox" /> I can explain box model and box-sizing clearly.</label>
+            <label><input type="checkbox" /> I can use display, position, float, overflow, z-index correctly.</label>
+            <label><input type="checkbox" /> I can build layout using both flexbox and grid.</label>
+            <label><input type="checkbox" /> I know responsive units and media queries.</label>
+          </div>
+        </details>
+
+        <details>
+          <summary>Mini Quiz (Auto Score)</summary>
+          <div class="quiz" id="quizBlock">
+            <div class="q" data-answer="b">
+              <p><strong>Q1.</strong> Which input must all radio options share for single selection?</p>
+              <label><input type="radio" name="q1" value="a" /> id</label><br />
+              <label><input type="radio" name="q1" value="b" /> name</label><br />
+              <label><input type="radio" name="q1" value="c" /> class</label>
+            </div>
+            <div class="q" data-answer="c">
+              <p><strong>Q2.</strong> Which display value removes element from layout?</p>
+              <label><input type="radio" name="q2" value="a" /> inline</label><br />
+              <label><input type="radio" name="q2" value="b" /> hidden</label><br />
+              <label><input type="radio" name="q2" value="c" /> none</label>
+            </div>
+            <div class="q" data-answer="a">
+              <p><strong>Q3.</strong> Which is true about <code>readonly</code> field?</p>
+              <label><input type="radio" name="q3" value="a" /> Cannot edit, but value is submitted</label><br />
+              <label><input type="radio" name="q3" value="b" /> Cannot edit, and value is never submitted</label><br />
+              <label><input type="radio" name="q3" value="c" /> Same as required</label>
+            </div>
+            <div class="q" data-answer="b">
+              <p><strong>Q4.</strong> Flexbox is mainly:</p>
+              <label><input type="radio" name="q4" value="a" /> 2D layout</label><br />
+              <label><input type="radio" name="q4" value="b" /> 1D layout</label><br />
+              <label><input type="radio" name="q4" value="c" /> Table layout</label>
+            </div>
+            <div class="q" data-answer="c">
+              <p><strong>Q5.</strong> In box model order from inside to outside:</p>
+              <label><input type="radio" name="q5" value="a" /> Margin -> Border -> Padding -> Content</label><br />
+              <label><input type="radio" name="q5" value="b" /> Border -> Content -> Padding -> Margin</label><br />
+              <label><input type="radio" name="q5" value="c" /> Content -> Padding -> Border -> Margin</label>
+            </div>
+            <p>
+              <button type="button" id="quizBtn">Check Score</button>
+              <span id="quizResult" class="score" aria-live="polite"></span>
+            </p>
+          </div>
+        </details>
+      </article>
+    </main>
+
+    <footer class="foot">
+      End-to-end HTML + CSS notebook in one file. Practice section-by-section and revise with the quiz. <span id="yearText"></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var searchInput = document.getElementById("searchInput");
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+      var detailsList = Array.prototype.slice.call(document.querySelectorAll("details"));
+      var expandBtn = document.getElementById("expandBtn");
+      var collapseBtn = document.getElementById("collapseBtn");
+
+      function normalize(str) {
+        return (str || "").toLowerCase().replace(/\s+/g, " ").trim();
+      }
+
+      function filterCards() {
+        var query = normalize(searchInput ? searchInput.value : "");
+        cards.forEach(function (card) {
+          var keywords = normalize(card.getAttribute("data-keywords"));
+          var text = normalize(card.textContent);
+          var match = !query || keywords.indexOf(query) !== -1 || text.indexOf(query) !== -1;
+          card.style.display = match ? "" : "none";
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", filterCards);
+      }
+
+      if (expandBtn) {
+        expandBtn.addEventListener("click", function () {
+          detailsList.forEach(function (d) {
+            d.open = true;
+          });
+        });
+      }
+
+      if (collapseBtn) {
+        collapseBtn.addEventListener("click", function () {
+          detailsList.forEach(function (d) {
+            d.open = false;
+          });
+        });
+      }
+
+      var quizBtn = document.getElementById("quizBtn");
+      var quizResult = document.getElementById("quizResult");
+      if (quizBtn && quizResult) {
+        quizBtn.addEventListener("click", function () {
+          var questions = Array.prototype.slice.call(document.querySelectorAll(".quiz .q"));
+          var score = 0;
+          questions.forEach(function (q) {
+            var answer = q.getAttribute("data-answer");
+            var selected = q.querySelector("input[type='radio']:checked");
+            if (selected && selected.value === answer) {
+              score += 1;
+            }
+          });
+          quizResult.textContent = "Score: " + score + " / " + questions.length;
+        });
+      }
+
+      var yearText = document.getElementById("yearText");
+      if (yearText) {
+        yearText.textContent = "(" + new Date().getFullYear() + ")";
+      }
+
+      filterCards();
+    })();
+  </script>
+</body>
+</html>
