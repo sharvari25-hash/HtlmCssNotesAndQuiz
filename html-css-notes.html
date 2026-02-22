@@ -232,6 +232,40 @@
     }
     code { font-family: Consolas, "Courier New", monospace; }
 
+    img,
+    video,
+    iframe,
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+    iframe {
+      width: 100%;
+      border: 0;
+    }
+
+    form { width: 100%; }
+    fieldset { min-width: 0; }
+    form input,
+    form select,
+    form textarea,
+    form button {
+      font: inherit;
+    }
+    form input:not([type="radio"]):not([type="checkbox"]),
+    form select,
+    form textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+    form input[type="submit"],
+    form input[type="reset"],
+    form button {
+      padding: 9px 12px;
+      border-radius: 8px;
+    }
+    textarea { resize: vertical; }
+
     details {
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -568,6 +602,48 @@
     }
     .score { color: #0f766e; font-weight: 700; }
 
+    .example-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .example-view {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #f8fafc;
+      min-height: 80px;
+    }
+    .example-title {
+      margin: 0 0 6px;
+      font-size: 0.82rem;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+    .selector-demo li:first-child { color: #ef4444; }
+    .selector-demo li:nth-child(2) { color: #2563eb; }
+    .selector-demo li:hover { background: #e0f2fe; cursor: pointer; }
+    .selector-demo li::marker { color: #f97316; }
+    .styled-preview {
+      text-align: center;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      border: 2px dashed #60a5fa;
+      border-radius: 10px;
+      padding: 8px;
+      color: #1e3a8a;
+      background: #eff6ff;
+    }
+    .property-output {
+      border-left: 4px solid #0ea5e9;
+      padding: 8px 10px;
+      background: #ecfeff;
+      border-radius: 8px;
+    }
+
     .foot {
       text-align: center;
       color: var(--muted);
@@ -576,12 +652,100 @@
     }
 
     @media (max-width: 900px) {
+      .container { width: min(100%, 95%); }
+      .hero { padding: 18px; border-radius: 14px; }
+      .card { padding: 14px; }
       .two-col { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .color-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .overflow-grid { grid-template-columns: 1fr; }
       .grid-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .semantic-main { grid-template-columns: 1fr; }
+      .example-pair { grid-template-columns: 1fr; }
+      th, td { font-size: 0.9rem; padding: 7px 8px; }
+      pre { font-size: 0.8rem; }
+    }
+
+    @media (max-width: 700px) {
+      html { font-size: 15px; }
+      body { line-height: 1.5; }
+      .hero h1 { font-size: clamp(1.2rem, 6vw, 1.6rem); }
+      .hero p { font-size: 0.92rem; }
+      .toolbar { gap: 8px; }
+      .toolbar input,
+      .toolbar button {
+        width: 100%;
+        font-size: 0.92rem;
+      }
+      nav.topic-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        padding-bottom: 4px;
+      }
+      nav.topic-nav a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      th, td { white-space: nowrap; }
+      details { padding: 8px; }
+      summary { font-size: 0.95rem; }
+      .inline-block-demo {
+        display: block;
+        width: 100%;
+        margin: 6px 0 0;
+      }
+      .float-box {
+        float: none;
+        margin-right: 0;
+      }
+      .clear-both { clear: none; }
+      .motion {
+        width: 100%;
+        max-width: 240px;
+      }
+      .box-wrap {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+      }
+      .checklist label { align-items: flex-start; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: 96%; padding: 12px 0 28px; }
+      .hero { padding: 14px; }
+      .card { padding: 12px; border-radius: 12px; }
+      .card h2 { font-size: 1.06rem; }
+      .sub, .tip, .warn { font-size: 0.88rem; }
+      .chips { gap: 6px; }
+      .chip { font-size: 0.74rem; padding: 3px 8px; }
+      .color-grid { grid-template-columns: 1fr; }
+      .grid-demo { grid-template-columns: 1fr; grid-auto-rows: 58px; }
+      .g-wide, .g-tall { grid-column: auto; grid-row: auto; }
+      pre { font-size: 0.74rem; padding: 10px; }
+      .example-view { padding: 8px; min-height: 64px; }
+      .sticky-note {
+        position: static;
+        margin-bottom: 6px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
@@ -665,6 +829,22 @@
           </p>
           <div class="tip">Best practice: Use <code>strong</code>/<code>em</code> for meaning, not only for style.</div>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;h3&gt;Welcome&lt;/h3&gt;
+&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; and &lt;em&gt;emphasized&lt;/em&gt;.&lt;/p&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <h3>Welcome</h3>
+              <p>This is <strong>important</strong> and <em>emphasized</em>.</p>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="attributes" data-keywords="attributes global specific boolean custom data attributes">
@@ -679,6 +859,22 @@
           <tr><td>Custom</td><td>Developer-defined data</td><td><code>data-user-id="101"</code></td></tr>
         </table>
         <div class="tip">Memory Trick: <strong>Global = Everywhere</strong>, <strong>Specific = Special Tag</strong>, <strong>Boolean = Yes/No</strong>, <strong>Custom = data-*</strong>.</div>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;p id="intro" class="box" title="tooltip"&gt;Hello&lt;/p&gt;
+&lt;input type="text" required data-track="name" /&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <p id="intro" class="box" title="tooltip">Hello</p>
+              <input type="text" required data-track="name" placeholder="required input" />
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="semantic" data-keywords="semantic header nav main section article aside footer figure figcaption details summary">
@@ -707,6 +903,34 @@
             <tr><td><code>figure</code> + <code>figcaption</code></td><td>Media container with caption.</td></tr>
             <tr><td><code>details</code> + <code>summary</code></td><td>Native expandable/collapsible section.</td></tr>
           </table>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;header&gt;Site Header&lt;/header&gt;
+&lt;nav&gt;Menu&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;&lt;article&gt;Post&lt;/article&gt;&lt;/section&gt;
+  &lt;aside&gt;Sidebar&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;Footer&lt;/footer&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="semantic-map">
+                <div class="semantic-box">header</div>
+                <div class="semantic-box">nav</div>
+                <div class="semantic-main">
+                  <div class="semantic-box semantic-section">main > section > article</div>
+                  <div class="semantic-box semantic-aside">aside</div>
+                </div>
+                <div class="semantic-box">footer</div>
+              </div>
+            </div>
+          </div>
         </details>
       </article>
 
@@ -772,6 +996,28 @@
             </div>
           </div>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;a href="https://example.com" target="_blank"&gt;Visit&lt;/a&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <p><a href="https://example.com" target="_blank" rel="noopener">Visit</a></p>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="head-tag" data-keywords="head tag title meta link style script base noscript favicon">
@@ -790,6 +1036,28 @@
           <tr><td><code>base</code></td><td>Base URL for relative links.</td></tr>
           <tr><td><code>noscript</code></td><td>Fallback content if JS is disabled.</td></tr>
         </table>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;head&gt;
+  &lt;title&gt;My Notes&lt;/title&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;link rel="icon" href="icon.png" /&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <ul>
+                <li>Tab title changes to <strong>My Notes</strong>.</li>
+                <li>Favicon appears in browser tab.</li>
+                <li>Page scales correctly on mobile screens.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="tables" data-keywords="tables tr th td thead tbody tfoot caption rowspan colspan border-collapse">
@@ -845,6 +1113,26 @@
         <pre><code>/* Modern table styling */
 table { border-collapse: collapse; width: 100%; }
 th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Zakir&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <table>
+                <tr><th>Name</th><th>Marks</th></tr>
+                <tr><td>Zakir</td><td>90</td></tr>
+              </table>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="forms" data-keywords="forms input types validation name required pattern get post enctype">
@@ -965,6 +1253,28 @@ th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre
             <tr><td>What is required?</td><td>Makes field mandatory before form submission.</td></tr>
           </table>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&lt;form&gt;
+  &lt;label&gt;Email&lt;/label&gt;
+  &lt;input type="email" required /&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <form action="#">
+                <label for="mailDemo">Email</label>
+                <input id="mailDemo" type="email" required placeholder="name@mail.com" />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="html-extra" data-keywords="headings paragraphs entities comments global attributes data accessibility">
@@ -1001,6 +1311,22 @@ th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre
         <h3>Entities and Comments</h3>
         <p><code>&amp;lt;</code> &lt; , <code>&amp;gt;</code> &gt; , <code>&amp;amp;</code> &amp; , <code>&amp;copy;</code> &copy; , <code>&amp;nbsp;</code> (non-breaking space).</p>
         <pre><code>&lt;!-- This is an HTML comment --&gt;</code></pre>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;
+&amp;copy; 2026</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <p>&lt;h1&gt;Title&lt;/h1&gt;</p>
+              <p>&copy; 2026</p>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="selectors" data-keywords="css selectors simple combinator pseudo class pseudo element specificity">
@@ -1088,6 +1414,26 @@ li::marker { color: tomato; }
 .class { color: blue; }  /* lower than id */
 p { color: green; }       /* lower than class */</code></pre>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>ul li:first-child { color: red; }
+ul li:nth-child(2) { color: blue; }
+ul li::marker { color: orange; }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <ul class="selector-demo">
+                <li>First item</li>
+                <li>Second item</li>
+                <li>Third item (hover me)</li>
+              </ul>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="background-color" data-keywords="background color rgb rgba hsl hsla hex gradient cover contain">
@@ -1123,6 +1469,23 @@ p { color: green; }       /* lower than class */</code></pre>
             <tr><td><code>background</code></td><td>Shorthand for all background settings.</td></tr>
           </table>
           <div class="bg-demo">Overlay Gradient + Background Demo</div>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.hero-box {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), #2563eb;
+  color: white;
+}</code></pre>
+            </div>
+            <div class="example-view" style="background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), #2563eb; color:#fff;">
+              <p class="example-title" style="color:#e2e8f0;">Output</p>
+              <p>Gradient overlay background result.</p>
+            </div>
+          </div>
         </details>
       </article>
 
@@ -1184,6 +1547,24 @@ p { color: green; }       /* lower than class */</code></pre>
             <tr><td><code>outline-offset</code></td><td>Gap between border and outline.</td><td><code>outline-offset: 2px;</code></td></tr>
           </table>
           <div class="warn">Difference: Border takes space in box model. Outline does not take space and is useful for focus accessibility.</div>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px dashed #60a5fa;
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="styled-preview">sample styled text output</div>
+            </div>
+          </div>
         </details>
       </article>
 
@@ -1251,6 +1632,31 @@ box-sizing: content-box;
             <li>Center a fixed-width block with <code>margin: 0 auto;</code>.</li>
             <li>Negative margins are allowed and shift elements.</li>
           </ul>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.box {
+  width: 220px;
+  padding: 16px;
+  border: 4px solid #f59e0b;
+  margin: 10px auto;
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="box-wrap">
+                <div class="box-border">
+                  <div class="box-padding">
+                    <div class="box-content">Box Output</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </details>
       </article>
 
@@ -1328,6 +1734,29 @@ overflow-y: auto;</code></pre>
             <div class="layer l3">z3</div>
           </div>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.row { display: flex; gap: 8px; }
+.a { position: relative; left: 12px; }
+.b { position: absolute; top: 8px; right: 8px; }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div style="display:flex; gap:8px;">
+                <span class="inline-demo">inline</span>
+                <span class="inline-block-demo">inline-block</span>
+              </div>
+              <div class="pos-space" style="margin-top:8px; height:90px;">
+                <div class="layer l1" style="width:70px; height:40px;">A</div>
+                <div class="layer l2" style="width:70px; height:40px;">B</div>
+              </div>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="flex-grid" data-keywords="flexbox grid container item justify align gap template areas responsive layout">
@@ -1402,6 +1831,30 @@ overflow-y: auto;</code></pre>
 
           <div class="tip">Memory Trick: Flex = 1D (one axis). Grid = 2D (rows + columns).</div>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.flex { display: flex; gap: 8px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="flex-demo" style="min-height:auto; padding:8px;">
+                <div class="f-item">Flex 1</div>
+                <div class="f-item">Flex 2</div>
+                <div class="f-item">Flex 3</div>
+              </div>
+              <div class="grid-demo" style="margin-top:8px; grid-auto-rows:48px;">
+                <div class="g">G1</div>
+                <div class="g">G2</div>
+                <div class="g">G3</div>
+              </div>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="responsive-media" data-keywords="responsive media query units rem em vw vh clamp container mobile first">
@@ -1454,6 +1907,22 @@ overflow-y: auto;</code></pre>
             <li>Use spacing and font scales that adapt using <code>rem</code> and <code>clamp()</code>.</li>
           </ul>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.title { font-size: clamp(1rem, 2.5vw, 2rem); }
+@media (max-width: 768px) { .card { padding: 10px; } }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <p style="font-size:clamp(1rem,2.5vw,2rem); margin:0;">Resize window: this text scales smoothly.</p>
+              <p style="margin-top:8px;">Open on mobile to see tighter spacing behavior.</p>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="effects-motion" data-keywords="transform transition animation keyframes filter opacity shadow">
@@ -1505,6 +1974,22 @@ overflow-y: auto;</code></pre>
   50% { opacity: 1; }
   100% { opacity: .5; }
 }</code></pre>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.box { transition: .3s; }
+.box:hover { transform: scale(1.05); }
+@keyframes blink { 50% { opacity: .5; } }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="motion">Hover Me</div>
+            </div>
+          </div>
         </details>
       </article>
 
@@ -1618,6 +2103,26 @@ overflow-y: auto;</code></pre>
             <tr><td><code>resize</code></td><td>Whether user can resize elements like textarea.</td></tr>
           </table>
         </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="property-output">
+                Combined properties output: spacing, border, shadow, color, and typography working together.
+              </div>
+            </div>
+          </div>
+        </details>
       </article>
 
       <article class="card" id="revision" data-keywords="revision checklist quiz interview">
@@ -1676,6 +2181,23 @@ overflow-y: auto;</code></pre>
               <button type="button" id="quizBtn">Check Score</button>
               <span id="quizResult" class="score" aria-live="polite"></span>
             </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>// select answers
+// click "Check Score"
+// output appears as: Score: X / 5</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <p>Use the quiz above and click <strong>Check Score</strong>. Your score appears instantly.</p>
+              <p class="score">Example: Score: 4 / 5</p>
+            </div>
           </div>
         </details>
       </article>
