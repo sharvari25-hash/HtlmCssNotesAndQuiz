@@ -39,6 +39,7 @@
       font-family: "Segoe UI", Tahoma, Arial, sans-serif;
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
       background:
         radial-gradient(1200px 500px at -10% -20%, #dff5ff 0%, transparent 50%),
         radial-gradient(900px 400px at 120% -20%, #dbf7f0 0%, transparent 45%),
@@ -678,15 +679,20 @@
         font-size: 0.92rem;
       }
       nav.topic-nav {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        padding-bottom: 4px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 6px;
+        align-items: stretch;
       }
       nav.topic-nav a {
-        flex: 0 0 auto;
-        white-space: nowrap;
+        width: 100%;
+        display: block;
+        white-space: normal;
+        font-size: 0.8rem;
+        padding: 5px 8px;
+        text-align: center;
+        word-break: break-word;
+        overflow-wrap: anywhere;
       }
       table {
         display: block;
