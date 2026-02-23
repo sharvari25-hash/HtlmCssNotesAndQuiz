@@ -1413,12 +1413,11 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 12px;
     }
     .mq5-demo .items {
-      flex: 1 1 calc(25% - 9px);
-      min-width: 0;
+      flex-basis: 25%;
       min-height: clamp(120px, 15vw, 180px);
       border-radius: 10px;
       background-color: teal;
@@ -1432,15 +1431,9 @@
     .mq5-demo .item2 { background: #0f766e; }
     .mq5-demo .item3 { background: #0ea5a1; }
     .mq5-demo .item4 { background: #14b8a6; }
-
-    @media screen and (max-width: 1200px) {
-      .mq5-demo .items {
-        flex-basis: calc(33.333% - 8px);
-      }
-    }
     @media screen and (max-width: 992px) {
       .mq5-demo .items {
-        flex-basis: calc(50% - 6px);
+        flex-basis: 49%;
       }
     }
     @media screen and (max-width: 576px) {
@@ -4626,25 +4619,18 @@ breakpoints</code></div>
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 12px;
     }
     .items{
-      flex: 1 1 calc(25% - 9px);
-      min-width: 0;
+      flex-basis: 25%;
       height: 250px;
       background-color: teal;
     }
 
-    @media screen and (max-width:1200px){
-      .items{
-        flex-basis: calc(33.333% - 8px);
-      }
-    }
-
     @media screen and (max-width:992px){
       .items{
-        flex-basis: calc(50% - 6px);
+        flex-basis: 49%;
       }
     }
     @media screen and (max-width:576px){
@@ -4674,7 +4660,7 @@ breakpoints</code></div>
                   <div class="items item4">div4</div>
                 </section>
               </div>
-              <p class="sub">Resize viewport: 4 columns (desktop) -> 3 columns (<=1200px) -> 2 columns (<=992px) -> 1 column (<=576px).</p>
+              <p class="sub">Resize viewport: 4 columns -> 2 columns (<=992px) -> 1 column (<=576px).</p>
             </div>
           </div>
         </details>
