@@ -1120,6 +1120,74 @@
       box-shadow: 0 14px 25px rgba(244, 114, 182, 0.35);
     }
 
+    .timing-lab {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 8px;
+      overflow: hidden;
+    }
+    .timing-trigger {
+      width: clamp(120px, 34%, 210px);
+      min-height: 64px;
+      border-radius: 8px;
+      border: 1px solid #60a5fa;
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      animation: triggerPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes triggerPulse {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.02); opacity: 1; }
+    }
+    .timing-row {
+      position: relative;
+      min-height: 52px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+      margin-bottom: 6px;
+      --box-w: clamp(130px, 40%, 220px);
+      --move: calc(100% - var(--box-w));
+    }
+    .timing-row:last-child {
+      margin-bottom: 0;
+    }
+    .timing-box {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: var(--box-w);
+      min-height: 42px;
+      border-radius: 6px;
+      border: 1px solid #f43f5e;
+      color: #fff;
+      background: linear-gradient(135deg, #ff2050, #e11d48);
+      display: grid;
+      align-content: center;
+      padding: 0 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition-property: transform;
+      transition-duration: 2200ms;
+      transform: translateX(0);
+      will-change: transform;
+    }
+    .timing-lab.is-run .timing-box {
+      transform: translateX(var(--move));
+    }
+    .tf-linear { transition-timing-function: linear; }
+    .tf-ease { transition-timing-function: ease; }
+    .tf-ease-in { transition-timing-function: ease-in; }
+    .tf-ease-out { transition-timing-function: ease-out; }
+    .tf-ease-in-out { transition-timing-function: ease-in-out; }
+
     .dot {
       width: 18px;
       height: 18px;
@@ -3140,6 +3208,19 @@ img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
         <details>
           <summary>Position Property: all values + offset properties (<code>top right bottom left</code>)</summary>
           <p><strong>Definition:</strong> <code>position</code> controls how an element is placed in normal flow, relative flow, or against a containing block/viewport.</p>
+          <div class="units-note"><code>//08-04-2025
+
+position property:-
+******************
+- static (default) :- normal flow. We cannot move element using top/right/bottom/left with static.
+- relative :- element stays in flow, then moves from its original place using offsets.
+- absolute :- removed from normal flow; positioned relative to nearest non-static parent.
+- fixed :- similar to absolute, but relative to viewport and stays while scrolling.
+- sticky :- relative + fixed behavior (sticks after threshold, e.g. top: 0).
+
+- to define distance we use properties such as:
+  top, right, bottom, left
+  shorthand: inset</code></div>
           <table>
             <tr><th>Value</th><th>Meaning</th></tr>
             <tr><td><code>static</code></td><td>Default normal flow. Offsets are ignored.</td></tr>
@@ -3892,6 +3973,41 @@ rem :- root element
             <tr><td>Animation</td><td><code>animation-name</code>, <code>animation-duration</code>, <code>animation-timing-function</code>, <code>animation-delay</code>, <code>animation-iteration-count</code>, <code>animation-direction</code>, <code>animation-fill-mode</code>, <code>animation-play-state</code>, <code>animation</code> (shorthand)</td></tr>
             <tr><td>Media Query</td><td><code>@media (max-width)</code>, <code>@media (min-width)</code>, <code>@media (prefers-reduced-motion)</code></td></tr>
           </table>
+        </details>
+
+        <details>
+          <summary>Transition Timing Function Visual Demo (Like Your Screenshot)</summary>
+          <p><strong>Goal:</strong> Compare how each timing function moves with same duration and same distance.</p>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.timing-box {
+  transition-property: transform;
+  transition-duration: 2200ms;
+}
+.tf-linear { transition-timing-function: linear; }
+.tf-ease { transition-timing-function: ease; }
+.tf-ease-in { transition-timing-function: ease-in; }
+.tf-ease-out { transition-timing-function: ease-out; }
+.tf-ease-in-out { transition-timing-function: ease-in-out; }
+
+.timing-lab.is-run .timing-box {
+  transform: translateX(var(--move));
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Animated Output</p>
+              <div class="timing-lab" id="timingLab" aria-label="Transition timing function comparison demo">
+                <div class="timing-trigger">Transition Trigger</div>
+                <div class="timing-row"><div class="timing-box tf-linear">Linear</div></div>
+                <div class="timing-row"><div class="timing-box tf-ease">Ease</div></div>
+                <div class="timing-row"><div class="timing-box tf-ease-in">Ease-in</div></div>
+                <div class="timing-row"><div class="timing-box tf-ease-out">Ease-out</div></div>
+                <div class="timing-row"><div class="timing-box tf-ease-in-out">Ease-in-out</div></div>
+              </div>
+              <p class="sub">Auto-loop is running: same time, same distance, different speed curve.</p>
+            </div>
+          </div>
         </details>
 
         <details>
@@ -5278,6 +5394,15 @@ rem :- root element
             }
           }
         }, 1700);
+      }
+
+      var timingLab = document.getElementById("timingLab");
+      if (timingLab) {
+        var runTiming = false;
+        setInterval(function () {
+          runTiming = !runTiming;
+          timingLab.classList.toggle("is-run", runTiming);
+        }, 2400);
       }
 
       filterCards();
