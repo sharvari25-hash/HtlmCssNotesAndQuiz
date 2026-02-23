@@ -537,6 +537,97 @@
     .f-order { order: 9; background: #fee2e2; }
     .f-self { align-self: flex-end; background: #dcfce7; }
 
+    .flex-parent-anim {
+      display: flex;
+      min-height: 96px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fcfdff;
+      gap: 8px;
+      justify-content: flex-start;
+      align-items: stretch;
+      animation: parentFlexRun 8s steps(1, end) infinite;
+    }
+    .fp-item {
+      min-width: 52px;
+      min-height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #0f172a;
+      background: #bae6fd;
+      border: 1px solid #7dd3fc;
+    }
+    @keyframes parentFlexRun {
+      0% {
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 8px;
+      }
+      25% {
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      50% {
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+      }
+      75% {
+        justify-content: space-around;
+        align-items: flex-end;
+        gap: 10px;
+      }
+      100% {
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 8px;
+      }
+    }
+
+    .flex-child-anim {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 92px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fcfdff;
+    }
+    .fc-item {
+      flex: 1 1 70px;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      font-weight: 700;
+      border: 1px solid #c7d2fe;
+      background: #e0e7ff;
+    }
+    .fc-grow {
+      animation: childGrow 3.2s ease-in-out infinite;
+      background: #bfdbfe;
+      border-color: #93c5fd;
+    }
+    .fc-order {
+      order: 3;
+      background: #fecaca;
+      border-color: #fca5a5;
+    }
+    .fc-self {
+      align-self: flex-end;
+      background: #bbf7d0;
+      border-color: #86efac;
+    }
+    @keyframes childGrow {
+      0%, 100% { flex-grow: 1; }
+      50% { flex-grow: 3; }
+    }
+
     .grid-demo {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -557,6 +648,109 @@
     }
     .g-wide { grid-column: span 2; }
     .g-tall { grid-row: span 2; }
+
+    .grid-parent-anim {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 54px;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fcfdff;
+      animation: gridParentRun 9s steps(1, end) infinite;
+    }
+    .gp-item {
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+      background: #dbeafe;
+      font-weight: 700;
+      color: #1e3a8a;
+      display: grid;
+      place-items: center;
+      min-height: 44px;
+    }
+    @keyframes gridParentRun {
+      0% {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        justify-items: stretch;
+        align-items: stretch;
+      }
+      25% {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 12px;
+        justify-items: center;
+        align-items: center;
+      }
+      50% {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+        justify-items: start;
+        align-items: end;
+      }
+      75% {
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        justify-items: end;
+        align-items: start;
+      }
+      100% {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        justify-items: stretch;
+        align-items: stretch;
+      }
+    }
+
+    .grid-child-anim {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 52px;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fcfdff;
+    }
+    .gc-item {
+      border-radius: 8px;
+      border: 1px solid #ddd6fe;
+      background: #ede9fe;
+      font-weight: 700;
+      color: #4c1d95;
+      display: grid;
+      place-items: center;
+    }
+    .gc-span {
+      animation: gridChildSpan 4.5s steps(1, end) infinite;
+      background: #bfdbfe;
+      border-color: #93c5fd;
+      color: #1e3a8a;
+    }
+    .gc-self {
+      justify-self: end;
+      align-self: end;
+      background: #bbf7d0;
+      border-color: #86efac;
+      color: #14532d;
+    }
+    .gc-order {
+      order: 5;
+      background: #fecaca;
+      border-color: #fca5a5;
+      color: #7f1d1d;
+    }
+    @keyframes gridChildSpan {
+      0%, 100% {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      50% {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
 
     .motion {
       width: 180px;
@@ -722,6 +916,10 @@
         max-width: 360px;
       }
       .checklist label { align-items: flex-start; }
+      .grid-parent-anim,
+      .grid-child-anim {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 520px) {
@@ -734,6 +932,10 @@
       .chip { font-size: 0.74rem; padding: 3px 8px; }
       .color-grid { grid-template-columns: 1fr; }
       .grid-demo { grid-template-columns: 1fr; grid-auto-rows: 58px; }
+      .grid-parent-anim,
+      .grid-child-anim {
+        grid-template-columns: 1fr;
+      }
       .g-wide, .g-tall { grid-column: auto; grid-row: auto; }
       pre { font-size: 0.74rem; padding: 10px; }
       .example-view { padding: 8px; min-height: 64px; }
@@ -1769,95 +1971,190 @@ overflow-y: auto;</code></pre>
         <h2>14) Flexbox and Grid (Deep, Easy to Remember)</h2>
 
         <details open>
-          <summary>Flexbox Definition + Properties</summary>
-          <p><strong>Definition:</strong> Flexbox is a one-dimensional layout system (row or column) for aligning and distributing items.</p>
+          <summary>Display: Flex in Your Format (Parent vs Child)</summary>
+          <p><strong>Definition:</strong> <code>display: flex</code> creates a flex container and manages child items on one dimension (row/column).</p>
+          <pre><code>Display Flex:-
+**************
+- display:flex is used to create flexible layout.
+
+- flex properties are,
+  1. parent (container) properties
+  2. child (item) properties</code></pre>
+
+          <h3>1) Parent (Container) Properties</h3>
           <table>
-            <tr><th>Flex Container Property</th><th>Definition</th></tr>
-            <tr><td><code>display: flex</code></td><td>Creates flex formatting context.</td></tr>
-            <tr><td><code>flex-direction</code></td><td>Main axis direction (<code>row</code>, <code>column</code>, reverse variants).</td></tr>
-            <tr><td><code>flex-wrap</code></td><td>Wrap items to new line when needed.</td></tr>
+            <tr><th>Property</th><th>What it controls</th></tr>
+            <tr><td><code>display: flex</code></td><td>Turns parent into flex container.</td></tr>
+            <tr><td><code>flex-direction</code></td><td>Main axis direction (<code>row</code>, <code>column</code>).</td></tr>
+            <tr><td><code>flex-wrap</code></td><td>Wrap items to next line or keep single line.</td></tr>
             <tr><td><code>flex-flow</code></td><td>Shorthand for direction + wrap.</td></tr>
-            <tr><td><code>justify-content</code></td><td>Alignment on main axis.</td></tr>
-            <tr><td><code>align-items</code></td><td>Alignment on cross axis for all items.</td></tr>
-            <tr><td><code>align-content</code></td><td>Cross-axis spacing between wrapped rows/columns.</td></tr>
-            <tr><td><code>gap</code></td><td>Space between items.</td></tr>
+            <tr><td><code>justify-content</code></td><td>Aligns items on main axis.</td></tr>
+            <tr><td><code>align-items</code></td><td>Aligns items on cross axis.</td></tr>
+            <tr><td><code>align-content</code></td><td>Aligns wrapped rows/columns on cross axis.</td></tr>
+            <tr><td><code>gap</code></td><td>Spacing between flex items.</td></tr>
           </table>
 
-          <table>
-            <tr><th>Flex Item Property</th><th>Definition</th></tr>
-            <tr><td><code>flex-grow</code></td><td>How much item grows relative to others.</td></tr>
-            <tr><td><code>flex-shrink</code></td><td>How much item shrinks when space is tight.</td></tr>
-            <tr><td><code>flex-basis</code></td><td>Initial item size before grow/shrink.</td></tr>
-            <tr><td><code>flex</code></td><td>Shorthand for grow shrink basis.</td></tr>
-            <tr><td><code>order</code></td><td>Visual order of items.</td></tr>
-            <tr><td><code>align-self</code></td><td>Per-item cross-axis alignment override.</td></tr>
-          </table>
-
-          <div class="flex-demo" aria-label="Flex demo container">
-            <div class="f-item">1</div>
-            <div class="f-item">2</div>
-            <div class="f-item f-order">order:9</div>
-            <div class="f-item f-self">align-self</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Grid Definition + Properties</summary>
-          <p><strong>Definition:</strong> Grid is a two-dimensional layout system controlling rows and columns together.</p>
-          <table>
-            <tr><th>Grid Container Property</th><th>Definition</th></tr>
-            <tr><td><code>display: grid</code></td><td>Creates grid formatting context.</td></tr>
-            <tr><td><code>grid-template-columns</code></td><td>Defines column tracks.</td></tr>
-            <tr><td><code>grid-template-rows</code></td><td>Defines row tracks.</td></tr>
-            <tr><td><code>grid-template-areas</code></td><td>Named grid layout map.</td></tr>
-            <tr><td><code>grid-auto-rows/columns</code></td><td>Size of implicit tracks.</td></tr>
-            <tr><td><code>grid-auto-flow</code></td><td>Placement algorithm direction.</td></tr>
-            <tr><td><code>gap</code></td><td>Space between rows and columns.</td></tr>
-            <tr><td><code>justify-items / align-items</code></td><td>Default alignment for items inside cells.</td></tr>
-            <tr><td><code>justify-content / align-content</code></td><td>Alignment of whole grid inside container.</td></tr>
-          </table>
-
-          <table>
-            <tr><th>Grid Item Property</th><th>Definition</th></tr>
-            <tr><td><code>grid-column</code></td><td>Start/end or span for columns.</td></tr>
-            <tr><td><code>grid-row</code></td><td>Start/end or span for rows.</td></tr>
-            <tr><td><code>grid-area</code></td><td>Named area or shorthand row/column placement.</td></tr>
-            <tr><td><code>justify-self / align-self</code></td><td>Self alignment inside own grid cell.</td></tr>
-          </table>
-
-          <div class="grid-demo" aria-label="Grid demo container">
-            <div class="g">1</div>
-            <div class="g g-wide">2 span 2 cols</div>
-            <div class="g">3</div>
-            <div class="g g-tall">4 span 2 rows</div>
-            <div class="g">5</div>
-            <div class="g">6</div>
-            <div class="g">7</div>
-          </div>
-
-          <div class="tip">Memory Trick: Flex = 1D (one axis). Grid = 2D (rows + columns).</div>
-        </details>
-
-        <details>
-          <summary>Code + Output</summary>
           <div class="example-pair">
             <div>
-              <p class="example-title">Code</p>
-              <pre><code>.flex { display: flex; gap: 8px; }
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); }</code></pre>
+              <p class="example-title">Parent Code</p>
+              <pre><code>.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}</code></pre>
             </div>
             <div class="example-view">
-              <p class="example-title">Output</p>
-              <div class="flex-demo" style="min-height:auto; padding:8px;">
-                <div class="f-item">Flex 1</div>
-                <div class="f-item">Flex 2</div>
-                <div class="f-item">Flex 3</div>
+              <p class="example-title">Animated Output (Parent)</p>
+              <div class="flex-parent-anim" aria-label="Parent properties animated output">
+                <div class="fp-item">1</div>
+                <div class="fp-item">2</div>
+                <div class="fp-item">3</div>
               </div>
-              <div class="grid-demo" style="margin-top:8px; grid-auto-rows:48px;">
-                <div class="g">G1</div>
-                <div class="g">G2</div>
-                <div class="g">G3</div>
+              <p class="sub">Animation cycles through different <code>justify-content</code>, <code>align-items</code>, and <code>gap</code> values.</p>
+            </div>
+          </div>
+
+          <h3>2) Child (Item) Properties</h3>
+          <table>
+            <tr><th>Property</th><th>What it controls</th></tr>
+            <tr><td><code>flex-grow</code></td><td>How much item expands compared to siblings.</td></tr>
+            <tr><td><code>flex-shrink</code></td><td>How much item shrinks when space is less.</td></tr>
+            <tr><td><code>flex-basis</code></td><td>Initial base size of item.</td></tr>
+            <tr><td><code>flex</code></td><td>Shorthand for grow/shrink/basis.</td></tr>
+            <tr><td><code>order</code></td><td>Visual order of item.</td></tr>
+            <tr><td><code>align-self</code></td><td>Overrides cross-axis alignment for one item.</td></tr>
+          </table>
+
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Child Code</p>
+              <pre><code>.item-grow { flex-grow: 3; }
+.item-order { order: 3; }
+.item-self  { align-self: flex-end; }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Animated Output (Child)</p>
+              <div class="flex-child-anim" aria-label="Child properties animated output">
+                <div class="fc-item fc-grow">grow</div>
+                <div class="fc-item">normal</div>
+                <div class="fc-item fc-order">order:3</div>
+                <div class="fc-item fc-self">self:end</div>
               </div>
+              <p class="sub">First item animates <code>flex-grow</code>; one item changes <code>order</code>; one overrides with <code>align-self</code>.</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Display: Grid in Your Format (Parent vs Child + Shorthand)</summary>
+          <p><strong>Definition:</strong> <code>display: grid</code> creates a two-dimensional layout system (rows + columns).</p>
+          <pre><code>Display Grid:-
+**************
+- display:grid is used for 2D layout (rows and columns together).
+
+- grid properties are,
+  1. parent (container) properties
+  2. child (item) properties
+  3. shorthand properties</code></pre>
+
+          <h3>1) Parent (Container) Properties</h3>
+          <table>
+            <tr><th>Property</th><th>What it controls</th></tr>
+            <tr><td><code>display: grid | inline-grid</code></td><td>Creates grid formatting context.</td></tr>
+            <tr><td><code>grid-template-columns</code></td><td>Defines explicit column tracks.</td></tr>
+            <tr><td><code>grid-template-rows</code></td><td>Defines explicit row tracks.</td></tr>
+            <tr><td><code>grid-template-areas</code></td><td>Creates named template layout map.</td></tr>
+            <tr><td><code>grid-auto-columns</code></td><td>Size for implicit columns.</td></tr>
+            <tr><td><code>grid-auto-rows</code></td><td>Size for implicit rows.</td></tr>
+            <tr><td><code>grid-auto-flow</code></td><td>Auto-placement direction (<code>row</code>, <code>column</code>, <code>dense</code>).</td></tr>
+            <tr><td><code>column-gap</code></td><td>Column spacing.</td></tr>
+            <tr><td><code>row-gap</code></td><td>Row spacing.</td></tr>
+            <tr><td><code>gap</code></td><td>Shorthand for row-gap + column-gap.</td></tr>
+            <tr><td><code>justify-items</code></td><td>Default inline-axis alignment of items in cells.</td></tr>
+            <tr><td><code>align-items</code></td><td>Default block-axis alignment of items in cells.</td></tr>
+            <tr><td><code>place-items</code></td><td>Shorthand for align-items + justify-items.</td></tr>
+            <tr><td><code>justify-content</code></td><td>Aligns whole grid on inline axis inside container.</td></tr>
+            <tr><td><code>align-content</code></td><td>Aligns whole grid on block axis inside container.</td></tr>
+            <tr><td><code>place-content</code></td><td>Shorthand for align-content + justify-content.</td></tr>
+          </table>
+
+          <h3>2) Child (Grid Item) Properties</h3>
+          <table>
+            <tr><th>Property</th><th>What it controls</th></tr>
+            <tr><td><code>grid-column-start</code></td><td>Starting vertical grid line index/name.</td></tr>
+            <tr><td><code>grid-column-end</code></td><td>Ending vertical grid line index/name.</td></tr>
+            <tr><td><code>grid-column</code></td><td>Shorthand for column start/end or <code>span</code>.</td></tr>
+            <tr><td><code>grid-row-start</code></td><td>Starting horizontal grid line index/name.</td></tr>
+            <tr><td><code>grid-row-end</code></td><td>Ending horizontal grid line index/name.</td></tr>
+            <tr><td><code>grid-row</code></td><td>Shorthand for row start/end or <code>span</code>.</td></tr>
+            <tr><td><code>grid-area</code></td><td>Named area or 4-value shorthand placement.</td></tr>
+            <tr><td><code>justify-self</code></td><td>Inline-axis alignment of one item inside its own cell.</td></tr>
+            <tr><td><code>align-self</code></td><td>Block-axis alignment of one item inside its own cell.</td></tr>
+            <tr><td><code>place-self</code></td><td>Shorthand for align-self + justify-self.</td></tr>
+            <tr><td><code>order</code></td><td>Visual order control among grid items.</td></tr>
+            <tr><td><code>z-index</code></td><td>Stacking order when items overlap.</td></tr>
+          </table>
+
+          <h3>3) Shorthand Properties (Very Important)</h3>
+          <table>
+            <tr><th>Shorthand</th><th>Expands to</th><th>Example</th></tr>
+            <tr><td><code>gap</code></td><td><code>row-gap + column-gap</code></td><td><code>gap: 12px 20px;</code></td></tr>
+            <tr><td><code>place-items</code></td><td><code>align-items + justify-items</code></td><td><code>place-items: center stretch;</code></td></tr>
+            <tr><td><code>place-content</code></td><td><code>align-content + justify-content</code></td><td><code>place-content: center space-between;</code></td></tr>
+            <tr><td><code>grid-template</code></td><td><code>rows / columns (+ areas)</code></td><td><code>grid-template: \"head head\" auto \"main side\" 1fr / 2fr 1fr;</code></td></tr>
+            <tr><td><code>grid</code></td><td><code>grid-template + grid-auto-flow + auto rows/cols</code></td><td><code>grid: auto-flow 60px / repeat(3, 1fr);</code></td></tr>
+            <tr><td><code>grid-column</code></td><td><code>grid-column-start + grid-column-end</code></td><td><code>grid-column: 1 / span 2;</code></td></tr>
+            <tr><td><code>grid-row</code></td><td><code>grid-row-start + grid-row-end</code></td><td><code>grid-row: 2 / 4;</code></td></tr>
+            <tr><td><code>grid-area</code></td><td><code>row-start / col-start / row-end / col-end</code> or named area</td><td><code>grid-area: 1 / 1 / 3 / 3;</code></td></tr>
+            <tr><td><code>place-self</code></td><td><code>align-self + justify-self</code></td><td><code>place-self: end center;</code></td></tr>
+          </table>
+
+          <div class="tip">Memory Trick: Grid Parent = track + gap + placement rules. Grid Child = where item starts/ends + self alignment.</div>
+        </details>
+
+        <details>
+          <summary>Grid Code + Animated Output (Parent and Child)</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Parent Code</p>
+              <pre><code>.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  place-items: center;
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Animated Output (Parent)</p>
+              <div class="grid-parent-anim" aria-label="Grid parent animated output">
+                <div class="gp-item">A</div>
+                <div class="gp-item">B</div>
+                <div class="gp-item">C</div>
+                <div class="gp-item">D</div>
+              </div>
+              <p class="sub">Animation changes parent properties like <code>grid-template-columns</code>, <code>gap</code>, <code>justify-items</code>, and <code>align-items</code>.</p>
+            </div>
+          </div>
+
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Child Code</p>
+              <pre><code>.item-span { grid-column: span 2; grid-row: span 2; }
+.item-self { place-self: end center; }
+.item-order { order: 5; }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Animated Output (Child)</p>
+              <div class="grid-child-anim" aria-label="Grid child animated output">
+                <div class="gc-item gc-span">span</div>
+                <div class="gc-item">normal</div>
+                <div class="gc-item gc-self">self</div>
+                <div class="gc-item gc-order">order</div>
+                <div class="gc-item">x</div>
+                <div class="gc-item">y</div>
+              </div>
+              <p class="sub">Animated item changes span; other items show <code>place-self</code> and <code>order</code> behavior.</p>
             </div>
           </div>
         </details>
