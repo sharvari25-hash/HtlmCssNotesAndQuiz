@@ -14,6 +14,10 @@
     type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d9488'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='30' fill='white'%3EH%3C/text%3E%3C/svg%3E"
   />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  />
   <style>
     :root {
       --bg: #f3f6fb;
@@ -167,7 +171,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .card h2 { margin: 0 0 8px; font-size: 1.22rem; }
+    .card > h2 { margin: 0 0 8px; font-size: 1.22rem; }
     .sub { color: var(--muted); font-size: 0.95rem; }
 
     .tip {
@@ -724,6 +728,91 @@
     .l2 { left: 52px; top: 34px; background: #3b82f6; z-index: 2; }
     .l3 { left: 88px; top: 16px; background: #10b981; z-index: 3; }
 
+    .zindex-poster-wrap {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      background: #f8fafc;
+    }
+    .zindex-poster {
+      width: min(100%, 560px);
+      aspect-ratio: 560 / 360;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #96ca35;
+    }
+    .zbox {
+      position: absolute;
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      animation: zLayerFloat 2.6s ease-in-out infinite;
+    }
+    .zbox .zcap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+      background: #1d4ed8;
+      color: #fff;
+      font-size: 0.74rem;
+      line-height: 1;
+      padding: 3px 5px;
+      border-radius: 3px 3px 0 0;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .zb1 {
+      left: 16%;
+      top: 57%;
+      width: 40%;
+      height: 31%;
+      background: #ff1212;
+      z-index: 1;
+      animation-delay: 0s;
+    }
+    .zb2 {
+      left: 24%;
+      top: 47%;
+      width: 40%;
+      height: 31%;
+      background: #ffff28;
+      z-index: 2;
+      animation-delay: 0.16s;
+    }
+    .zb3 {
+      left: 32%;
+      top: 37%;
+      width: 40%;
+      height: 31%;
+      background: #f57a72;
+      z-index: 3;
+      animation-delay: 0.32s;
+    }
+    .zb4 {
+      left: 40%;
+      top: 27%;
+      width: 40%;
+      height: 31%;
+      background: #aa5a32;
+      z-index: 4;
+      animation-delay: 0.48s;
+    }
+    .zb5 {
+      left: 48%;
+      top: 17%;
+      width: 40%;
+      height: 31%;
+      background: #00ef8f;
+      z-index: 5;
+      animation-delay: 0.64s;
+    }
+    @keyframes zLayerFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
     .sticky-note {
       position: sticky;
       top: 10px;
@@ -1101,6 +1190,502 @@
       border-radius: 8px;
     }
 
+    .style-medium-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .style-medium-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .style-medium-card h4 {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+      color: #0f172a;
+    }
+    .style-def {
+      margin: 0 0 8px;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+    .style-stage {
+      border: 1px solid #dbe4ef;
+      border-radius: 10px;
+      padding: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+
+    .atlas-bg-output {
+      min-height: 86px;
+      border-radius: 10px;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 700;
+      padding: 10px;
+      background:
+        linear-gradient(120deg, rgba(15, 23, 42, 0.76), rgba(37, 99, 235, 0.66)),
+        linear-gradient(45deg, #06b6d4, #2563eb, #9333ea);
+      animation: atlasBgShift 7s linear infinite;
+    }
+    @keyframes atlasBgShift {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .atlas-text-output {
+      margin: 0;
+      text-align: justify;
+      text-transform: capitalize;
+      text-indent: 24px;
+      letter-spacing: 0.4px;
+      word-spacing: 2px;
+      line-height: 1.65;
+      text-shadow: 0.5px 0.5px 0 #cbd5e1;
+      color: #1f2937;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .atlas-text-output::first-letter {
+      color: #1d4ed8;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .atlas-box-output {
+      display: inline-block;
+      border-radius: 12px;
+      background: #fee2e2;
+      padding: 14px;
+    }
+    .atlas-margin-box {
+      background: #fef3c7;
+      border: 3px solid #f59e0b;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .atlas-padding-box {
+      background: #dbeafe;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .atlas-content-box {
+      background: #bbf7d0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 700;
+      color: #14532d;
+      text-align: center;
+      border: 1px solid #86efac;
+    }
+
+    .atlas-layout-output {
+      position: relative;
+      min-height: 108px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .al {
+      width: 100px;
+      min-height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .al + .al { margin-top: 6px; }
+    .al-relative {
+      position: relative;
+      left: 12px;
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+    .al-absolute {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #ef4444;
+      border-color: #dc2626;
+      color: #fff;
+      z-index: 3;
+      animation: atlasAbsMove 4.4s ease-in-out infinite;
+    }
+    @keyframes atlasAbsMove {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-18px); }
+    }
+    .atlas-visibility-lab p {
+      margin: 4px 0;
+      font-size: 0.74rem;
+      color: #475569;
+      font-weight: 700;
+    }
+    .av-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .av-cell {
+      min-width: 42px;
+      min-height: 26px;
+      border-radius: 6px;
+      border: 1px solid #a7f3d0;
+      background: #dcfce7;
+      color: #14532d;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .av-none { display: none; }
+    .av-hidden { visibility: hidden; }
+
+    .atlas-flex-output {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+      min-height: 96px;
+      animation: atlasFlexRun 8s steps(1, end) infinite;
+    }
+    .af-item {
+      flex: 1 1 72px;
+      min-height: 34px;
+      border-radius: 8px;
+      border: 1px solid #93c5fd;
+      background: #dbeafe;
+      color: #1e3a8a;
+      display: grid;
+      place-items: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .af-feature {
+      order: -1;
+      flex-grow: 2;
+      align-self: flex-end;
+      border-color: #86efac;
+      background: #bbf7d0;
+      color: #14532d;
+    }
+    @keyframes atlasFlexRun {
+      0%, 100% { justify-content: space-between; align-items: center; }
+      33% { justify-content: center; align-items: flex-start; }
+      66% { justify-content: space-around; align-items: flex-end; }
+    }
+
+    .atlas-grid-output {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-auto-rows: 46px;
+      gap: 8px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .ag-item {
+      border-radius: 8px;
+      border: 1px solid #ddd6fe;
+      background: #ede9fe;
+      color: #4c1d95;
+      font-size: 0.74rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      min-height: 34px;
+    }
+    .ag-tall {
+      grid-row: span 2;
+      border-color: #86efac;
+      background: #bbf7d0;
+      color: #14532d;
+    }
+    .ag-wide {
+      border-color: #93c5fd;
+      background: #dbeafe;
+      color: #1e3a8a;
+      animation: atlasGridSpan 4.8s steps(1, end) infinite;
+    }
+    .ag-self {
+      justify-self: end;
+      align-self: end;
+      border-color: #fca5a5;
+      background: #fecaca;
+      color: #7f1d1d;
+    }
+    @keyframes atlasGridSpan {
+      0%, 100% { grid-column: span 1; }
+      50% { grid-column: span 2; }
+    }
+
+    .atlas-motion-output {
+      width: min(100%, 220px);
+      min-height: 86px;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      padding: 10px;
+      background: linear-gradient(135deg, #fb7185, #f97316);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      animation: atlasMotionFloat 2.3s ease-in-out infinite;
+    }
+    .atlas-motion-output:hover {
+      transform: translateY(-5px) scale(1.04) rotate(-1deg);
+      box-shadow: 0 12px 20px rgba(249, 115, 22, 0.35);
+    }
+    @keyframes atlasMotionFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .atlas-responsive-output {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .ar-item {
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1e3a8a;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .ar-item strong {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    .transform-lab {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .transform-panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .transform-stage {
+      min-height: 100px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+      background: #f8fafc;
+      position: relative;
+      overflow: hidden;
+    }
+    .transform-target {
+      width: 88px;
+      height: 40px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid #93c5fd;
+      background: #dbeafe;
+      animation: transformCycle 6.4s ease-in-out infinite;
+    }
+    @keyframes transformCycle {
+      0%, 100% { transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+      20% { transform: translateX(16px) rotate(0deg) scale(1); }
+      40% { transform: translateX(16px) translateY(12px) rotate(0deg) scale(1); }
+      60% { transform: translateX(0) translateY(0) rotate(-10deg) scale(1); }
+      80% { transform: translateX(0) translateY(0) rotate(0deg) scale(1.14); }
+    }
+    .translate-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .translate-chip {
+      width: 86px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border: 1px solid #fcd34d;
+      background: #fef3c7;
+      color: #78350f;
+    }
+    .t-x { transform: translateX(10px); }
+    .t-y { transform: translateY(8px); }
+    .t-z { transform: perspective(280px) translateZ(20px); }
+    .t-2d { transform: translate(10px, 6px); }
+    .t-3d { transform: perspective(300px) translate3d(10px, 6px, 20px); }
+
+    .units-note {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+      padding: 10px;
+      white-space: pre-wrap;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: #0f172a;
+      overflow-wrap: anywhere;
+    }
+    .units-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .units-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+    }
+    .units-title {
+      margin: 0 0 6px;
+      font-size: 0.83rem;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+    }
+    .units-parent {
+      font-size: 20px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .units-em-1 {
+      font-size: 1em;
+      margin: 0 0 6px;
+      border-radius: 6px;
+      border: 1px solid #93c5fd;
+      background: #dbeafe;
+      padding: 6px 8px;
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+    .units-em-2 {
+      font-size: 2em;
+      margin: 0;
+      border-radius: 6px;
+      border: 1px solid #fca5a5;
+      background: #fecaca;
+      padding: 6px 8px;
+      color: #7f1d1d;
+      font-weight: 700;
+    }
+    .units-rem-box {
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .units-rem-text {
+      margin: 0;
+      font-size: 2rem;
+      border-radius: 6px;
+      border: 1px solid #86efac;
+      background: #dcfce7;
+      padding: 6px 8px;
+      color: #14532d;
+      font-weight: 700;
+    }
+    .units-relative-wrap {
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #fff;
+    }
+    .units-percent {
+      width: 70%;
+      min-width: 140px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    .units-vw {
+      width: 40vw;
+      min-width: 120px;
+      max-width: 280px;
+      border-radius: 6px;
+      border: 1px solid #fcd34d;
+      background: #fef3c7;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #78350f;
+    }
+    .units-grid-fr {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 8px;
+    }
+    .units-grid-fr > div {
+      border-radius: 6px;
+      border: 1px solid #ddd6fe;
+      background: #ede9fe;
+      padding: 6px;
+      text-align: center;
+      font-weight: 700;
+      color: #4c1d95;
+      font-size: 0.8rem;
+    }
+
+    .bootstrap-scope .card {
+      padding: 0;
+      animation: none;
+      box-shadow: none;
+      border-radius: 0.375rem;
+    }
+    .bootstrap-scope .card > h2 {
+      margin: 0;
+      font-size: inherit;
+    }
+
     .foot {
       text-align: center;
       color: var(--muted);
@@ -1118,10 +1703,14 @@
       .overflow-grid { grid-template-columns: 1fr; }
       .gap-lab,
       .display-compare,
-      .position-lab { grid-template-columns: 1fr; }
+      .position-lab,
+      .transform-lab,
+      .units-demo-grid { grid-template-columns: 1fr; }
+      .style-medium-grid { grid-template-columns: 1fr; }
       .grid-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .semantic-main { grid-template-columns: 1fr; }
       .example-pair { grid-template-columns: 1fr; }
+      .atlas-responsive-output { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       th, td { font-size: 0.9rem; padding: 7px 8px; }
       pre { font-size: 0.8rem; }
     }
@@ -1153,6 +1742,7 @@
         word-break: break-word;
         overflow-wrap: anywhere;
       }
+      .atlas-responsive-output { grid-template-columns: 1fr; }
       table {
         display: block;
         overflow-x: auto;
@@ -1188,6 +1778,10 @@
       .grid-poster {
         grid-template-rows: repeat(3, 62px);
       }
+      .zbox .zcap {
+        font-size: 0.7rem;
+        padding: 2px 4px;
+      }
       .fixed-runtime {
         right: 8px;
         bottom: 8px;
@@ -1199,7 +1793,7 @@
       .container { width: 96%; padding: 12px 0 28px; }
       .hero { padding: 14px; }
       .card { padding: 12px; border-radius: 12px; }
-      .card h2 { font-size: 1.06rem; }
+      .card > h2 { font-size: 1.06rem; }
       .sub, .tip, .warn { font-size: 0.88rem; }
       .chips { gap: 6px; }
       .chip { font-size: 0.74rem; padding: 3px 8px; }
@@ -1232,6 +1826,7 @@
       .compare-box { width: 56px; }
       .position-stage { min-height: 82px; }
       .position-stage.abs { min-height: 108px; }
+      .zindex-poster-wrap { padding: 8px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1254,21 +1849,19 @@
       <h1>HTML + CSS Master Notes (Your Learning Flow)</h1>
       <p>Built from your notebook style: easy definitions, memory tricks, interview points, and visual animated demos.</p>
       <nav class="topic-nav" aria-label="Quick topic navigation">
-        <a href="#html-start">HTML Start</a>
-        <a href="#attributes">Attributes</a>
-        <a href="#semantic">Semantic</a>
-        <a href="#anchor-media">Anchor/Media</a>
-        <a href="#head-tag">Head Tag</a>
-        <a href="#tables">Tables</a>
-        <a href="#forms">Forms</a>
-        <a href="#selectors">Selectors</a>
-        <a href="#background-color">Colors/Background</a>
-        <a href="#text-font">Text/Font</a>
-        <a href="#box-model">Box Model</a>
-        <a href="#layout">Layout Core</a>
-        <a href="#flex-grid">Flex/Grid Deep</a>
-        <a href="#responsive-media">Responsive</a>
-        <a href="#effects-motion">Animation</a>
+        <a href="#html-start">1) HTML SEO + Attributes + Block/Inline + Formatting</a>
+        <a href="#semantic">2) Semantic + Media + Iframe + Marquee</a>
+        <a href="#tables">3) Lists + Tables + Forms (Started)</a>
+        <a href="#forms">4) Forms + Validation</a>
+        <a href="#css-intro">5) CSS Intro + Add CSS + Selectors</a>
+        <a href="#selectors">6) Selectors + Background + Colors</a>
+        <a href="#text-font">7) Font + Text + Border + Outline + Box Model</a>
+        <a href="#layout">8) Overflow + Float + Object-Fit + Display + Flex</a>
+        <a href="#flex-grid">9) Grid Display + Visibility</a>
+        <a href="#position-units">10) Position + Z-Index + Transform + Units</a>
+        <a href="#effects-motion">11) Transition + Animation + Media Queries</a>
+        <a href="#responsive-media">12) Media Queries + Bootstrap Intro</a>
+        <a href="#bootstrap-components">13) Bootstrap Buttons/Card/Carousel/Accordion</a>
         <a href="#property-atlas">Property Atlas</a>
         <a href="#revision">Revision Quiz</a>
       </nav>
@@ -1281,14 +1874,49 @@
     </section>
 
     <main class="grid" id="main-notes">
-      <article class="card" data-keywords="html tags basics block inline formatting">
-        <h2 id="html-start">1) HTML Start: Tags, Elements, Block vs Inline</h2>
+      <article class="card" data-keywords="syllabus order roadmap topics">
+        <h2>Learning Order (As Requested)</h2>
+        <ol>
+          <li><a href="#html-start">HTML SEO, Attributes, Block vs Inline, Formatting Tags</a></li>
+          <li><a href="#semantic">HTML Semantic Tags, Media Tags, Iframe, Marquee</a></li>
+          <li><a href="#anchor-media">HTML Lists, Tables, Forms (Started)</a></li>
+          <li><a href="#forms">HTML Forms &amp; Validation</a></li>
+          <li><a href="#css-intro">CSS Introduction, How to Add CSS, Selectors</a></li>
+          <li><a href="#selectors">CSS Selectors, Background Properties, Colors</a></li>
+          <li><a href="#text-font">CSS Font, Text, Border, Outline, Box Model Properties</a></li>
+          <li><a href="#layout">CSS Overflow, Float, Object-Fit, Display, Flex Property</a></li>
+          <li><a href="#flex-grid">CSS Grid Display, Visibility Property</a></li>
+          <li><a href="#position-units">CSS Position, Z-Index, Transform, CSS Units</a></li>
+          <li><a href="#effects-motion">CSS Transition, Animation Properties, Media Queries</a></li>
+          <li><a href="#responsive-media">CSS Media Queries, Bootstrap (Intro)</a></li>
+          <li><a href="#bootstrap-components">Bootstrap Buttons, Card, Carousel, Accordion</a></li>
+        </ol>
+        <div class="tip">Each topic below includes definitions, property tables, and code + output demos.</div>
+      </article>
+
+      <article class="card" data-keywords="html seo attributes tags basics block inline formatting">
+        <h2 id="html-start">1) HTML SEO, Attributes, Block vs Inline, Formatting Tags</h2>
         <p class="sub"><strong>Definition:</strong> HTML (HyperText Markup Language) is used to create the structure of web pages.</p>
         <div class="chips">
           <span class="chip">HTML = Structure</span>
           <span class="chip">CSS = Design</span>
           <span class="chip">JavaScript = Behavior</span>
         </div>
+
+        <details open>
+          <summary>HTML SEO Basics (Important)</summary>
+          <p><strong>Definition:</strong> SEO means helping search engines understand and rank your content better.</p>
+          <table>
+            <tr><th>SEO Element</th><th>Why it matters</th></tr>
+            <tr><td><code>&lt;title&gt;</code></td><td>Main page title shown in browser tab and search result headline.</td></tr>
+            <tr><td><code>&lt;meta name="description"&gt;</code></td><td>Short summary often used in search snippet.</td></tr>
+            <tr><td><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></td><td>Content hierarchy for readers and crawlers.</td></tr>
+            <tr><td>Semantic tags</td><td>Clear page structure (<code>header</code>, <code>main</code>, <code>article</code>, etc.).</td></tr>
+            <tr><td><code>img alt</code></td><td>Image meaning for accessibility and image search.</td></tr>
+            <tr><td>Descriptive links</td><td>Clear anchor text improves usability and SEO context.</td></tr>
+          </table>
+          <div class="tip">SEO memory: <strong>Title + Description + Headings + Semantic + Alt + Clean links</strong>.</div>
+        </details>
 
         <details open>
           <summary>Tag Structure and Types</summary>
@@ -1345,7 +1973,7 @@
       </article>
 
       <article class="card" id="attributes" data-keywords="attributes global specific boolean custom data attributes">
-        <h2>2) HTML Attributes (Complete)</h2>
+        <h2>1A) HTML Attributes (Complete Deep Dive)</h2>
         <p class="sub"><strong>Definition:</strong> Attributes give extra information to HTML elements and are written in the opening tag.</p>
         <pre><code>&lt;a href="https://example.com" target="_blank"&gt;Visit&lt;/a&gt;</code></pre>
         <table>
@@ -1375,7 +2003,7 @@
       </article>
 
       <article class="card" id="semantic" data-keywords="semantic header nav main section article aside footer figure figcaption details summary">
-        <h2>3) Semantic HTML Tags (Meaningful Structure)</h2>
+        <h2>2) HTML Semantic Tags, Media Tags, Iframe, Marquee</h2>
         <p class="sub"><strong>Definition:</strong> Semantic tags describe the meaning of content, improving SEO, readability, and accessibility.</p>
         <div class="semantic-map">
           <div class="semantic-box">header</div>
@@ -1400,6 +2028,21 @@
             <tr><td><code>figure</code> + <code>figcaption</code></td><td>Media container with caption.</td></tr>
             <tr><td><code>details</code> + <code>summary</code></td><td>Native expandable/collapsible section.</td></tr>
           </table>
+        </details>
+
+        <details>
+          <summary>Media Tags, Iframe, Marquee (Quick Topic 2 Coverage)</summary>
+          <table>
+            <tr><th>Tag</th><th>Definition</th><th>Important attributes</th></tr>
+            <tr><td><code>audio</code></td><td>Embeds sound file.</td><td><code>controls</code>, <code>autoplay</code>, <code>loop</code>, <code>muted</code></td></tr>
+            <tr><td><code>video</code></td><td>Embeds video file.</td><td><code>controls</code>, <code>width</code>, <code>height</code>, <code>poster</code></td></tr>
+            <tr><td><code>iframe</code></td><td>Embeds another webpage.</td><td><code>src</code>, <code>title</code>, <code>sandbox</code>, <code>allowfullscreen</code></td></tr>
+            <tr><td><code>marquee</code></td><td>Old scrolling tag (obsolete).</td><td>Use CSS animation instead.</td></tr>
+          </table>
+          <div class="example-view bootstrap-scope">
+            <p class="example-title">Output</p>
+            <div class="marquee-wrap"><span class="marquee-text">This line uses CSS animation instead of obsolete marquee tag.</span></div>
+          </div>
         </details>
 
         <details>
@@ -1432,7 +2075,18 @@
       </article>
 
       <article class="card" id="anchor-media" data-keywords="anchor link media audio video iframe lists marquee">
-        <h2>4) Anchor, Media, iframe, Lists</h2>
+        <h2>3) HTML Lists, Tables, Forms (Started)</h2>
+        <details open>
+          <summary>Starter Definitions (Topic 3)</summary>
+          <table>
+            <tr><th>Topic</th><th>Definition</th><th>Core tags</th></tr>
+            <tr><td>Lists</td><td>Show related items in sequence or bullets.</td><td><code>ol</code>, <code>ul</code>, <code>li</code>, <code>dl</code>, <code>dt</code>, <code>dd</code></td></tr>
+            <tr><td>Tables</td><td>Represent tabular row/column data.</td><td><code>table</code>, <code>tr</code>, <code>th</code>, <code>td</code></td></tr>
+            <tr><td>Forms (Started)</td><td>Collect user input for submission.</td><td><code>form</code>, <code>input</code>, <code>label</code>, <code>select</code>, <code>textarea</code></td></tr>
+          </table>
+          <div class="tip">Deep table explanation is in <strong>Topic 3A</strong>. Deep forms + validation is in <strong>Topic 4</strong>.</div>
+        </details>
+
         <details open>
           <summary>Anchor (&lt;a&gt;) Tag</summary>
           <p><strong>Definition:</strong> Creates hyperlinks to pages, sections, mail, and phone.</p>
@@ -1518,7 +2172,7 @@
       </article>
 
       <article class="card" id="head-tag" data-keywords="head tag title meta link style script base noscript favicon">
-        <h2>5) Everything in &lt;head&gt; Tag</h2>
+        <h2>Appendix A) Everything in &lt;head&gt; Tag</h2>
         <p class="sub"><strong>Definition:</strong> <code>head</code> stores metadata and resource links (not visible page content).</p>
         <table>
           <tr><th>Tag</th><th>Definition and Use</th></tr>
@@ -1558,7 +2212,7 @@
       </article>
 
       <article class="card" id="tables" data-keywords="tables tr th td thead tbody tfoot caption rowspan colspan border-collapse">
-        <h2>6) HTML Tables (Basic to Advanced)</h2>
+        <h2>3A) HTML Tables (Deep Dive for Topic 3)</h2>
         <p class="sub"><strong>Definition:</strong> Tables represent tabular data in rows and columns.</p>
         <details open>
           <summary>Core Table Tags and Definitions</summary>
@@ -1633,7 +2287,7 @@ th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre
       </article>
 
       <article class="card" id="forms" data-keywords="forms input types validation name required pattern get post enctype">
-        <h2>7) Forms Complete (Every Important Input + Rules)</h2>
+        <h2>4) HTML Forms &amp; Validation</h2>
         <p class="sub"><strong>Definition:</strong> Forms collect user data and submit it to a server.</p>
         <details open>
           <summary>Form Attributes (Definition)</summary>
@@ -1774,61 +2428,69 @@ th, td { border: 1px solid #000; padding: 8px; text-align: center; }</code></pre
         </details>
       </article>
 
-      <article class="card" id="html-extra" data-keywords="headings paragraphs entities comments global attributes data accessibility">
-        <h2>8) Remaining HTML Topics (Definitions)</h2>
-        <div class="two-col">
-          <div>
-            <h3>Global Attributes</h3>
-            <ul>
-              <li><code>id</code>: unique element identifier.</li>
-              <li><code>class</code>: reusable style/script selector.</li>
-              <li><code>style</code>: inline CSS style.</li>
-              <li><code>title</code>: tooltip text on hover.</li>
-              <li><code>lang</code>: language metadata.</li>
-              <li><code>dir</code>: text direction (ltr/rtl).</li>
-              <li><code>hidden</code>: hide element.</li>
-              <li><code>tabindex</code>: keyboard tab order.</li>
-              <li><code>contenteditable</code>: editable content region.</li>
-              <li><code>draggable</code>: drag capability.</li>
-              <li><code>data-*</code>: custom data attributes for JS/CSS.</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Accessibility Basics</h3>
-            <ul>
-              <li><code>alt</code> on images for screen readers.</li>
-              <li><code>label for</code> linked with input <code>id</code>.</li>
-              <li><code>aria-label</code>: adds accessible name.</li>
-              <li><code>aria-describedby</code>: adds help/error description link.</li>
-              <li><code>role</code>: semantic role hint when needed.</li>
-            </ul>
-            <div class="tip">Use semantic HTML first, then ARIA only where necessary.</div>
-          </div>
-        </div>
-        <h3>Entities and Comments</h3>
-        <p><code>&amp;lt;</code> &lt; , <code>&amp;gt;</code> &gt; , <code>&amp;amp;</code> &amp; , <code>&amp;copy;</code> &copy; , <code>&amp;nbsp;</code> (non-breaking space).</p>
-        <pre><code>&lt;!-- This is an HTML comment --&gt;</code></pre>
+      <article class="card" id="css-intro" data-keywords="css introduction inline internal external selector syntax cascading inheritance specificity">
+        <h2>5) CSS Introduction, How to Add CSS, Selectors</h2>
+        <p class="sub"><strong>Definition:</strong> CSS (Cascading Style Sheets) controls visual style of HTML: color, layout, spacing, typography, animation.</p>
+
+        <details open>
+          <summary>CSS Basics</summary>
+          <pre><code>selector {
+  property: value;
+}</code></pre>
+          <table>
+            <tr><th>Part</th><th>Meaning</th></tr>
+            <tr><td><code>selector</code></td><td>Chooses element(s) to style.</td></tr>
+            <tr><td><code>property</code></td><td>What to change (color, margin, display, etc.).</td></tr>
+            <tr><td><code>value</code></td><td>How to change it (red, 16px, flex, ...).</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>How to Add CSS (3 Ways)</summary>
+          <table>
+            <tr><th>Way</th><th>Syntax</th><th>Use case</th></tr>
+            <tr><td>Inline CSS</td><td><code>&lt;p style="color:red"&gt;</code></td><td>Quick test/single element (not scalable).</td></tr>
+            <tr><td>Internal CSS</td><td><code>&lt;style&gt;...&lt;/style&gt;</code> in <code>&lt;head&gt;</code></td><td>Small page-level styles.</td></tr>
+            <tr><td>External CSS</td><td><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td><td>Best for real projects and reuse.</td></tr>
+          </table>
+          <div class="tip">Best practice: use <strong>external CSS</strong> for clean, maintainable projects.</div>
+        </details>
+
+        <details>
+          <summary>Selector Intro (before deep section)</summary>
+          <ul>
+            <li><strong>Simple selectors:</strong> element, class, id, universal.</li>
+            <li><strong>Combinators:</strong> descendant, child, sibling.</li>
+            <li><strong>Pseudo-class:</strong> state-based (<code>:hover</code>, <code>:focus</code>).</li>
+            <li><strong>Pseudo-element:</strong> part-based (<code>::before</code>, <code>::after</code>).</li>
+          </ul>
+          <div class="tip">Deep selector + background + color coverage is in Topic 6 below.</div>
+        </details>
 
         <details>
           <summary>Code + Output</summary>
           <div class="example-pair">
             <div>
               <p class="example-title">Code</p>
-              <pre><code>&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;
-&amp;copy; 2026</code></pre>
+              <pre><code>&lt;style&gt;
+.intro { color: #2563eb; font-weight: 700; }
+#lead { background: #dbeafe; padding: 6px 10px; }
+&lt;/style&gt;
+
+&lt;p id="lead" class="intro"&gt;CSS applied successfully.&lt;/p&gt;</code></pre>
             </div>
             <div class="example-view">
               <p class="example-title">Output</p>
-              <p>&lt;h1&gt;Title&lt;/h1&gt;</p>
-              <p>&copy; 2026</p>
+              <p id="lead-demo" style="background:#dbeafe;padding:6px 10px;color:#2563eb;font-weight:700;border-radius:6px;">CSS applied successfully.</p>
             </div>
           </div>
         </details>
       </article>
 
       <article class="card" id="selectors" data-keywords="css selectors simple combinator pseudo class pseudo element specificity">
-        <h2>9) CSS Selectors (Complete)</h2>
+        <h2>6) CSS Selectors, Background Properties, Colors</h2>
         <p class="sub"><strong>Definition:</strong> Selectors are used to select HTML elements for styling and designing.</p>
+        <div class="tip">Background and color properties for this topic continue in <strong>Topic 6A</strong> just below.</div>
         <details open>
           <summary>Selectors Division (Your Format)</summary>
           <pre><code>Selectors:-
@@ -1934,7 +2596,7 @@ ul li::marker { color: orange; }</code></pre>
       </article>
 
       <article class="card" id="background-color" data-keywords="background color rgb rgba hsl hsla hex gradient cover contain">
-        <h2>10) Background + Color System</h2>
+        <h2>6A) Background + Color System (Deep Dive)</h2>
         <details open>
           <summary>Color Formats Definitions</summary>
           <table>
@@ -1987,8 +2649,9 @@ ul li::marker { color: orange; }</code></pre>
       </article>
 
       <article class="card" id="text-font" data-keywords="text properties font properties border outline typography line-height text-align">
-        <h2>11) Font, Text, Border, Outline (Full Detail)</h2>
+        <h2>7) CSS Font, Text, Border, Outline, Box Model Properties</h2>
         <p class="sub"><strong>Definition:</strong> Typography properties control how text looks and reads; border/outline define visual boundaries and focus behavior.</p>
+        <div class="tip">Box model formulas and calculations continue in <strong>Topic 7A</strong>.</div>
 
         <details open>
           <summary>Font Properties (Definition + Usage)</summary>
@@ -2066,7 +2729,7 @@ ul li::marker { color: orange; }</code></pre>
       </article>
 
       <article class="card" id="box-model" data-keywords="box model content padding border margin box-sizing margin collapse">
-        <h2>12) CSS Box Model (Everything Related)</h2>
+        <h2>7A) CSS Box Model (Deep Dive)</h2>
         <p class="sub"><strong>Definition:</strong> Every element is a rectangular box: <strong>content -> padding -> border -> margin</strong>.</p>
 
         <div class="box-wrap" aria-label="Box model visual">
@@ -2158,7 +2821,8 @@ box-sizing: content-box;
       </article>
 
       <article class="card" id="layout" data-keywords="float clear overflow display position z-index layout">
-        <h2>13) Layout Core: Float, Overflow, Display, Position, Z-Index</h2>
+        <h2>8) CSS Overflow, Float, Object-Fit, Display, Flex Property</h2>
+        <p id="position-units-note" class="sub"><strong>Topic 10 also covered here:</strong> Position, Z-Index, Transform, and CSS Units are explained with code + output in this section and related sections below.</p>
 
         <details open>
           <summary>Float + Clear (Legacy but Important)</summary>
@@ -2192,6 +2856,42 @@ box-sizing: content-box;
           <pre><code>overflow: visible | hidden | scroll | auto;
 overflow-x: hidden;
 overflow-y: auto;</code></pre>
+        </details>
+
+        <details>
+          <summary>Object-Fit + Display + Flex (Topic 8 Required)</summary>
+          <p><strong>Definition:</strong> <code>object-fit</code> controls how images/videos fit inside a fixed box. <code>display</code> controls element layout behavior. <code>flex</code> creates one-dimensional alignment.</p>
+          <table>
+            <tr><th>Property</th><th>Definition</th><th>Common values</th></tr>
+            <tr><td><code>object-fit</code></td><td>How replaced content fills the element box.</td><td><code>fill</code>, <code>contain</code>, <code>cover</code>, <code>none</code>, <code>scale-down</code></td></tr>
+            <tr><td><code>object-position</code></td><td>Position of media inside its box.</td><td><code>center</code>, <code>top</code>, <code>50% 30%</code></td></tr>
+            <tr><td><code>display</code></td><td>Element rendering type.</td><td><code>block</code>, <code>inline</code>, <code>inline-block</code>, <code>flex</code>, <code>grid</code>, <code>none</code></td></tr>
+            <tr><td><code>flex</code> (shorthand)</td><td>Shorthand for child sizing.</td><td><code>flex: grow shrink basis</code></td></tr>
+          </table>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.media-box { width: 180px; height: 90px; }
+img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+.item-a { flex: 1 1 120px; }
+.item-b { flex: 2 1 120px; }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div style="width:180px;height:90px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:linear-gradient(120deg,#0ea5e9,#22d3ee,#38bdf8);margin-bottom:8px;">
+                <img alt="object-fit cover demo" style="width:100%;height:100%;object-fit:cover;object-position:center;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='300'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23f43f5e'/%3E%3Cstop offset='1' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='300' fill='url(%23g)'/%3E%3Ccircle cx='120' cy='160' r='80' fill='%230ea5e9'/%3E%3Crect x='250' y='60' width='200' height='170' fill='%2322c55e'/%3E%3C/svg%3E" />
+              </div>
+              <div style="display:flex;gap:8px;">
+                <div style="flex:1 1 120px;background:#dbeafe;border:1px solid #bfdbfe;border-radius:8px;padding:8px;text-align:center;">flex:1</div>
+                <div style="flex:2 1 120px;background:#dcfce7;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;">flex:2</div>
+              </div>
+            </div>
+          </div>
         </details>
 
         <details>
@@ -2342,6 +3042,185 @@ overflow-y: auto;</code></pre>
         </details>
 
         <details>
+          <summary>Z-Index Complete Code + Output (Same Style as Your Image)</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Complete Code</p>
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Z-Index Stack Demo&lt;/title&gt;
+  &lt;style&gt;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #96ca35;
+      font-family: Arial, sans-serif;
+    }
+    .stage {
+      width: min(560px, 94vw);
+      aspect-ratio: 560 / 360;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .box {
+      position: absolute;
+      border-radius: 2px;
+    }
+    .box span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+      background: #1d4ed8;
+      color: white;
+      font-size: 12px;
+      padding: 2px 5px;
+    }
+    .div1 { left: 16%; top: 57%; width: 40%; height: 31%; background: #ff1212; z-index: 1; }
+    .div2 { left: 24%; top: 47%; width: 40%; height: 31%; background: #ffff28; z-index: 2; }
+    .div3 { left: 32%; top: 37%; width: 40%; height: 31%; background: #f57a72; z-index: 3; }
+    .div4 { left: 40%; top: 27%; width: 40%; height: 31%; background: #aa5a32; z-index: 4; }
+    .div5 { left: 48%; top: 17%; width: 40%; height: 31%; background: #00ef8f; z-index: 5; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="stage"&gt;
+    &lt;div class="box div1"&gt;&lt;span&gt;div1&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="box div2"&gt;&lt;span&gt;div2&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="box div3"&gt;&lt;span&gt;div3&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="box div4"&gt;&lt;span&gt;div4&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="box div5"&gt;&lt;span&gt;div5&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="zindex-poster-wrap">
+                <div class="zindex-poster" aria-label="z-index five-layer stack demo">
+                  <div class="zbox zb1"><span class="zcap">div1</span></div>
+                  <div class="zbox zb2"><span class="zcap">div2</span></div>
+                  <div class="zbox zb3"><span class="zcap">div3</span></div>
+                  <div class="zbox zb4"><span class="zcap">div4</span></div>
+                  <div class="zbox zb5"><span class="zcap">div5</span></div>
+                </div>
+              </div>
+              <p class="sub"><strong>Read this order:</strong> higher <code>z-index</code> appears in front. So <code>div5</code> is on top and <code>div1</code> is at back.</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Notebook Style Explanation (Same Format You Asked)</summary>
+          <pre><code>position property:-
+******************
+- static (default) :- normal flow. We cannot move it with top/right/bottom/left.
+- relative :- moves from its original position, but old space is still reserved.
+- absolute :- removed from flow; placed relative to nearest non-static parent.
+- fixed :- similar to absolute, but fixed to viewport during scroll.
+- sticky :- relative + fixed behavior (sticks after threshold).
+
+- to define distance we use properties such as:
+  top, right, bottom, left
+  shorthand: inset
+
+z-index :-
+**********
+- z-index works only with positioned elements
+  (position: relative | absolute | fixed | sticky)
+- z-index does not work with "position: static".
+
+transform :-
+************
+- changes element shape/position visually without changing normal document flow.
+- main functions: translate(), rotate(), scale(), skew()
+- 3D functions: translate3d(), rotate3d(), scale3d(), perspective()
+
+transition :-
+*************
+- gives smooth change between old value and new value.
+- transition properties:
+  transition-property
+  transition-duration
+  transition-timing-function
+  transition-delay
+- shorthand:
+  transition: property duration timing-function delay;
+
+animation :-
+************
+- runs keyframes automatically.
+- animation properties:
+  animation-name
+  animation-duration
+  animation-timing-function
+  animation-delay
+  animation-iteration-count
+  animation-direction
+  animation-fill-mode
+  animation-play-state
+- shorthand:
+  animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+
+media queries:-
+***************
+- used to apply CSS for different screen conditions.
+- common conditions:
+  max-width, min-width, orientation,
+  prefers-reduced-motion, prefers-color-scheme
+
+units :-
+********
+- absolute unit: px
+- font relative units: em, rem
+- parent relative unit: %
+- viewport units: vw, vh, vmin, vmax
+- layout unit: fr
+- responsive function: clamp(min, preferred, max)</code></pre>
+          <div class="tip">This block is in your exact notebook style. Use the demos above and in sections 15/16 to visualize each property.</div>
+        </details>
+
+        <details>
+          <summary>Transform + CSS Units (Topic 10 Required)</summary>
+          <table>
+            <tr><th>Property/Unit</th><th>Definition</th><th>Example</th></tr>
+            <tr><td><code>transform</code></td><td>Visual geometric change without reflow.</td><td><code>transform: translateX(20px) scale(1.1);</code></td></tr>
+            <tr><td><code>px</code></td><td>Fixed absolute pixel unit.</td><td><code>width: 120px;</code></td></tr>
+            <tr><td><code>%</code></td><td>Relative to parent size.</td><td><code>width: 50%;</code></td></tr>
+            <tr><td><code>em</code></td><td>Relative to current element font-size.</td><td><code>padding: 1em;</code></td></tr>
+            <tr><td><code>rem</code></td><td>Relative to root font-size.</td><td><code>font-size: 1.125rem;</code></td></tr>
+            <tr><td><code>vw</code>/<code>vh</code></td><td>Relative to viewport width/height.</td><td><code>width: 40vw;</code></td></tr>
+            <tr><td><code>fr</code></td><td>Fractional grid track unit.</td><td><code>grid-template-columns: 1fr 2fr;</code></td></tr>
+            <tr><td><code>clamp()</code></td><td>Fluid value between min and max.</td><td><code>font-size: clamp(1rem, 2vw, 2rem);</code></td></tr>
+          </table>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.unit-box {
+  width: 50%;
+  max-width: 260px;
+  padding: 1rem;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  transform: rotate(-2deg) scale(1.03);
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div style="width:50%;max-width:260px;padding:1rem;font-size:clamp(1rem,2vw,1.4rem);transform:rotate(-2deg) scale(1.03);background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;">
+                Transform + Units Demo
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details>
           <summary>Code + Output (Gap + Visibility + Position)</summary>
           <div class="example-pair">
             <div>
@@ -2371,10 +3250,10 @@ overflow-y: auto;</code></pre>
       </article>
 
       <article class="card" id="flex-grid" data-keywords="flexbox grid container item justify align gap template areas responsive layout">
-        <h2>14) Flexbox and Grid (Deep, Easy to Remember)</h2>
+        <h2>9) CSS Grid Display, Visibility Property</h2>
 
         <details open>
-          <summary>Display: Flex in Your Format (Parent vs Child)</summary>
+          <summary>Flex Quick Revision (from Topic 8)</summary>
           <p><strong>Definition:</strong> <code>display: flex</code> creates a flex container and manages child items on one dimension (row/column).</p>
           <pre><code>Display Flex:-
 **************
@@ -2612,13 +3491,295 @@ overflow-y: auto;</code></pre>
             </div>
           </div>
         </details>
+
+        <details>
+          <summary>Visibility Property (Topic 9 Required)</summary>
+          <p><strong>Definition:</strong> <code>visibility</code> controls whether an element is visible while still keeping layout space.</p>
+          <table>
+            <tr><th>Property</th><th>Effect</th></tr>
+            <tr><td><code>visibility: visible</code></td><td>Element is visible (default).</td></tr>
+            <tr><td><code>visibility: hidden</code></td><td>Element hidden but still takes space.</td></tr>
+            <tr><td><code>display: none</code></td><td>Element hidden and removed from layout flow.</td></tr>
+          </table>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.a { visibility: hidden; } /* keeps space */
+.b { display: none; }      /* removes space */</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div style="display:flex;gap:8px;">
+                <div style="padding:8px;border-radius:8px;background:#dbeafe;border:1px solid #bfdbfe;">A</div>
+                <div style="padding:8px;border-radius:8px;background:#fecaca;border:1px solid #fca5a5;visibility:hidden;">B hidden</div>
+                <div style="padding:8px;border-radius:8px;background:#bbf7d0;border:1px solid #86efac;">C</div>
+              </div>
+              <p class="sub">Middle slot still exists because <code>visibility:hidden</code> keeps layout space.</p>
+            </div>
+          </div>
+        </details>
       </article>
 
-      <article class="card" id="responsive-media" data-keywords="responsive media query units rem em vw vh clamp container mobile first">
-        <h2>15) Responsive Design, Units, Media Queries</h2>
+      <article class="card" id="position-units" data-keywords="position z-index transform units top right bottom left inset px rem em vw vh fr clamp">
+        <h2>10) CSS Position, Z-Index, Transform, CSS Units</h2>
+        <p class="sub"><strong>Definition:</strong> Position controls where elements sit, z-index controls stack order, transform changes visual geometry, and units define measurement scale.</p>
+
+        <details open>
+          <summary>Position + Z-Index (Core)</summary>
+          <table>
+            <tr><th>Property</th><th>Definition</th></tr>
+            <tr><td><code>position: static</code></td><td>Default flow; offsets do not apply.</td></tr>
+            <tr><td><code>position: relative</code></td><td>Moves from original slot and keeps space.</td></tr>
+            <tr><td><code>position: absolute</code></td><td>Removed from flow; positioned from nearest non-static ancestor.</td></tr>
+            <tr><td><code>position: fixed</code></td><td>Fixed to viewport during scroll.</td></tr>
+            <tr><td><code>position: sticky</code></td><td>Relative until threshold, then fixed-like.</td></tr>
+            <tr><td><code>top/right/bottom/left</code></td><td>Offset distance for positioned elements.</td></tr>
+            <tr><td><code>inset</code></td><td>Shorthand for top + right + bottom + left.</td></tr>
+            <tr><td><code>z-index</code></td><td>Stack order; works on positioned elements (not static).</td></tr>
+          </table>
+          <div class="pos-space" aria-label="Position and z-index demo">
+            <div class="layer l1">z1</div>
+            <div class="layer l2">z2</div>
+            <div class="layer l3">z3</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Transform + Units</summary>
+          <table>
+            <tr><th>Item</th><th>Definition</th><th>Example</th></tr>
+            <tr><td><code>transform</code></td><td>Visual move/scale/rotate/skew without changing normal flow.</td><td><code>transform: translateX(20px) rotate(-3deg);</code></td></tr>
+            <tr><td><code>px</code></td><td>Absolute fixed unit.</td><td><code>width: 200px;</code></td></tr>
+            <tr><td><code>%</code></td><td>Relative to parent size.</td><td><code>width: 50%;</code></td></tr>
+            <tr><td><code>em</code>/<code>rem</code></td><td>Font-relative units (element/root).</td><td><code>padding: 1rem;</code></td></tr>
+            <tr><td><code>vw</code>/<code>vh</code></td><td>Viewport relative units.</td><td><code>height: 30vh;</code></td></tr>
+            <tr><td><code>fr</code></td><td>Fractional grid track unit.</td><td><code>grid-template-columns: 1fr 2fr;</code></td></tr>
+            <tr><td><code>clamp()</code></td><td>Fluid value between min and max.</td><td><code>font-size: clamp(1rem,2vw,1.8rem);</code></td></tr>
+          </table>
+          <div class="example-view">
+            <p class="example-title">Output</p>
+            <div style="width:min(280px,80%);padding:1rem;border-radius:8px;border:1px solid #c4b5fd;background:#ede9fe;transform:translateX(8px) rotate(-2deg);font-size:clamp(1rem,2vw,1.3rem);">
+              transform + unit scaling demo
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Transform and Translate (All Properties Separately)</summary>
+          <p><strong>Definition:</strong> <code>transform</code> is the main property that applies geometric functions. <code>translate</code> is both a transform function family and an independent transform property in modern CSS.</p>
+
+          <table>
+            <tr><th>Property</th><th>Purpose</th><th>Example</th></tr>
+            <tr><td><code>transform</code></td><td>Main transform function pipeline.</td><td><code>transform: translateX(20px) rotate(8deg) scale(1.1);</code></td></tr>
+            <tr><td><code>transform-origin</code></td><td>Pivot point for rotate/scale/skew.</td><td><code>transform-origin: center;</code></td></tr>
+            <tr><td><code>transform-style</code></td><td>Controls 3D children flattening.</td><td><code>transform-style: preserve-3d;</code></td></tr>
+            <tr><td><code>perspective</code></td><td>Depth distance for 3D transforms.</td><td><code>perspective: 600px;</code></td></tr>
+            <tr><td><code>perspective-origin</code></td><td>Viewpoint for perspective projection.</td><td><code>perspective-origin: center;</code></td></tr>
+            <tr><td><code>backface-visibility</code></td><td>Show/hide back side in 3D rotation.</td><td><code>backface-visibility: hidden;</code></td></tr>
+            <tr><td><code>translate</code></td><td>Independent translate property (newer CSS).</td><td><code>translate: 12px 6px;</code></td></tr>
+            <tr><td><code>rotate</code></td><td>Independent rotate property.</td><td><code>rotate: 12deg;</code></td></tr>
+            <tr><td><code>scale</code></td><td>Independent scale property.</td><td><code>scale: 1.1;</code></td></tr>
+          </table>
+
+          <table>
+            <tr><th>Function Group</th><th>Functions</th><th>Example</th></tr>
+            <tr><td>Translate</td><td><code>translate()</code>, <code>translateX()</code>, <code>translateY()</code>, <code>translateZ()</code>, <code>translate3d()</code></td><td><code>transform: translate3d(10px, 8px, 20px);</code></td></tr>
+            <tr><td>Rotate</td><td><code>rotate()</code>, <code>rotateX()</code>, <code>rotateY()</code>, <code>rotateZ()</code>, <code>rotate3d()</code></td><td><code>transform: rotateY(25deg);</code></td></tr>
+            <tr><td>Scale</td><td><code>scale()</code>, <code>scaleX()</code>, <code>scaleY()</code>, <code>scaleZ()</code>, <code>scale3d()</code></td><td><code>transform: scaleX(1.2);</code></td></tr>
+            <tr><td>Skew</td><td><code>skew()</code>, <code>skewX()</code>, <code>skewY()</code></td><td><code>transform: skewX(12deg);</code></td></tr>
+            <tr><td>Matrix</td><td><code>matrix()</code>, <code>matrix3d()</code></td><td><code>transform: matrix(1,0.2,0,1,10,8);</code></td></tr>
+          </table>
+
+          <div class="transform-lab">
+            <div class="transform-panel">
+              <p class="example-title">Animated Output (transform pipeline)</p>
+              <div class="transform-stage">
+                <div class="transform-target">transform</div>
+              </div>
+              <p class="sub">Animation runs <code>translate</code>, <code>rotate</code>, and <code>scale</code> in sequence.</p>
+            </div>
+
+            <div class="transform-panel">
+              <p class="example-title">Translate Functions Output</p>
+              <div class="transform-stage">
+                <div class="translate-row">
+                  <div class="translate-chip t-x">translateX</div>
+                  <div class="translate-chip t-y">translateY</div>
+                  <div class="translate-chip t-z">translateZ</div>
+                  <div class="translate-chip t-2d">translate()</div>
+                  <div class="translate-chip t-3d">translate3d</div>
+                </div>
+              </div>
+              <p class="sub">Each chip uses one separate translate function.</p>
+            </div>
+          </div>
+
+          <pre><code>.box {
+  transform: translateX(20px) rotate(8deg) scale(1.1);
+  transform-origin: center;
+}
+
+.move-x { transform: translateX(12px); }
+.move-y { transform: translateY(10px); }
+.move-3d { transform: perspective(300px) translate3d(10px, 6px, 18px); }</code></pre>
+        </details>
+
+        <details>
+          <summary>CSS Units in Your Notebook Style (Easy + Detailed)</summary>
+          <p><strong>Definition:</strong> Units are the measurement system of CSS. They decide size, spacing, and responsiveness.</p>
+
+          <div class="units-note"><code>units :-
+*******
+- to calculate width, height, font-size and spacing we use units.
+- %, px, vw, vh, em, rem.
+
+em :- element
+- by default 1em = current element font-size.
+- if parent font-size is 20px, child 1em becomes 20px.
+- child font-size: 2em; means 40px (2 x parent size).
+
+rem :- root element
+- 1rem = root (html) font-size.
+- default browser root is usually 16px.
+- this can be changed by giving value to root element (html).
+- child font-size: 2rem; means 2 x root size.</code></div>
+
+          <details>
+            <summary>Code in the same pattern you shared</summary>
+            <pre><code>&lt;style&gt;
+  html{
+    font-size: 25px;
+  }
+
+  /* .parent{
+    font-size: 20px;
+  }
+  p{
+    font-size: 1em;
+  } */
+
+  p{
+    font-size: 2rem;
+  }
+&lt;/style&gt;</code></pre>
+          </details>
+
+          <table>
+            <tr><th>Category</th><th>Units</th><th>Best use</th></tr>
+            <tr><td>Absolute</td><td><code>px</code>, <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pt</code>, <code>pc</code></td><td>Precise sizing. In web UI, mostly <code>px</code> is used.</td></tr>
+            <tr><td>Font-relative</td><td><code>em</code>, <code>rem</code>, <code>ex</code>, <code>ch</code>, <code>lh</code>, <code>rlh</code></td><td>Typography and scalable spacing.</td></tr>
+            <tr><td>Parent-relative</td><td><code>%</code></td><td>Fluid widths/heights based on parent.</td></tr>
+            <tr><td>Viewport</td><td><code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>, <code>svh</code>, <code>lvh</code>, <code>dvh</code></td><td>Screen-size-based layout blocks.</td></tr>
+            <tr><td>Grid</td><td><code>fr</code></td><td>Fractional track sizing in CSS Grid.</td></tr>
+            <tr><td>Functions</td><td><code>calc()</code>, <code>min()</code>, <code>max()</code>, <code>clamp()</code></td><td>Responsive value math without extra breakpoints.</td></tr>
+          </table>
+
+          <table>
+            <tr><th>Rule</th><th>Meaning</th></tr>
+            <tr><td><code>1em</code></td><td>Current element font-size context (often inherited from parent).</td></tr>
+            <tr><td><code>1rem</code></td><td>Root (<code>html</code>) font-size context.</td></tr>
+            <tr><td><code>50%</code></td><td>Half of parent/reference value.</td></tr>
+            <tr><td><code>100vw</code></td><td>Full viewport width.</td></tr>
+            <tr><td><code>100vh</code></td><td>Full viewport height.</td></tr>
+            <tr><td><code>1fr</code></td><td>One fractional share of available grid space.</td></tr>
+          </table>
+
+          <div class="units-demo-grid">
+            <div class="units-card">
+              <p class="units-title">Output 1: em vs rem</p>
+              <div class="units-parent">
+                <div class="units-em-1">parent font-size: 20px -> child 1em = 20px</div>
+                <div class="units-em-2">child 2em = 40px</div>
+              </div>
+              <div class="units-rem-box">
+                <p class="units-rem-text">2rem text (based on root html size)</p>
+              </div>
+              <p class="sub">Current page root is default-based, so this <code>2rem</code> follows root, not parent.</p>
+            </div>
+
+            <div class="units-card">
+              <p class="units-title">Output 2: % + vw + fr + clamp()</p>
+              <div class="units-relative-wrap">
+                <div class="units-percent">width: 70% (parent relative)</div>
+                <div class="units-vw">width: 40vw (viewport relative)</div>
+                <p style="margin:8px 0 0; font-size:clamp(1rem,2.5vw,1.8rem); font-weight:700;">clamp() fluid heading</p>
+                <div class="units-grid-fr">
+                  <div>1fr</div>
+                  <div>2fr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip">Practical rule: Use <code>rem</code> for typography/spacing, <code>%</code> for fluid containers, <code>vw/vh</code> for viewport blocks, and <code>fr</code> for grid tracks.</div>
+        </details>
+      </article>
+
+      <article class="card" id="effects-motion" data-keywords="transition animation media query keyframes duration timing function">
+        <h2>11) CSS Transition, Animation Properties, Media Queries</h2>
+        <p class="sub"><strong>Definition:</strong> Transition animates state changes smoothly. Animation runs keyframe timelines. Media queries adapt those effects by screen/device conditions.</p>
+
+        <details open>
+          <summary>Transition + Animation Properties (All Important)</summary>
+          <table>
+            <tr><th>Group</th><th>Properties</th></tr>
+            <tr><td>Transition</td><td><code>transition-property</code>, <code>transition-duration</code>, <code>transition-timing-function</code>, <code>transition-delay</code>, <code>transition</code> (shorthand)</td></tr>
+            <tr><td>Animation</td><td><code>animation-name</code>, <code>animation-duration</code>, <code>animation-timing-function</code>, <code>animation-delay</code>, <code>animation-iteration-count</code>, <code>animation-direction</code>, <code>animation-fill-mode</code>, <code>animation-play-state</code>, <code>animation</code> (shorthand)</td></tr>
+            <tr><td>Media Query</td><td><code>@media (max-width)</code>, <code>@media (min-width)</code>, <code>@media (prefers-reduced-motion)</code></td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Code + Output</summary>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>.card {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.card:hover { transform: translateY(-6px) scale(1.03); }
+
+.dot { animation: bounce 1s ease-in-out infinite; }
+
+@media (max-width: 768px) {
+  .card { transition-duration: .55s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+}</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="motion mb-2">Hover Me</div>
+              <div style="display:flex;gap:8px;">
+                <span class="dot" style="animation-delay:0s"></span>
+                <span class="dot" style="animation-delay:0.12s"></span>
+                <span class="dot" style="animation-delay:0.24s"></span>
+              </div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="card" id="responsive-media" data-keywords="responsive media query units rem em vw vh clamp container mobile first bootstrap intro">
+        <h2>12) CSS Media Queries, Bootstrap (Intro)</h2>
         <p class="sub"><strong>Definition:</strong> Responsive design adapts layout and typography to different screens.</p>
 
         <details open>
+          <summary>Bootstrap Intro (Definition + Setup)</summary>
+          <p><strong>Definition:</strong> Bootstrap is a CSS framework that provides ready components + responsive grid system.</p>
+          <table>
+            <tr><th>Concept</th><th>Meaning</th></tr>
+            <tr><td>Container</td><td>Responsive fixed/fluid content wrapper.</td></tr>
+            <tr><td>Grid</td><td>12-column responsive layout using rows and cols.</td></tr>
+            <tr><td>Utilities</td><td>Quick helper classes for spacing, flex, color, display, etc.</td></tr>
+            <tr><td>Components</td><td>Prebuilt UI: buttons, cards, navbar, accordion, carousel.</td></tr>
+          </table>
+          <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+        </details>
+
+        <details>
           <summary>Units and Definitions</summary>
           <table>
             <tr><th>Unit</th><th>Definition</th><th>Best Use</th></tr>
@@ -2682,8 +3843,128 @@ overflow-y: auto;</code></pre>
         </details>
       </article>
 
-      <article class="card" id="effects-motion" data-keywords="transform transition animation keyframes filter opacity shadow">
-        <h2>16) Transform, Transition, Animation, Effects</h2>
+      <article class="card" id="bootstrap-components" data-keywords="bootstrap buttons card carousel accordion component classes">
+        <h2>13) Bootstrap Buttons, Card, Carousel, Accordion</h2>
+        <p class="sub"><strong>Definition:</strong> Bootstrap components are pre-styled UI blocks built using utility and component classes.</p>
+
+        <details open>
+          <summary>Important Component Classes</summary>
+          <table>
+            <tr><th>Component</th><th>Main classes</th><th>Definition</th></tr>
+            <tr><td>Buttons</td><td><code>btn btn-primary</code>, <code>btn-outline-*</code>, <code>btn-lg</code></td><td>Clickable action controls with variants and sizes.</td></tr>
+            <tr><td>Card</td><td><code>card</code>, <code>card-body</code>, <code>card-title</code>, <code>card-text</code></td><td>Content container for text/media/actions.</td></tr>
+            <tr><td>Carousel</td><td><code>carousel</code>, <code>carousel-inner</code>, <code>carousel-item</code></td><td>Sliding content/image showcase.</td></tr>
+            <tr><td>Accordion</td><td><code>accordion</code>, <code>accordion-item</code>, <code>accordion-button</code>, <code>accordion-collapse</code></td><td>Expandable/collapsible content groups.</td></tr>
+          </table>
+        </details>
+
+        <details>
+          <summary>Complete Code</summary>
+          <pre><code>&lt;!-- Buttons --&gt;
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-outline-success"&gt;Outline&lt;/button&gt;
+
+&lt;!-- Card --&gt;
+&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Bootstrap Card&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Reusable content block with clean spacing.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Action&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Carousel --&gt;
+&lt;div id="demoCarousel" class="carousel slide"&gt;
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;Slide 1&lt;/div&gt;
+    &lt;div class="carousel-item"&gt;Slide 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Accordion --&gt;
+&lt;div class="accordion" id="accDemo"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;h2 class="accordion-header"&gt;
+      &lt;button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1"&gt;
+        What is Bootstrap?
+      &lt;/button&gt;
+    &lt;/h2&gt;
+    &lt;div id="a1" class="accordion-collapse collapse show" data-bs-parent="#accDemo"&gt;
+      &lt;div class="accordion-body"&gt;A CSS framework for faster UI development.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </details>
+
+        <details>
+          <summary>Output</summary>
+          <div class="example-view bootstrap-scope">
+            <p class="example-title">Buttons</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <button type="button" class="btn btn-primary">Primary</button>
+              <button type="button" class="btn btn-outline-success">Outline</button>
+              <button type="button" class="btn btn-warning btn-sm">Small</button>
+            </div>
+
+            <p class="example-title">Card</p>
+            <div class="card mb-3" style="max-width: 20rem;">
+              <div class="card-body">
+                <h5 class="card-title">Bootstrap Card</h5>
+                <p class="card-text">Reusable component with title, text, and action button.</p>
+                <a href="#" class="btn btn-primary btn-sm">Action</a>
+              </div>
+            </div>
+
+            <p class="example-title">Carousel</p>
+            <div id="bsCarousel" class="carousel slide mb-3">
+              <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                  <div class="d-flex align-items-center justify-content-center text-white" style="height:140px;background:linear-gradient(120deg,#0ea5e9,#2563eb);">Slide 1</div>
+                </div>
+                <div class="carousel-item">
+                  <div class="d-flex align-items-center justify-content-center text-white" style="height:140px;background:linear-gradient(120deg,#22c55e,#0ea5e9);">Slide 2</div>
+                </div>
+                <div class="carousel-item">
+                  <div class="d-flex align-items-center justify-content-center text-white" style="height:140px;background:linear-gradient(120deg,#f97316,#ef4444);">Slide 3</div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#bsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#bsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+
+            <p class="example-title">Accordion</p>
+            <div class="accordion" id="bsAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="hdOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#colOne" aria-expanded="true" aria-controls="colOne">
+                    What is Bootstrap?
+                  </button>
+                </h2>
+                <div id="colOne" class="accordion-collapse collapse show" aria-labelledby="hdOne" data-bs-parent="#bsAccordion">
+                  <div class="accordion-body">Bootstrap is a responsive CSS framework with ready components and utilities.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="hdTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colTwo" aria-expanded="false" aria-controls="colTwo">
+                    Why use it?
+                  </button>
+                </h2>
+                <div id="colTwo" class="accordion-collapse collapse" aria-labelledby="hdTwo" data-bs-parent="#bsAccordion">
+                  <div class="accordion-body">It speeds up UI development with consistent design and responsive behavior.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="card" id="effects-motion-extended" data-keywords="transform transition animation keyframes filter opacity shadow extended">
+        <h2>Appendix D) Transform, Transition, Animation, Effects (Extended)</h2>
 
         <details open>
           <summary>Definition + Core Properties</summary>
@@ -2734,6 +4015,20 @@ overflow-y: auto;</code></pre>
         </details>
 
         <details>
+          <summary>Media Queries in Motion (Topic 11 Required)</summary>
+          <p><strong>Definition:</strong> Media queries apply CSS only when screen/device conditions match.</p>
+          <pre><code>/* animation speed by screen size */
+.box { animation: pulse 1.4s infinite; }
+@media (max-width: 768px) {
+  .box { animation-duration: 2.2s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .box { animation: none; }
+}</code></pre>
+          <div class="tip">Use media queries with animation for accessibility and responsive motion control.</div>
+        </details>
+
+        <details>
           <summary>Code + Output</summary>
           <div class="example-pair">
             <div>
@@ -2751,7 +4046,7 @@ overflow-y: auto;</code></pre>
       </article>
 
       <article class="card" id="property-atlas" data-keywords="all css properties definitions cheat sheet atlas reference">
-        <h2>17) CSS Property Atlas (Topic-wise Complete Reference)</h2>
+        <h2>Appendix B) CSS Property Atlas (Topic-wise Complete Reference)</h2>
         <p class="sub"><strong>Goal:</strong> One-place revision map of the most used and interview-relevant CSS properties with definitions.</p>
 
         <details open>
@@ -2861,6 +4156,166 @@ overflow-y: auto;</code></pre>
           </table>
         </details>
 
+        <details open>
+          <summary>Every Style with Medium-Level Example (Definition + Code + Output)</summary>
+          <p class="sub"><strong>Use:</strong> Read definition, see medium code, then inspect the live output. This section covers the major style families you use in real projects.</p>
+
+          <div class="style-medium-grid">
+            <section class="style-medium-card">
+              <h4>1) Color and Background</h4>
+              <p class="style-def"><strong>Definition:</strong> Controls text color and layered backgrounds (solid, gradients, overlays, image behavior like cover/position).</p>
+              <pre><code>.banner {
+  color: #fff;
+  background:
+    linear-gradient(120deg, rgba(15,23,42,.75), rgba(37,99,235,.65)),
+    linear-gradient(45deg, #06b6d4, #2563eb, #9333ea);
+  border-radius: 12px;
+}</code></pre>
+              <div class="style-stage">
+                <div class="atlas-bg-output">Layered background + gradient overlay</div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>2) Font and Text Styling</h4>
+              <p class="style-def"><strong>Definition:</strong> Controls readability and typography: font choice, spacing, alignment, line height, transform, and text effects.</p>
+              <pre><code>p {
+  text-align: justify;
+  text-transform: capitalize;
+  text-indent: 24px;
+  letter-spacing: .4px;
+  line-height: 1.65;
+}</code></pre>
+              <div class="style-stage">
+                <p class="atlas-text-output">this output shows practical text styling with better readability and clean paragraph flow for real notes and article sections.</p>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>3) Border, Outline, Box Model</h4>
+              <p class="style-def"><strong>Definition:</strong> Defines element structure using margin (outside), border (frame), padding (inside), and content (actual data).</p>
+              <pre><code>.box {
+  margin: 16px;
+  border: 3px solid #f59e0b;
+  padding: 12px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}</code></pre>
+              <div class="style-stage">
+                <div class="atlas-box-output">
+                  <div class="atlas-margin-box">
+                    <div class="atlas-padding-box">
+                      <div class="atlas-content-box">Content area</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>4) Display, Position, Z-Index, Visibility</h4>
+              <p class="style-def"><strong>Definition:</strong> Controls layout flow and stacking. <code>position</code> + offsets place elements, <code>z-index</code> layers them, visibility rules control rendering behavior.</p>
+              <pre><code>.wrap { position: relative; }
+.item-rel { position: relative; left: 12px; }
+.item-abs { position: absolute; top: 8px; right: 8px; z-index: 3; }
+.hidden-a { display: none; }      /* removed from layout */
+.hidden-b { visibility: hidden; } /* keeps layout space */</code></pre>
+              <div class="style-stage">
+                <div class="atlas-layout-output">
+                  <div class="al">static</div>
+                  <div class="al al-relative">relative</div>
+                  <div class="al al-absolute">absolute + z</div>
+                </div>
+                <div class="atlas-visibility-lab">
+                  <p>display:none (middle removed)</p>
+                  <div class="av-row"><span class="av-cell">A</span><span class="av-cell av-none">B</span><span class="av-cell">C</span></div>
+                  <p>visibility:hidden (middle space kept)</p>
+                  <div class="av-row"><span class="av-cell">A</span><span class="av-cell av-hidden">B</span><span class="av-cell">C</span></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>5) Flexbox (Parent + Child)</h4>
+              <p class="style-def"><strong>Definition:</strong> One-dimensional layout. Parent controls alignment and flow; child controls grow/shrink/order/self-alignment.</p>
+              <pre><code>.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.child-main {
+  order: -1;
+  flex: 2 1 80px;
+  align-self: flex-end;
+}</code></pre>
+              <div class="style-stage">
+                <div class="atlas-flex-output">
+                  <div class="af-item">1</div>
+                  <div class="af-item af-feature">featured</div>
+                  <div class="af-item">3</div>
+                  <div class="af-item">4</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>6) Grid (Parent + Child)</h4>
+              <p class="style-def"><strong>Definition:</strong> Two-dimensional layout. Parent defines tracks/areas/gaps; child places and spans across rows and columns.</p>
+              <pre><code>.board {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-auto-rows: 46px;
+  gap: 8px;
+}
+.wide { grid-column: span 2; }
+.tall { grid-row: span 2; }
+.self { justify-self: end; align-self: end; }</code></pre>
+              <div class="style-stage">
+                <div class="atlas-grid-output">
+                  <div class="ag-item ag-tall">tall</div>
+                  <div class="ag-item ag-wide">wide</div>
+                  <div class="ag-item">3</div>
+                  <div class="ag-item">4</div>
+                  <div class="ag-item ag-self">self</div>
+                  <div class="ag-item">6</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>7) Transform, Transition, Animation</h4>
+              <p class="style-def"><strong>Definition:</strong> <code>transform</code> changes geometry, <code>transition</code> smooths state changes, <code>animation</code> runs timeline-based motion using keyframes.</p>
+              <pre><code>.tile {
+  transition: transform .35s ease, box-shadow .35s ease;
+  animation: float 2.3s ease-in-out infinite;
+}
+.tile:hover {
+  transform: translateY(-5px) scale(1.04) rotate(-1deg);
+}</code></pre>
+              <div class="style-stage">
+                <div class="atlas-motion-output">hover me + auto motion</div>
+              </div>
+            </section>
+
+            <section class="style-medium-card">
+              <h4>8) Responsive + Media Queries</h4>
+              <p class="style-def"><strong>Definition:</strong> Media queries adapt layout by screen size. Keep desktop structure and stack content on smaller screens.</p>
+              <pre><code>.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+@media (max-width: 700px) {
+  .cards { grid-template-columns: 1fr; }
+}</code></pre>
+              <div class="style-stage">
+                <div class="atlas-responsive-output">
+                  <div class="ar-item"><strong>Desktop</strong>3 columns</div>
+                  <div class="ar-item"><strong>Tablet</strong>2 columns</div>
+                  <div class="ar-item"><strong>Mobile</strong>1 column</div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </details>
+
         <details>
           <summary>Code + Output</summary>
           <div class="example-pair">
@@ -2883,7 +4338,7 @@ overflow-y: auto;</code></pre>
       </article>
 
       <article class="card" id="revision" data-keywords="revision checklist quiz interview">
-        <h2>18) Revision Checklist + Mini Interview Quiz</h2>
+        <h2>Appendix C) Revision Checklist + Mini Interview Quiz</h2>
 
         <details open>
           <summary>Final Revision Checklist</summary>
@@ -2965,6 +4420,7 @@ overflow-y: auto;</code></pre>
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     (function () {
       var searchInput = document.getElementById("searchInput");
