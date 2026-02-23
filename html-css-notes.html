@@ -1354,6 +1354,101 @@
       }
     }
 
+    .mq-shot-stage {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .mq-shot-container {
+      width: 100%;
+      min-height: 320px;
+      background-color: #ccc;
+      display: flex;
+      flex-direction: column;
+    }
+    .mq-shot-left,
+    .mq-shot-right {
+      flex-basis: 50%;
+      min-height: 160px;
+      padding: 18px;
+      overflow: auto;
+    }
+    .mq-shot-left {
+      background-color: lightgreen;
+    }
+    .mq-shot-right {
+      background-color: lightblue;
+    }
+    .mq-shot-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+    .mq-shot-text {
+      margin: 0;
+      line-height: 1.45;
+      color: #111827;
+      font-size: 0.92rem;
+    }
+    @media screen and (max-width: 992px) {
+      .mq-shot-container {
+        flex-direction: row;
+      }
+    }
+    @media screen and (max-width: 576px) {
+      .mq-shot-container {
+        flex-direction: column;
+      }
+    }
+
+    .mq5-demo {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      overflow: hidden;
+    }
+    .mq5-demo .parent {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    .mq5-demo .items {
+      flex: 1 1 calc(25% - 9px);
+      min-width: 0;
+      min-height: clamp(120px, 15vw, 180px);
+      border-radius: 10px;
+      background-color: teal;
+      color: #ecfeff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      border: 1px solid rgba(15, 23, 42, 0.25);
+    }
+    .mq5-demo .item1 { background: #0d9488; }
+    .mq5-demo .item2 { background: #0f766e; }
+    .mq5-demo .item3 { background: #0ea5a1; }
+    .mq5-demo .item4 { background: #14b8a6; }
+
+    @media screen and (max-width: 1200px) {
+      .mq5-demo .items {
+        flex-basis: calc(33.333% - 8px);
+      }
+    }
+    @media screen and (max-width: 992px) {
+      .mq5-demo .items {
+        flex-basis: calc(50% - 6px);
+      }
+    }
+    @media screen and (max-width: 576px) {
+      .mq5-demo .items {
+        flex-basis: 100%;
+      }
+    }
+
     .dot {
       width: 18px;
       height: 18px;
@@ -4430,7 +4525,158 @@ breakpoints</code></div>
     font-size: .82rem;
     padding: 6px 9px;
   }
+}
+
+/* Tablet */
+@media (min-width: 768px) { }
+
+/* Laptop */
+@media (min-width: 992px) { }
+
+/* Desktop */
+@media (min-width: 1200px) { }
+
+/* Large desktop */
+@media (min-width: 1400px) { }</code></pre>
+        </details>
+
+        <details>
+          <summary>Screenshot Layout Example (<code>max-width:992px</code> and <code>max-width:576px</code>)</summary>
+          <p><strong>Definition:</strong> This example changes flex direction by breakpoint, same as your class screenshot.</p>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code (same pattern)</p>
+              <pre><code>* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+}
+.leftBlock {
+  flex-basis: 50%;
+  height: 50%;
+  background-color: lightgreen;
+  padding: 40px;
+}
+.leftBlock h1, .rightBlock h1{
+  margin-bottom: 10px;
+}
+.rightBlock {
+  flex-basis: 50%;
+  height: 50%;
+  background-color: lightblue;
+  padding: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .container{
+    flex-direction: row;
+  }
+}
+@media screen and (max-width:576px) {
+  .container{
+    flex-direction: column;
+  }
 }</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="mq-shot-stage">
+                <div class="mq-shot-container">
+                  <section class="mq-shot-left">
+                    <h4 class="mq-shot-title">Header content 1</h4>
+                    <p class="mq-shot-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, sed ea nobis commodi laudantium laborum.</p>
+                  </section>
+                  <section class="mq-shot-right">
+                    <h4 class="mq-shot-title">Header content 2</h4>
+                    <p class="mq-shot-text">Resize screen: desktop shows column, at 992px it becomes row, and at 576px it returns to column.</p>
+                  </section>
+                </div>
+              </div>
+              <p class="sub">This output is using the same breakpoint flow from your screenshot.</p>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Whole Code (Your <code>mq5.html</code> Pattern)</summary>
+          <p><strong>Definition:</strong> 4-column flex layout that becomes 2-column on tablet and 1-column on mobile using media queries.</p>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Complete HTML Code</p>
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;style&gt;
+    *{
+      box-sizing: border-box;
+      margin: 0px;
+      padding: 0px;
+    }
+    .parent{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    .items{
+      flex: 1 1 calc(25% - 9px);
+      min-width: 0;
+      height: 250px;
+      background-color: teal;
+    }
+
+    @media screen and (max-width:1200px){
+      .items{
+        flex-basis: calc(33.333% - 8px);
+      }
+    }
+
+    @media screen and (max-width:992px){
+      .items{
+        flex-basis: calc(50% - 6px);
+      }
+    }
+    @media screen and (max-width:576px){
+      .items{
+        flex-basis: 100%;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;section class="parent"&gt;
+    &lt;div class="items item1"&gt;div1&lt;/div&gt;
+    &lt;div class="items item2"&gt;div2&lt;/div&gt;
+    &lt;div class="items item3"&gt;div3&lt;/div&gt;
+    &lt;div class="items item4"&gt;div4&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="mq5-demo">
+                <section class="parent" aria-label="mq5 responsive four items demo">
+                  <div class="items item1">div1</div>
+                  <div class="items item2">div2</div>
+                  <div class="items item3">div3</div>
+                  <div class="items item4">div4</div>
+                </section>
+              </div>
+              <p class="sub">Resize viewport: 4 columns (desktop) -> 3 columns (<=1200px) -> 2 columns (<=992px) -> 1 column (<=576px).</p>
+            </div>
+          </div>
         </details>
 
         <details>
