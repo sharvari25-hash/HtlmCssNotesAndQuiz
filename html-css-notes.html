@@ -481,12 +481,234 @@
     .ov-hidden { overflow: hidden; }
     .ov-auto { overflow: auto; }
 
+    .gap-lab {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .gap-panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .gap-stage {
+      min-height: 84px;
+      border: 1px dashed #bfdbfe;
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8fbff;
+    }
+    .gap-flex-anim {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      animation: gapShift 6s steps(1, end) infinite;
+    }
+    .gap-grid-anim {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: center;
+      animation: gapShift 6s steps(1, end) infinite reverse;
+    }
+    .gap-cell {
+      min-height: 36px;
+      border-radius: 8px;
+      border: 1px solid #86efac;
+      background: #dcfce7;
+      color: #14532d;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    @keyframes gapShift {
+      0%, 100% { gap: 4px; }
+      33% { gap: 12px; }
+      66% { gap: 24px; }
+    }
+
+    .display-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .display-panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .compare-status {
+      margin: 0 0 8px;
+      font-size: 0.82rem;
+      color: #334155;
+      font-weight: 700;
+    }
+    .compare-track {
+      min-height: 52px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-box {
+      width: 64px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid #93c5fd;
+      background: #bfdbfe;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .compare-box.mid {
+      border-color: #fca5a5;
+      background: #fecaca;
+    }
+    .compare-box.last {
+      border-color: #86efac;
+      background: #bbf7d0;
+    }
+    .none-target.is-off {
+      display: none;
+    }
+    .visibility-target.is-off {
+      visibility: hidden;
+      opacity: 0;
+    }
+
     .pos-space {
       position: relative;
       height: 130px;
       border: 1px solid var(--line);
       border-radius: 10px;
       background: #f8fafc;
+    }
+    .position-lab {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .position-panel {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .position-title {
+      margin: 0 0 6px;
+      font-size: 0.83rem;
+      color: #334155;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .position-stage {
+      min-height: 90px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .position-stage.row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .p-box {
+      width: 72px;
+      min-height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid #a5b4fc;
+      background: #e0e7ff;
+    }
+    .p-box.alt {
+      background: #fef3c7;
+      border-color: #fcd34d;
+      color: #78350f;
+    }
+    .p-relative {
+      position: relative;
+      animation: relativeMove 3.6s ease-in-out infinite;
+    }
+    @keyframes relativeMove {
+      0%, 100% { left: 0; top: 0; }
+      50% { left: 16px; top: -10px; }
+    }
+    .position-stage.abs {
+      position: relative;
+      min-height: 120px;
+    }
+    .p-absolute {
+      position: absolute;
+      width: 82px;
+      height: 36px;
+      top: 8px;
+      left: 8px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+      background: #ef4444;
+      animation: absoluteMove 4.2s ease-in-out infinite;
+    }
+    @keyframes absoluteMove {
+      0%, 100% { top: 8px; left: 8px; }
+      50% { top: 68px; left: calc(100% - 92px); }
+    }
+    .sticky-scroll {
+      height: 120px;
+      overflow: auto;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 6px;
+      background: #f8fafc;
+    }
+    .sticky-head {
+      position: sticky;
+      top: 0;
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: #111827;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .fixed-runtime {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 150;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      background: #2563eb;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      pointer-events: none;
+      animation: fixedPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes fixedPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
     }
     .layer {
       position: absolute;
@@ -752,6 +974,46 @@
       }
     }
 
+    .grid-poster-wrap {
+      border-radius: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, #1f2255, #2e2b66);
+      color: #eef2ff;
+    }
+    .grid-poster-head {
+      margin: 0 0 8px;
+      font-size: 0.86rem;
+      color: #dbeafe;
+    }
+    .grid-poster {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr 1.1fr;
+      grid-template-rows: repeat(3, 74px);
+      gap: 10px;
+      border-radius: 8px;
+    }
+    .gp {
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #111827;
+      border: 1px solid rgba(15, 23, 42, 0.25);
+    }
+    .gp-green { background: #7bd358; }
+    .gp-orange { background: #fbb43a; }
+    .gp-red { background: #ff333d; color: #fff; }
+
+    .gp-left { grid-column: 1; grid-row: 1 / 4; }
+    .gp-top-mid { grid-column: 2 / 4; grid-row: 1; }
+    .gp-top-right { grid-column: 4; grid-row: 1; }
+    .gp-mid-left { grid-column: 2; grid-row: 2; }
+    .gp-mid-mid { grid-column: 3; grid-row: 2; }
+    .gp-bot-left { grid-column: 2; grid-row: 3; }
+    .gp-bot-mid { grid-column: 3; grid-row: 3; }
+    .gp-right { grid-column: 4; grid-row: 2 / 4; }
+
     .motion {
       width: 180px;
       height: 100px;
@@ -795,7 +1057,7 @@
       margin: 8px 0;
       background: #fcfdff;
     }
-    .score { color: #0f766e; font-weight: 700; }
+    .score { color: #0f766e; font-weight: 700; } 
 
     .example-pair {
       display: grid;
@@ -854,6 +1116,9 @@
       .toolbar { grid-template-columns: 1fr; }
       .color-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .overflow-grid { grid-template-columns: 1fr; }
+      .gap-lab,
+      .display-compare,
+      .position-lab { grid-template-columns: 1fr; }
       .grid-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .semantic-main { grid-template-columns: 1fr; }
       .example-pair { grid-template-columns: 1fr; }
@@ -920,6 +1185,14 @@
       .grid-child-anim {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .grid-poster {
+        grid-template-rows: repeat(3, 62px);
+      }
+      .fixed-runtime {
+        right: 8px;
+        bottom: 8px;
+        font-size: 0.72rem;
+      }
     }
 
     @media (max-width: 520px) {
@@ -936,6 +1209,18 @@
       .grid-child-anim {
         grid-template-columns: 1fr;
       }
+      .grid-poster {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(6, 52px);
+      }
+      .gp-left { grid-column: 1 / 3; grid-row: 1; }
+      .gp-top-mid { grid-column: 1 / 3; grid-row: 2; }
+      .gp-top-right { grid-column: 1; grid-row: 3; }
+      .gp-mid-left { grid-column: 2; grid-row: 3; }
+      .gp-mid-mid { grid-column: 1; grid-row: 4; }
+      .gp-bot-left { grid-column: 2; grid-row: 4; }
+      .gp-bot-mid { grid-column: 1; grid-row: 5; }
+      .gp-right { grid-column: 1 / 3; grid-row: 6; }
       .g-wide, .g-tall { grid-column: auto; grid-row: auto; }
       pre { font-size: 0.74rem; padding: 10px; }
       .example-view { padding: 8px; min-height: 64px; }
@@ -943,6 +1228,10 @@
         position: static;
         margin-bottom: 6px;
       }
+      .fixed-runtime { display: none; }
+      .compare-box { width: 56px; }
+      .position-stage { min-height: 82px; }
+      .position-stage.abs { min-height: 108px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1906,7 +2195,42 @@ overflow-y: auto;</code></pre>
         </details>
 
         <details>
-          <summary>Display Property (Main Values and Definitions)</summary>
+          <summary>Gap Property (row-gap, column-gap, gap)</summary>
+          <p><strong>Definition:</strong> <code>gap</code> creates spacing between items/tracks in <code>flex</code>, <code>grid</code>, and multi-column layouts.</p>
+          <table>
+            <tr><th>Property</th><th>Meaning</th><th>Example</th></tr>
+            <tr><td><code>row-gap</code></td><td>Vertical spacing between rows/tracks.</td><td><code>row-gap: 12px;</code></td></tr>
+            <tr><td><code>column-gap</code></td><td>Horizontal spacing between columns/items.</td><td><code>column-gap: 20px;</code></td></tr>
+            <tr><td><code>gap</code></td><td>Shorthand for row-gap + column-gap.</td><td><code>gap: 12px 20px;</code></td></tr>
+          </table>
+          <div class="tip">Memory Trick: <strong>gap = inside spacing between children</strong>, while <strong>margin = outside spacing around one element</strong>.</div>
+
+          <div class="gap-lab">
+            <div class="gap-panel">
+              <p class="example-title">Animated Output (Flex Gap)</p>
+              <div class="gap-stage gap-flex-anim" aria-label="flex gap animated output">
+                <div class="gap-cell">1</div>
+                <div class="gap-cell">2</div>
+                <div class="gap-cell">3</div>
+              </div>
+            </div>
+            <div class="gap-panel">
+              <p class="example-title">Animated Output (Grid Gap)</p>
+              <div class="gap-stage gap-grid-anim" aria-label="grid gap animated output">
+                <div class="gap-cell">A</div>
+                <div class="gap-cell">B</div>
+                <div class="gap-cell">C</div>
+                <div class="gap-cell">D</div>
+                <div class="gap-cell">E</div>
+                <div class="gap-cell">F</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Display Property + difference: <code>display:none</code> vs <code>visibility:hidden</code></summary>
+          <p><strong>Definition:</strong> Display decides layout behavior of elements in the document flow.</p>
           <table>
             <tr><th>Value</th><th>Definition</th></tr>
             <tr><td><code>block</code></td><td>Starts new line and expands full width by default.</td></tr>
@@ -1919,48 +2243,127 @@ overflow-y: auto;</code></pre>
             <tr><td><code>list-item</code></td><td>Behaves like list item with marker.</td></tr>
             <tr><td><code>table / table-row / table-cell</code></td><td>Mimics table layout behavior.</td></tr>
           </table>
-          <div class="tip">Interview One-liner: Block takes full width/new line; inline stays in line/content width.</div>
-        </details>
 
-        <details>
-          <summary>Position Property + Z-Index</summary>
-          <p><strong>Definition:</strong> Position controls how an element is placed relative to normal flow or another ancestor.</p>
           <table>
-            <tr><th>Value</th><th>Definition</th></tr>
-            <tr><td><code>static</code></td><td>Default normal flow (top/right/bottom/left ignored).</td></tr>
-            <tr><td><code>relative</code></td><td>Moves element relative to original position; keeps layout space.</td></tr>
-            <tr><td><code>absolute</code></td><td>Removed from flow; positioned against nearest positioned ancestor.</td></tr>
-            <tr><td><code>fixed</code></td><td>Fixed to viewport while scrolling.</td></tr>
-            <tr><td><code>sticky</code></td><td>Acts relative until threshold, then fixed-like.</td></tr>
-            <tr><td><code>z-index</code></td><td>Stacking order on z-axis (works on positioned elements).</td></tr>
+            <tr><th>Property</th><th>Takes Space?</th><th>Visible?</th><th>Clickable?</th></tr>
+            <tr><td><code>display: none</code></td><td>No</td><td>No</td><td>No</td></tr>
+            <tr><td><code>visibility: hidden</code></td><td>Yes</td><td>No</td><td>No</td></tr>
           </table>
 
-          <span class="sticky-note">Sticky Note Demo (scroll page)</span>
-          <div class="pos-space" aria-label="z-index stacking demo">
-            <div class="layer l1">z1</div>
-            <div class="layer l2">z2</div>
-            <div class="layer l3">z3</div>
+          <div class="display-compare">
+            <div class="display-panel">
+              <p class="compare-status" id="noneStatus">State: visible, then <code>display:none</code></p>
+              <div class="compare-track">
+                <div class="compare-box">A</div>
+                <div class="compare-box mid none-target" id="noneTarget">B</div>
+                <div class="compare-box last">C</div>
+              </div>
+              <p class="sub">When B becomes <code>display:none</code>, C shifts left because B is removed from flow.</p>
+            </div>
+            <div class="display-panel">
+              <p class="compare-status" id="visibilityStatus">State: visible, then <code>visibility:hidden</code></p>
+              <div class="compare-track">
+                <div class="compare-box">A</div>
+                <div class="compare-box mid visibility-target" id="visibilityTarget">B</div>
+                <div class="compare-box last">C</div>
+              </div>
+              <p class="sub">When B becomes <code>visibility:hidden</code>, C keeps its place because space is still reserved.</p>
+            </div>
           </div>
         </details>
 
         <details>
-          <summary>Code + Output</summary>
+          <summary>Position Property: all values + offset properties (<code>top right bottom left</code>)</summary>
+          <p><strong>Definition:</strong> <code>position</code> controls how an element is placed in normal flow, relative flow, or against a containing block/viewport.</p>
+          <table>
+            <tr><th>Value</th><th>Meaning</th></tr>
+            <tr><td><code>static</code></td><td>Default normal flow. Offsets are ignored.</td></tr>
+            <tr><td><code>relative</code></td><td>Moves from its original place; old space is preserved.</td></tr>
+            <tr><td><code>absolute</code></td><td>Removed from normal flow; positioned to nearest non-static ancestor.</td></tr>
+            <tr><td><code>fixed</code></td><td>Locked to viewport, stays while page scrolls.</td></tr>
+            <tr><td><code>sticky</code></td><td>Relative until threshold, then behaves like fixed in its scroll container.</td></tr>
+          </table>
+
+          <table>
+            <tr><th>Offset/Related Property</th><th>Use</th></tr>
+            <tr><td><code>top</code></td><td>Distance from top edge of containing block/viewport.</td></tr>
+            <tr><td><code>right</code></td><td>Distance from right edge.</td></tr>
+            <tr><td><code>bottom</code></td><td>Distance from bottom edge.</td></tr>
+            <tr><td><code>left</code></td><td>Distance from left edge.</td></tr>
+            <tr><td><code>inset</code></td><td>Shorthand for top + right + bottom + left.</td></tr>
+            <tr><td><code>inset-block</code>, <code>inset-inline</code></td><td>Logical direction shorthands.</td></tr>
+            <tr><td><code>z-index</code></td><td>Stacking order when positioned elements overlap.</td></tr>
+          </table>
+
+          <div class="position-lab">
+            <div class="position-panel">
+              <p class="position-title">Static vs Relative</p>
+              <div class="position-stage row">
+                <div class="p-box">static</div>
+                <div class="p-box p-relative">relative</div>
+                <div class="p-box alt">normal</div>
+              </div>
+              <p class="sub"><code>relative</code> moves with <code>left/top</code> but keeps its original layout slot.</p>
+            </div>
+
+            <div class="position-panel">
+              <p class="position-title">Absolute + Offsets</p>
+              <div class="position-stage abs">
+                <div class="p-absolute">absolute</div>
+              </div>
+              <p class="sub">Parent is <code>position:relative</code>. Child uses offsets (<code>top</code>/<code>left</code>) to move.</p>
+            </div>
+
+            <div class="position-panel">
+              <p class="position-title">Sticky in Scroll Box</p>
+              <div class="sticky-scroll">
+                <div class="sticky-head">sticky; top: 0;</div>
+                <p>Scroll this small box. The sticky header sticks to top.</p>
+                <p>Line 1 content...</p>
+                <p>Line 2 content...</p>
+                <p>Line 3 content...</p>
+                <p>Line 4 content...</p>
+              </div>
+            </div>
+
+            <div class="position-panel">
+              <p class="position-title">Z-Index Layering</p>
+              <div class="pos-space" aria-label="z-index stacking demo">
+                <div class="layer l1">z1</div>
+                <div class="layer l2">z2</div>
+                <div class="layer l3">z3</div>
+              </div>
+              <p class="sub">Higher <code>z-index</code> appears on top (when elements overlap).</p>
+            </div>
+          </div>
+
+          <div class="tip">Fixed Demo: open this section and watch the blue pill at bottom-right. It uses <code>position: fixed; right: 12px; bottom: 12px;</code>.</div>
+          <div class="fixed-runtime" aria-hidden="true">fixed</div>
+        </details>
+
+        <details>
+          <summary>Code + Output (Gap + Visibility + Position)</summary>
           <div class="example-pair">
             <div>
               <p class="example-title">Code</p>
-              <pre><code>.row { display: flex; gap: 8px; }
-.a { position: relative; left: 12px; }
-.b { position: absolute; top: 8px; right: 8px; }</code></pre>
+              <pre><code>.list { display: flex; gap: 12px; }
+.box-a { display: none; }
+.box-b { visibility: hidden; }
+
+.parent { position: relative; }
+.child  { position: absolute; top: 10px; right: 10px; }
+.note   { position: sticky; top: 0; }</code></pre>
             </div>
             <div class="example-view">
               <p class="example-title">Output</p>
-              <div style="display:flex; gap:8px;">
-                <span class="inline-demo">inline</span>
-                <span class="inline-block-demo">inline-block</span>
+              <div style="display:flex; gap:12px; margin-bottom:8px;">
+                <span class="inline-demo">gap</span>
+                <span class="inline-demo">12px</span>
+                <span class="inline-demo">demo</span>
               </div>
-              <div class="pos-space" style="margin-top:8px; height:90px;">
-                <div class="layer l1" style="width:70px; height:40px;">A</div>
-                <div class="layer l2" style="width:70px; height:40px;">B</div>
+              <div style="position:relative; min-height:74px; border:1px solid var(--line); border-radius:8px; background:#f8fafc; padding:8px;">
+                <div style="position:absolute; top:8px; right:8px; background:#ef4444; color:#fff; padding:4px 8px; border-radius:6px;">absolute</div>
+                <div style="width:72px; background:#dbeafe; border:1px solid #bfdbfe; border-radius:6px; padding:4px 8px;">normal</div>
               </div>
             </div>
           </div>
@@ -2111,6 +2514,57 @@ overflow-y: auto;</code></pre>
           </table>
 
           <div class="tip">Memory Trick: Grid Parent = track + gap + placement rules. Grid Child = where item starts/ends + self alignment.</div>
+        </details>
+
+        <details>
+          <summary>Exact Image-Style Grid Code (Like Your Reference)</summary>
+          <p><strong>Goal:</strong> Same style output with clear understanding of <code>grid-template-columns</code>, <code>grid-template-rows</code>, and <code>gap: 10px</code>.</p>
+          <div class="example-pair">
+            <div>
+              <p class="example-title">Code</p>
+              <pre><code>/* Parent */
+.poster {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr 1.1fr; /* Width */
+  grid-template-rows: repeat(3, 74px);        /* Height */
+  gap: 10px;
+}
+
+/* Child placement */
+.left       { grid-column: 1;     grid-row: 1 / 4; } /* tall left */
+.top-middle { grid-column: 2 / 4; grid-row: 1; }
+.top-right  { grid-column: 4;     grid-row: 1; }
+.mid-left   { grid-column: 2;     grid-row: 2; }
+.mid-mid    { grid-column: 3;     grid-row: 2; }
+.bot-left   { grid-column: 2;     grid-row: 3; }
+.bot-mid    { grid-column: 3;     grid-row: 3; }
+.right      { grid-column: 4;     grid-row: 2 / 4; } /* tall right */</code></pre>
+            </div>
+            <div class="example-view">
+              <p class="example-title">Output</p>
+              <div class="grid-poster-wrap">
+                <p class="grid-poster-head">grid-template-columns (Width) | grid-template-rows (Height) | gap: 10px</p>
+                <div class="grid-poster" aria-label="Image style grid output">
+                  <div class="gp gp-green gp-left">left (1 / 4)</div>
+                  <div class="gp gp-green gp-top-mid">2 / 4</div>
+                  <div class="gp gp-red gp-top-right">4,1</div>
+                  <div class="gp gp-orange gp-mid-left">2,2</div>
+                  <div class="gp gp-red gp-mid-mid">3,2</div>
+                  <div class="gp gp-red gp-bot-left">2,3</div>
+                  <div class="gp gp-orange gp-bot-mid">3,3</div>
+                  <div class="gp gp-green gp-right">4 (2 / 4)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <tr><th>Box</th><th>Grid Value</th><th>Meaning</th></tr>
+            <tr><td>Left Tall</td><td><code>grid-row: 1 / 4</code></td><td>Starts row 1, ends before row 4, so it spans 3 rows.</td></tr>
+            <tr><td>Top Middle</td><td><code>grid-column: 2 / 4</code></td><td>Starts col 2, ends before col 4, so it spans 2 columns.</td></tr>
+            <tr><td>Right Tall</td><td><code>grid-row: 2 / 4</code></td><td>Starts row 2 and spans down to row 3.</td></tr>
+            <tr><td>Center Boxes</td><td><code>grid-column: 2/3</code> and <code>grid-row: 2/3</code></td><td>Normal one-cell placement for each middle box.</td></tr>
+          </table>
         </details>
 
         <details>
@@ -2575,8 +3029,40 @@ overflow-y: auto;</code></pre>
         yearText.textContent = "(" + new Date().getFullYear() + ")";
       }
 
+      var noneTarget = document.getElementById("noneTarget");
+      var visibilityTarget = document.getElementById("visibilityTarget");
+      var noneStatus = document.getElementById("noneStatus");
+      var visibilityStatus = document.getElementById("visibilityStatus");
+      if (noneTarget && visibilityTarget) {
+        var hiddenState = false;
+        setInterval(function () {
+          hiddenState = !hiddenState;
+
+          if (hiddenState) {
+            noneTarget.classList.add("is-off");
+            visibilityTarget.classList.add("is-off");
+            if (noneStatus) {
+              noneStatus.innerHTML = "State: <code>display:none</code> (B removed)";
+            }
+            if (visibilityStatus) {
+              visibilityStatus.innerHTML = "State: <code>visibility:hidden</code> (B hidden, space kept)";
+            }
+          } else {
+            noneTarget.classList.remove("is-off");
+            visibilityTarget.classList.remove("is-off");
+            if (noneStatus) {
+              noneStatus.innerHTML = "State: visible, then <code>display:none</code>";
+            }
+            if (visibilityStatus) {
+              visibilityStatus.innerHTML = "State: visible, then <code>visibility:hidden</code>";
+            }
+          }
+        }, 1700);
+      }
+
       filterCards();
     })();
   </script>
 </body>
 </html>
+
