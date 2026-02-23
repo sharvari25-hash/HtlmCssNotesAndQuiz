@@ -1148,6 +1148,167 @@
     }
     .score { color: #0f766e; font-weight: 700; } 
 
+    .quiz-bank {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .quiz-bank > details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fff;
+    }
+    .quiz-bank summary {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .q-level {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1e40af;
+      vertical-align: middle;
+    }
+    .q-level.hard {
+      border-color: #fecaca;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+    .q-options {
+      margin: 8px 0 0;
+      font-size: 0.92rem;
+      color: #334155;
+      line-height: 1.55;
+    }
+    .q-answer {
+      margin: 8px 0 0;
+      border-left: 4px solid #0ea5e9;
+      background: #ecfeff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+    .mcq-app {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fcfdff;
+      padding: 10px;
+    }
+    .mcq-progress {
+      margin: 0 0 8px;
+      font-size: 0.86rem;
+      color: #475569;
+      font-weight: 700;
+    }
+    .mcq-card {
+      border: 1px solid #dbe4ef;
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+    }
+    .mcq-question p {
+      margin: 0 0 8px;
+      color: #0f172a;
+    }
+    .mcq-options {
+      display: grid;
+      gap: 6px;
+    }
+    .mcq-options label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border: 1px solid #dbe4ef;
+      border-radius: 8px;
+      background: #f8fafc;
+      padding: 7px 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      color: #1f2937;
+    }
+    .mcq-options label:hover {
+      border-color: #93c5fd;
+      background: #eff6ff;
+    }
+    .mcq-controls {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .mcq-controls button,
+    .mcq-nav button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 10px;
+      background: #fff;
+      color: #0f172a;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .mcq-controls button:hover,
+    .mcq-nav button:hover {
+      border-color: #93c5fd;
+      background: #eff6ff;
+    }
+    .mcq-controls .hint-btn {
+      border-color: #fcd34d;
+      background: #fef3c7;
+      color: #78350f;
+    }
+    .mcq-controls .check-btn {
+      border-color: #86efac;
+      background: #dcfce7;
+      color: #14532d;
+    }
+    .mcq-hint {
+      margin-top: 8px;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      background: #fffbeb;
+      color: #78350f;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+    .mcq-feedback {
+      margin: 8px 0 0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+    .mcq-feedback.ok {
+      border: 1px solid #86efac;
+      background: #dcfce7;
+      color: #14532d;
+    }
+    .mcq-feedback.bad {
+      border: 1px solid #fca5a5;
+      background: #fef2f2;
+      color: #7f1d1d;
+    }
+    .mcq-feedback.neutral {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+    }
+    .mcq-nav {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .mcq-nav button[disabled] {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
     .example-pair {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1741,6 +1902,10 @@
         text-align: center;
         word-break: break-word;
         overflow-wrap: anywhere;
+      }
+      .mcq-controls button,
+      .mcq-nav button {
+        width: 100%;
       }
       .atlas-responsive-output { grid-template-columns: 1fr; }
       table {
@@ -4396,6 +4561,329 @@ rem :- root element
           </div>
         </details>
 
+        <details open>
+          <summary>Interactive MCQ Test (Use Hint + Select Options)</summary>
+          <p class="sub">Attempt each question first. Use <strong>Show Hint</strong> only when needed, then click <strong>Check This Question</strong>.</p>
+          <div id="mcqApp" class="mcq-app">
+            <p id="mcqProgress" class="mcq-progress"></p>
+            <div id="mcqCard" class="mcq-card"></div>
+            <div class="mcq-nav">
+              <button type="button" id="mcqPrev">Previous</button>
+              <button type="button" id="mcqNext">Next</button>
+              <button type="button" id="mcqSubmit">Submit Test</button>
+              <button type="button" id="mcqReset">Reset Test</button>
+            </div>
+            <p id="mcqFinal" class="score" aria-live="polite"></p>
+          </div>
+        </details>
+
+        <details>
+          <summary>50 Quiz Questions (Medium + Slightly Hard) with Explanation</summary>
+          <p class="sub">Try each question first, then open to see answer and explanation.</p>
+
+          <div class="quiz-bank" id="quizBankWithAnswers">
+            <details>
+              <summary>Q1. Which semantic tag should contain the page's primary unique content?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>&lt;header&gt;</code><br />B) <code>&lt;section&gt;</code><br />C) <code>&lt;main&gt;</code><br />D) <code>&lt;article&gt;</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C) <code>&lt;main&gt;</code><br /><strong>Explanation:</strong> <code>&lt;main&gt;</code> is for the dominant content and should usually appear once per page.</div>
+            </details>
+
+            <details>
+              <summary>Q2. Which statement is correct about <code>&lt;strong&gt;</code> vs <code>&lt;b&gt;</code>?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Both are only visual and identical in meaning<br />B) <code>&lt;strong&gt;</code> has semantic importance, <code>&lt;b&gt;</code> is mostly visual<br />C) <code>&lt;b&gt;</code> is better for SEO than <code>&lt;strong&gt;</code><br />D) <code>&lt;strong&gt;</code> cannot be nested</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>&lt;strong&gt;</code> conveys importance semantically; <code>&lt;b&gt;</code> generally just makes text bold.</div>
+            </details>
+
+            <details>
+              <summary>Q3. Which is a global attribute?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>src</code><br />B) <code>href</code><br />C) <code>class</code><br />D) <code>type</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>class</code> works on almost all HTML elements; others are element-specific in common use.</div>
+            </details>
+
+            <details>
+              <summary>Q4. Custom data attributes must start with:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>attr-</code><br />B) <code>custom-</code><br />C) <code>data-</code><br />D) <code>meta-</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> HTML custom attributes follow the <code>data-*</code> pattern like <code>data-id</code>.</div>
+            </details>
+
+            <details>
+              <summary>Q5. Boolean attributes are true when:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Value is "true"<br />B) Attribute is present<br />C) Value is 1<br />D) Tag is self-closing</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> For boolean attributes like <code>required</code>, presence means true; absence means false.</div>
+            </details>
+
+            <details>
+              <summary>Q6. What is the key use of <code>defer</code> in script loading?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Executes script before HTML parsing starts<br />B) Executes after HTML parsing, preserving order<br />C) Blocks rendering less than <code>async</code> but runs randomly<br />D) Runs only on click events</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>defer</code> downloads in parallel and executes after document parsing in order.</div>
+            </details>
+
+            <details>
+              <summary>Q7. Why is <code>&lt;meta charset="UTF-8"&gt;</code> important?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Enables CSS variables<br />B) Improves JavaScript speed<br />C) Ensures correct character encoding across languages/symbols<br />D) Prevents CORS errors</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> UTF-8 prevents broken text rendering for non-English scripts and symbols.</div>
+            </details>
+
+            <details>
+              <summary>Q8. When using <code>target="_blank"</code>, which extra <code>rel</code> value is best practice?<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) <code>rel="author"</code><br />B) <code>rel="nofollow"</code><br />C) <code>rel="noopener noreferrer"</code><br />D) <code>rel="external"</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> It protects against tabnabbing and avoids exposing <code>window.opener</code>.</div>
+            </details>
+
+            <details>
+              <summary>Q9. Default form method is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) POST<br />B) GET<br />C) PUT<br />D) PATCH</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> If <code>method</code> is not provided, browser submits using GET.</div>
+            </details>
+
+            <details>
+              <summary>Q10. For file upload, required form encoding is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>text/plain</code><br />B) <code>application/json</code><br />C) <code>multipart/form-data</code><br />D) <code>application/x-file</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Binary file data needs multipart encoding.</div>
+            </details>
+
+            <details>
+              <summary>Q11. Which attribute is required so input value is sent to server?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>id</code><br />B) <code>name</code><br />C) <code>class</code><br />D) <code>placeholder</code></p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Form submission key is taken from <code>name</code>; without it, value is usually not submitted.</div>
+            </details>
+
+            <details>
+              <summary>Q12. Radio buttons should share same <code>name</code> to:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Allow multiple selection<br />B) Force required validation only<br />C) Make them act as one single-choice group<br />D) Style them together</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Same name groups radios so only one option can be checked.</div>
+            </details>
+
+            <details>
+              <summary>Q13. Which is true for <code>readonly</code> input?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Cannot edit and not submitted<br />B) Cannot edit but submitted<br />C) Disabled and unfocusable in all cases<br />D) Same as hidden input</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>readonly</code> keeps value in submission; <code>disabled</code> usually does not.</div>
+            </details>
+
+            <details>
+              <summary>Q14. Which attribute validates using regex?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>required</code><br />B) <code>pattern</code><br />C) <code>maxlength</code><br />D) <code>step</code></p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>pattern</code> applies regular-expression based validation.</div>
+            </details>
+
+            <details>
+              <summary>Q15. <code>required</code> attribute does what?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Forces lowercase input<br />B) Makes field disabled by default<br />C) Prevents submit if field is empty<br />D) Sends empty string automatically</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Browser blocks submission until required fields are filled.</div>
+            </details>
+
+            <details>
+              <summary>Q16. Which allows selecting multiple options in a dropdown?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>checked</code><br />B) <code>many</code><br />C) <code>multiple</code><br />D) <code>group</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>multiple</code> on <code>&lt;select&gt;</code> enables multi-selection UI.</div>
+            </details>
+
+            <details>
+              <summary>Q17. Correct label-input association is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>label name</code> matches input <code>name</code><br />B) <code>label for</code> matches input <code>id</code><br />C) <code>label id</code> matches input <code>for</code><br />D) Use <code>class</code> in both</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>for</code> points to input <code>id</code>, improving accessibility and click behavior.</div>
+            </details>
+
+            <details>
+              <summary>Q18. Which property on number input controls increment step?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>range</code><br />B) <code>delta</code><br />C) <code>step</code><br />D) <code>scale</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>step</code> defines allowed increment/decrement interval.</div>
+            </details>
+
+            <details>
+              <summary>Q19. Which input type gives browser-native email format validation?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>text</code><br />B) <code>search</code><br />C) <code>url</code><br />D) <code>email</code></p>
+              <div class="q-answer"><strong>Answer:</strong> D<br /><strong>Explanation:</strong> <code>type="email"</code> enables built-in syntax checks in browsers.</div>
+            </details>
+
+            <details>
+              <summary>Q20. Which form method is preferred for sensitive data like passwords?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) GET<br />B) POST<br />C) HEAD<br />D) OPTIONS</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> POST sends data in request body, unlike GET which exposes data in URL.</div>
+            </details>
+
+            <details>
+              <summary>Q21. Which selector has highest specificity (ignoring inline and !important)?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>p</code><br />B) <code>.card</code><br />C) <code>#main</code><br />D) <code>*</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> ID selectors outrank class and element selectors.</div>
+            </details>
+
+            <details>
+              <summary>Q22. Child combinator symbol is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>+</code><br />B) <code>~</code><br />C) <code>&gt;</code><br />D) Space only</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>parent &gt; child</code> selects only direct children.</div>
+            </details>
+
+            <details>
+              <summary>Q23. <code>:nth-child(2n+1)</code> selects:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Even children<br />B) Odd children<br />C) Every third child<br />D) First child only</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Sequence 1,3,5,... are odd positions.</div>
+            </details>
+
+            <details>
+              <summary>Q24. What is required for <code>::before</code> or <code>::after</code> to render generated content?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>display: block</code><br />B) <code>position: relative</code><br />C) <code>content</code> property<br />D) <code>z-index</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Without <code>content</code>, pseudo-elements generally do not appear.</div>
+            </details>
+
+            <details>
+              <summary>Q25. <code>:only-child</code> matches when:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) It is first child<br />B) It is last child<br />C) Parent has exactly one child element<br />D) Parent has one text node</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> The element must be the sole element child of its parent.</div>
+            </details>
+
+            <details>
+              <summary>Q26. Selector <code>div p</code> means:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Direct child paragraph only<br />B) Any paragraph inside div (at any depth)<br />C) Next paragraph after div<br />D) Paragraph with class div</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Space combinator is descendant selector.</div>
+            </details>
+
+            <details>
+              <summary>Q27. Which selector targets required inputs specifically?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>input.required</code><br />B) <code>input[required]</code><br />C) <code>input::required</code><br />D) <code>#required input</code></p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Attribute selectors use square brackets.</div>
+            </details>
+
+            <details>
+              <summary>Q28. Universal selector is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>#</code><br />B) <code>.</code><br />C) <code>*</code><br />D) <code>@</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>*</code> matches all elements.</div>
+            </details>
+
+            <details>
+              <summary>Q29. Which generally wins in specificity?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Element selector<br />B) Class selector<br />C) ID selector<br />D) Universal selector</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Order is typically: ID &gt; class/attribute/pseudo-class &gt; element/pseudo-element.</div>
+            </details>
+
+            <details>
+              <summary>Q30. Main purpose of <code>!important</code> is:<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) Make CSS load faster<br />B) Override normal cascade/specificity priority<br />C) Convert class to inline style<br />D) Force animation</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>!important</code> elevates declaration priority, but should be used sparingly.</div>
+            </details>
+
+            <details>
+              <summary>Q31. Box model order from inside to outside is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Content - Border - Padding - Margin<br />B) Content - Padding - Border - Margin<br />C) Margin - Padding - Border - Content<br />D) Border - Margin - Padding - Content</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Core sequence is content, then padding, border, and outer margin.</div>
+            </details>
+
+            <details>
+              <summary>Q32. What does <code>box-sizing: border-box;</code> do?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Hides border<br />B) Includes padding and border inside declared width/height<br />C) Disables margin collapse<br />D) Forces square box</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> It simplifies sizing calculations and responsive layouts.</div>
+            </details>
+
+            <details>
+              <summary>Q33. Margin collapsing typically occurs with:<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) Horizontal margins of inline elements<br />B) Vertical margins of adjacent block elements<br />C) Padding values only<br />D) Borders only</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Vertical margins can collapse into a single margin (largest wins).</div>
+            </details>
+
+            <details>
+              <summary>Q34. Key difference between border and outline:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Outline supports radius, border does not<br />B) Outline does not affect layout size, border does<br />C) Border is always outside margin<br />D) Outline cannot be colored</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Outline is drawn outside without taking layout space.</div>
+            </details>
+
+            <details>
+              <summary>Q35. <code>overflow: auto</code> behavior is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Always show both scrollbars<br />B) Clip content with no scrolling<br />C) Show scrollbars only when needed<br />D) Same as visible</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Auto adds scrollbars conditionally when overflow exists.</div>
+            </details>
+
+            <details>
+              <summary>Q36. Which statement is correct for <code>display:none</code> vs <code>visibility:hidden</code>?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Both keep layout space<br />B) Both remove layout space<br />C) <code>display:none</code> removes layout space; <code>visibility:hidden</code> keeps it<br />D) <code>visibility:hidden</code> removes layout space</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Visibility hides rendering while reserving box space.</div>
+            </details>
+
+            <details>
+              <summary>Q37. <code>position: relative;</code> means:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Element is removed from flow<br />B) Element moves from its normal position, keeping original slot<br />C) Element always sticks to viewport<br />D) Offsets are ignored</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Relative positioning preserves document flow space.</div>
+            </details>
+
+            <details>
+              <summary>Q38. Absolute positioned element is placed relative to:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Viewport always<br />B) Nearest ancestor with non-static position<br />C) Its previous sibling<br />D) Root font size</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Containing block is nearest positioned ancestor.</div>
+            </details>
+
+            <details>
+              <summary>Q39. For sticky behavior to activate, you usually need:<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) <code>z-index</code> only<br />B) <code>position: sticky</code> plus an offset like <code>top: 0</code><br />C) <code>display: flex</code><br />D) <code>overflow: hidden</code> on body</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Sticky requires threshold offset to know when to stick.</div>
+            </details>
+
+            <details>
+              <summary>Q40. <code>z-index</code> is mainly used to:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Set opacity<br />B) Set 3D perspective<br />C) Control overlap stacking order<br />D) Control width order</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Higher z-index appears above lower when elements overlap in same stacking context.</div>
+            </details>
+
+            <details>
+              <summary>Q41. Why can transform order matter?<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) Browser sorts transforms alphabetically<br />B) Transform functions are mathematically composed in sequence<br />C) Rotate always runs last regardless of order<br />D) Scale cancels translate</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>translate() rotate()</code> can produce different output than <code>rotate() translate()</code>.</div>
+            </details>
+
+            <details>
+              <summary>Q42. Which is true about <code>transform: translateX(...)</code>?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Changes normal document flow position for siblings<br />B) Visually moves element without reflowing siblings<br />C) Works only with absolute positioning<br />D) Requires z-index</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Transform affects paint/compositing, not normal flow geometry.</div>
+            </details>
+
+            <details>
+              <summary>Q43. Minimum for a transition to be noticeable is usually:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Only <code>transition-delay</code><br />B) Only <code>transition-property</code><br />C) Property change + non-zero duration<br />D) Keyframes only</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Without a changing value and duration, no visual transition appears.</div>
+            </details>
+
+            <details>
+              <summary>Q44. <code>animation-fill-mode: forwards;</code> means:<span class="q-level hard">Slightly Hard</span></summary>
+              <p class="q-options">A) Animation starts from end state<br />B) Element keeps final keyframe style after animation ends<br />C) Animation runs in reverse<br />D) Animation pauses on hover</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Forwards preserves computed styles from last keyframe.</div>
+            </details>
+
+            <details>
+              <summary>Q45. In <code>@keyframes</code>, percentages represent:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Viewport width<br />B) CPU usage<br />C) Timeline progress of animation<br />D) Opacity range</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> <code>0%</code> to <code>100%</code> maps animation progress from start to end.</div>
+            </details>
+
+            <details>
+              <summary>Q46. Flexbox default main axis direction is:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) column<br />B) row<br />C) column-reverse<br />D) depends on align-items</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Default <code>flex-direction</code> is <code>row</code>.</div>
+            </details>
+
+            <details>
+              <summary>Q47. In flex layout, main-axis alignment is controlled by:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>align-items</code><br />B) <code>justify-content</code><br />C) <code>align-self</code><br />D) <code>place-items</code></p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> <code>justify-content</code> aligns items along main axis.</div>
+            </details>
+
+            <details>
+              <summary>Q48. In CSS Grid, <code>1fr 2fr</code> means:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) First track fixed 1px, second 2px<br />B) First track gets half of second track's free space share<br />C) Equal track sizes<br />D) 1% and 2% widths</p>
+              <div class="q-answer"><strong>Answer:</strong> B<br /><strong>Explanation:</strong> Free space is split into 3 fractions: first gets 1, second gets 2.</div>
+            </details>
+
+            <details>
+              <summary>Q49. Mobile-first media query approach commonly uses:<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) Only <code>max-width</code><br />B) Only orientation queries<br />C) Base styles for small screens + <code>min-width</code> breakpoints<br />D) No media queries</p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Mobile-first starts small, then progressively enhances for larger screens.</div>
+            </details>
+
+            <details>
+              <summary>Q50. Which Bootstrap class is used as one accordion unit wrapper?<span class="q-level">Medium</span></summary>
+              <p class="q-options">A) <code>accordion-unit</code><br />B) <code>accordion-wrap</code><br />C) <code>accordion-item</code><br />D) <code>accordion-card</code></p>
+              <div class="q-answer"><strong>Answer:</strong> C<br /><strong>Explanation:</strong> Bootstrap accordion structure uses <code>accordion</code> and nested <code>accordion-item</code> blocks.</div>
+            </details>
+          </div>
+        </details>
+
         <details>
           <summary>Code + Output</summary>
           <div class="example-pair">
@@ -4478,6 +4966,282 @@ rem :- root element
           });
           quizResult.textContent = "Score: " + score + " / " + questions.length;
         });
+      }
+
+      var mcqApp = document.getElementById("mcqApp");
+      var quizBankWithAnswers = document.getElementById("quizBankWithAnswers");
+      if (mcqApp && quizBankWithAnswers) {
+        var mcqCard = document.getElementById("mcqCard");
+        var mcqProgress = document.getElementById("mcqProgress");
+        var mcqFinal = document.getElementById("mcqFinal");
+        var mcqPrev = document.getElementById("mcqPrev");
+        var mcqNext = document.getElementById("mcqNext");
+        var mcqSubmit = document.getElementById("mcqSubmit");
+        var mcqReset = document.getElementById("mcqReset");
+
+        function cleanText(value) {
+          return (value || "").replace(/\s+/g, " ").trim();
+        }
+
+        function decodeHTML(value) {
+          var t = document.createElement("textarea");
+          t.innerHTML = value || "";
+          return t.value;
+        }
+
+        function stripHTML(value) {
+          return cleanText((value || "").replace(/<[^>]*>/g, " "));
+        }
+
+        function splitOptionLines(html) {
+          return (html || "")
+            .split(/<br\s*\/?>/i)
+            .map(function (part) {
+              return cleanText(decodeHTML(stripHTML(part)));
+            })
+            .filter(Boolean);
+        }
+
+        function escapeHTML(value) {
+          return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
+
+        function toOptionObject(raw, index) {
+          var match = raw.match(/^([A-D])\)\s*(.*)$/i);
+          var key = match ? match[1].toUpperCase() : String.fromCharCode(65 + index);
+          var text = match ? match[2] : raw;
+          return { key: key, text: cleanText(text) };
+        }
+
+        function buildQuestionsFromBank() {
+          var list = [];
+          Array.prototype.slice.call(quizBankWithAnswers.children).forEach(function (item) {
+            if (!item.tagName || item.tagName.toLowerCase() !== "details") {
+              return;
+            }
+
+            var summary = item.querySelector("summary");
+            if (!summary) {
+              return;
+            }
+
+            var summaryClone = summary.cloneNode(true);
+            var levelEl = summaryClone.querySelector(".q-level");
+            var level = levelEl ? cleanText(levelEl.textContent) : "Medium";
+            if (levelEl) {
+              levelEl.remove();
+            }
+            var questionText = cleanText(summaryClone.textContent);
+
+            var optionsNode = item.querySelector(".q-options");
+            var optionLines = splitOptionLines(optionsNode ? optionsNode.innerHTML : "");
+            var options = optionLines.map(function (line, idx) {
+              return toOptionObject(line, idx);
+            });
+
+            var answerNode = item.querySelector(".q-answer");
+            var answerText = cleanText(answerNode ? answerNode.textContent : "");
+            var answerMatch = answerText.match(/Answer:\s*([A-D])/i);
+            var explanationMatch = answerText.match(/Explanation:\s*(.*)$/i);
+            var answer = answerMatch ? answerMatch[1].toUpperCase() : "";
+            var explanation = explanationMatch
+              ? cleanText(explanationMatch[1])
+              : "Review this topic and try again.";
+
+            var hint = cleanText(explanation.split(".")[0]);
+            if (!hint) {
+              hint = "Think about the core definition and behavior.";
+            }
+            if (hint.length > 140) {
+              hint = hint.slice(0, 140) + "...";
+            }
+
+            if (questionText && options.length && answer) {
+              list.push({
+                question: questionText,
+                level: level,
+                options: options,
+                answer: answer,
+                explanation: explanation,
+                hint: hint
+              });
+            }
+          });
+          return list;
+        }
+
+        var mcqQuestions = buildQuestionsFromBank();
+        var current = 0;
+        var answers = [];
+        var hints = [];
+        var checked = [];
+
+        function answeredCount() {
+          var n = 0;
+          for (var i = 0; i < mcqQuestions.length; i += 1) {
+            if (answers[i]) {
+              n += 1;
+            }
+          }
+          return n;
+        }
+
+        function correctCount() {
+          var n = 0;
+          for (var i = 0; i < mcqQuestions.length; i += 1) {
+            if (answers[i] && answers[i] === mcqQuestions[i].answer) {
+              n += 1;
+            }
+          }
+          return n;
+        }
+
+        function renderMcq() {
+          if (!mcqQuestions.length || !mcqCard || !mcqProgress) {
+            return;
+          }
+
+          var q = mcqQuestions[current];
+          var selected = answers[current] || "";
+          var levelClass = String(q.level || "").toLowerCase().indexOf("hard") !== -1 ? " hard" : "";
+
+          mcqProgress.textContent =
+            "Question " + (current + 1) + " / " + mcqQuestions.length +
+            " | Answered: " + answeredCount() +
+            " | Correct so far: " + correctCount();
+
+          var html =
+            '<div class="mcq-question">' +
+            '<p><strong>' + escapeHTML(q.question) + '</strong> <span class="q-level' + levelClass + '">' + escapeHTML(q.level) + '</span></p>' +
+            "</div>" +
+            '<div class="mcq-options">';
+
+          q.options.forEach(function (opt) {
+            var checkedAttr = selected === opt.key ? " checked" : "";
+            html +=
+              '<label>' +
+              '<input type="radio" name="mcqOption" value="' + escapeHTML(opt.key) + '"' + checkedAttr + " />" +
+              "<span><strong>" + escapeHTML(opt.key) + ")</strong> " + escapeHTML(opt.text) + "</span>" +
+              "</label>";
+          });
+
+          html += "</div>";
+          html +=
+            '<div class="mcq-controls">' +
+            '<button type="button" id="mcqHintBtn" class="hint-btn">Show Hint</button>' +
+            '<button type="button" id="mcqCheckBtn" class="check-btn">Check This Question</button>' +
+            "</div>";
+
+          if (hints[current]) {
+            html += '<div class="mcq-hint"><strong>Hint:</strong> ' + escapeHTML(q.hint) + "</div>";
+          }
+
+          if (checked[current] === "missing") {
+            html += '<div class="mcq-feedback neutral">Select one option before checking.</div>';
+          }
+
+          if (checked[current] === "correct") {
+            html +=
+              '<div class="mcq-feedback ok"><strong>Correct.</strong> ' +
+              escapeHTML(q.explanation) +
+              "</div>";
+          }
+
+          if (checked[current] === "wrong") {
+            html +=
+              '<div class="mcq-feedback bad"><strong>Incorrect.</strong> Correct answer: <strong>' +
+              escapeHTML(q.answer) +
+              "</strong>. " +
+              escapeHTML(q.explanation) +
+              "</div>";
+          }
+
+          mcqCard.innerHTML = html;
+
+          var optionRadios = Array.prototype.slice.call(mcqCard.querySelectorAll("input[name='mcqOption']"));
+          optionRadios.forEach(function (radio) {
+            radio.addEventListener("change", function () {
+              answers[current] = this.value;
+            });
+          });
+
+          var hintBtn = document.getElementById("mcqHintBtn");
+          if (hintBtn) {
+            hintBtn.textContent = hints[current] ? "Hide Hint" : "Show Hint";
+            hintBtn.addEventListener("click", function () {
+              hints[current] = !hints[current];
+              renderMcq();
+            });
+          }
+
+          var checkBtn = document.getElementById("mcqCheckBtn");
+          if (checkBtn) {
+            checkBtn.addEventListener("click", function () {
+              if (!answers[current]) {
+                checked[current] = "missing";
+                renderMcq();
+                return;
+              }
+              checked[current] = answers[current] === q.answer ? "correct" : "wrong";
+              renderMcq();
+            });
+          }
+
+          if (mcqPrev) {
+            mcqPrev.disabled = current === 0;
+          }
+          if (mcqNext) {
+            mcqNext.disabled = current === mcqQuestions.length - 1;
+          }
+        }
+
+        if (mcqPrev) {
+          mcqPrev.addEventListener("click", function () {
+            if (current > 0) {
+              current -= 1;
+              renderMcq();
+            }
+          });
+        }
+
+        if (mcqNext) {
+          mcqNext.addEventListener("click", function () {
+            if (current < mcqQuestions.length - 1) {
+              current += 1;
+              renderMcq();
+            }
+          });
+        }
+
+        if (mcqSubmit && mcqFinal) {
+          mcqSubmit.addEventListener("click", function () {
+            var total = mcqQuestions.length;
+            var score = correctCount();
+            var answered = answeredCount();
+            var pct = total ? Math.round((score / total) * 100) : 0;
+            mcqFinal.textContent =
+              "Final Score: " + score + " / " + total +
+              " (" + pct + "%) | Answered: " + answered + " / " + total;
+          });
+        }
+
+        if (mcqReset) {
+          mcqReset.addEventListener("click", function () {
+            answers = [];
+            hints = [];
+            checked = [];
+            current = 0;
+            if (mcqFinal) {
+              mcqFinal.textContent = "";
+            }
+            renderMcq();
+          });
+        }
+
+        renderMcq();
       }
 
       var yearText = document.getElementById("yearText");
